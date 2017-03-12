@@ -55,7 +55,7 @@
 			</div>
 			<div style="padding:10px">
 				<div class="panel-header tt-inner">
-					<img src='../static/images/BSMainPage/internet_none.png'   height="33px" width="33px" /><br>一个球
+					<img src='../static/images/BSMainPage/internet_none.png'   height="33px" width="33px" /><br>发现
 				</div>
 				<p>A personal digital assistant (PDA), also known as a palmtop computer, or personal data assistant, is a mobile device that functions as a personal information manager. PDAs are largely considered obsolete with the widespread adoption of smartphones.</p>
 			</div>
