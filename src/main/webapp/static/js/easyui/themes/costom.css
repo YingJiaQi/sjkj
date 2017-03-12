@@ -1,0 +1,15 @@
+.costom-linkbutton {
+	padding: 8px;
+	border-radius: 6px;
+	background-color: #00c0dd;
+}
+.custom-badge {
+	font-size: 3px;
+	text-decoration: none;
+	position: absolute;
+	color: white;
+	top: -1px;
+	left:15px;
+	background-color:#d9534f;
+	border-radius: 6px;
+}

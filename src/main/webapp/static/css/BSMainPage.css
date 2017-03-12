@@ -1,0 +1,13 @@
+.custom-badge {
+	font-size: 3px;
+	text-decoration: none;
+	position: absolute;
+	color: white;
+	top: -1px;
+	left:15px;
+	background-color:#d9534f;
+	border-radius: 6px;
+}
+.centerFont {
+	text-align:center;
+}
