@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sjkj.pojo.SystemComponents;
 import com.sjkj.service.user.UserService;
+import com.sjkj.vo.PageBean;
 
 @Controller
 @RequestMapping(value="/user")
@@ -48,5 +49,14 @@ public class UserController {
 	@RequestMapping(value = "/getMenu", method = RequestMethod.POST)
 	public ResponseEntity<?> getMenu(HttpServletRequest request) {
 		return new ResponseEntity<List<?>>(userService.getMenu(), HttpStatus.OK);
+	}
+	/**
+	 * 获取所有用户
+	 * @param pageBean
+	 * @return
+	 */
+	@RequestMapping(value = "/getUserList", method = RequestMethod.POST)
+	public ResponseEntity<?> getUserList(PageBean pageBean) {
+		return new ResponseEntity<Object>(userService.getUserList(pageBean), HttpStatus.OK);
 	}
 }

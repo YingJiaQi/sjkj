@@ -28,7 +28,7 @@ function startAccordion(){
 					var pageUrl = data[i].page;
 					var component = data[i].componentCode;
 					//子节点设计
-					chtml = '<li><a href="#'+component+'" data-options="animation:'+"'"+'slide'+"'"+',direction:'+"'"+'left'+"'"+'" pageName="' + pageName + '" pageUrl="' + pageUrl + '">' + '<img src="../static/images/BSMainPage/clipboard.png" style="height:12px">' + data[i].name + '</a></li>';
+					chtml = '<li><a href="#'+component+'" data-options="animation:'+"'"+'slide'+"'"+',direction:'+"'"+'left'+"'"+'" pageName="' + pageName + '" pageUrl="' + pageUrl + '" onclick="openpages(this)">' + '<img src="../static/images/BSMainPage/clipboard.png" style="height:12px">' + data[i].name + '</a></li>';
 					//chtml = '<p style="cursor:pointer;height:20px;font-size:12px;padding:5px 0px 0px 5px;" pageName="' + pageName + '" pageUrl="' + pageUrl + '" onclick="openTabs(this)">' + '<img src="../static/images/BSMainPage/clipboard.png" style="height:12px">' + data[i].name + '</p>';
 					$("#par_" + data[i].pId).append(chtml);
 					
@@ -41,8 +41,13 @@ function startAccordion(){
 	});
 }
 //菜单点击,打开
-function openTabs(ele) {
-}
+/*function openpages(obj) {
+	var text = $(obj).html();
+	if(text.indexOf("后台用户管理") >0){
+		alert(1)
+		window.location.href="../login/BSMainPage";
+	}
+}*/
 /**
  * 退出登录
  */

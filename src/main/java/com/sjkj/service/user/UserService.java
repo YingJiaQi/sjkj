@@ -6,8 +6,11 @@ import java.util.Map;
 
 
 
+
+
 import com.sjkj.pojo.SystemComponents;
 import com.sjkj.pojo.User;
+import com.sjkj.vo.PageBean;
 
 public interface UserService {
 	/**
@@ -28,5 +31,12 @@ public interface UserService {
 	 * @return
 	 */
 	List<?> getMenu();
+	/**
+	 * 获取所有用户
+	 * @param pageBean 
+	 * @param pageBean
+	 * @return
+	 */
+	Map<String, Object> getUserList(PageBean pageBean);
 
 }
