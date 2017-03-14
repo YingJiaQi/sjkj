@@ -31,7 +31,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <!-- 配置我们的登录请求地址 -->   
         <property name="loginUrl" value="/login/BackStageLogin"/>    
         <!-- 配置我们在登录页登录成功后的跳转地址，如果你访问的是非/login地址，则跳到您访问的地址 -->  
-        <property name="successUrl" value="/login/BSMainPage"/>
+        <property name="successUrl" value="/"/>
         <!-- 如果您请求的资源不再您的权限范围，则跳转到/403请求地址 -->
         <property name="unauthorizedUrl" value="/403"/>    
         <!-- 权限配置 -->  
@@ -39,15 +39,19 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
             <value>    
                 <!-- anon表示此地址不需要任何权限即可访问 -->  
                 /static/**=anon
-                /login/initUser/**=anon
+                /login/initUser/=anon
                 <!--所有的请求(除去配置的静态资源请求或请求地址为anon的请求)都要通过登录验证,如果未登录则跳到/login-->    
-               /** = anon
+               /** = authc
             </value>    
         </property>    
     </bean>  
       
       
-    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />    
+    	<!-- 用户授权信息Cache, 采用EhCache -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:/spring/ehcache-shiro.xml"/>
+	</bean>
+	  
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />   
       
     	<!-- 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证 -->

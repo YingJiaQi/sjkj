@@ -194,6 +194,7 @@
 		<div onclick="changeTheme('metro');">metro</div>
 		<div onclick="changeTheme('material');">material</div>
 	</div>
+	<!-- 修改密码提示信息 -->
 	<div id="popup_oldPwd" class="easyui-dialog" style="padding:20px 6px;width:80%;" data-options="inline:true,modal:true,closed:true,title:'出错了!'">
 		<div class="m-title centerFont">原密码不能为空！</div>
 		<a style="position:absolute;top:6px;left:92%" href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#popup_oldPwd').dialog('close')"><b style="color:red">X</b></a>
