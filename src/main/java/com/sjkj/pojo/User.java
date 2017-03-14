@@ -18,7 +18,7 @@ import com.alibaba.fastjson.annotation.JSONType;
 @Table(name = "tbl_s_user")
 public class User  extends BasePojo{
 	@Column(name="user_code")
-    private String userCode;
+    private String userCode;//用户账号
 	
 	@Column(name="login_times")
     private Integer loginTimes;
@@ -41,6 +41,15 @@ public class User  extends BasePojo{
 	@Column(name="birthday")
     private Date birthday;
 	
+	@Column(name="is_active")
+    private Integer isActive = 1;//默认为1激活，0停用
+	
+	public Integer getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Integer isActive) {
+		this.isActive = isActive;
+	}
 	public String getUserMobile() {
 		return userMobile;
 	}

@@ -3,10 +3,7 @@ package com.sjkj.service.user;
 import java.util.List;
 import java.util.Map;
 
-
-
-
-
+import org.springframework.util.MultiValueMap;
 
 import com.sjkj.pojo.SystemComponents;
 import com.sjkj.pojo.User;
@@ -38,5 +35,28 @@ public interface UserService {
 	 * @return
 	 */
 	Map<String, Object> getUserList(PageBean pageBean);
+	/**
+	 * 登录次数加1，最后更新时间修改,根据用户账号
+	 * @param username
+	 */
+	void updateLoginTimesAndLastLoginTime(String userAccount);
+	/**
+	 * 更新用户信息
+	 * @param user
+	 * @return
+	 */
+	Map<String, Object> updateUser(User user);
+	/**
+	 * 删除用户信息
+	 * @param userID
+	 * @return
+	 */
+	Map<String, String> deleteUserById(User user);
+	/**
+	 * 添加用户信息
+	 * @param user
+	 * @return
+	 */
+	Map<String, String> addUser(User user);
 
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sjkj.pojo.SystemComponents;
+import com.sjkj.pojo.User;
 import com.sjkj.service.user.UserService;
 import com.sjkj.vo.PageBean;
 
@@ -58,5 +59,32 @@ public class UserController {
 	@RequestMapping(value = "/getUserList", method = RequestMethod.POST)
 	public ResponseEntity<?> getUserList(PageBean pageBean) {
 		return new ResponseEntity<Object>(userService.getUserList(pageBean), HttpStatus.OK);
+	}
+	/**
+	 * 更新用户信息
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	public ResponseEntity<?> updateUser(@RequestBody User user) {
+		return new ResponseEntity<Object>(userService.updateUser(user), HttpStatus.OK);
+	}
+	/**
+	 * 删除用户信息
+	 * @param userID
+	 * @return
+	 */
+	@RequestMapping(value = "/deleteUserById", method = RequestMethod.POST)
+	public ResponseEntity<?> deleteUserById(@RequestBody User user) {
+		return new ResponseEntity<Object>(userService.deleteUserById(user), HttpStatus.OK);
+	}
+	/**
+	 * 添加用户信息
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	public ResponseEntity<?> addUser(@RequestBody User user) {
+		return new ResponseEntity<Object>(userService.addUser(user), HttpStatus.OK);
 	}
 }

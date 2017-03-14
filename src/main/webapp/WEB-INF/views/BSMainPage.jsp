@@ -20,6 +20,7 @@
 	<script type="text/javascript" src="../static/js/easyui/jquery.easyui.mobile.js"></script>
 	<script type="text/javascript" src="../static/js/base64.js"></script>
 	<script type="text/javascript" src="../static/js/pages/BSMainPage.js"></script>
+	<script type="text/javascript" src="../static/js/pages/Common.js"></script>
   </head>
   
   <body>

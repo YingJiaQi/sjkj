@@ -13,11 +13,6 @@ function openpages(obj){
 			iconCls : 'icon-add',
 			handler : doAdd
 		}, {
-			id : 'button-edit',	
-			text : '修改',
-			iconCls : 'icon-edit',
-			handler : doEdit
-		},{
 			id : 'button-delete',
 			text : '删除',
 			iconCls : 'icon-cancel',
@@ -25,6 +20,12 @@ function openpages(obj){
 		}];
 		var columns = [ [
 		{
+			field : 'id',
+			title : 'id',
+			width : 90,
+			align : 'center',
+			hidden :true
+		},{
 			field : 'userName',
 			title : '用户名',
 			width : 90,
@@ -58,7 +59,7 @@ function openpages(obj){
 		{
 			field : 'birthday',
 			title : '生日',
-			width : 120,
+			width : 80,
 			align : 'center'
 		},
 		{
@@ -70,7 +71,7 @@ function openpages(obj){
 		{
 			field : 'lastLoginTime',
 			title : '最后登录的时间',
-			width : 120,
+			width : 130,
 			align : 'center',
 			
 		}] ];
@@ -99,23 +100,97 @@ function openpages(obj){
 }
 //双击修改内容
 function doDblClickRow(rowIndex, rowData){
-/*	$('#updateWindow').window("open");
-	$("#updateUserForm").form("load", rowData);*/
-	alert(1)
+	$("#updateUser").dialog("open").dialog("center");
+	$("#updateUserForm").form("load", rowData);
 }
 function doAdd(){
-	/*$('#addDecidedzoneWindow').window("open");*/
-	alert("add")
-}
-
-function doEdit(){
-	alert("修改...");
+	$("#addUser").dialog("open").dialog("center");
 }
 
 function doDelete(){
-	alert("删除...");
+	$.messager.confirm('提示:',	'你确认要删除吗?',	function(event) {
+		if (event) {
+			var id = $('#grid').datagrid("getSelected");
+			var dataVo = {
+				id : id
+			};
+			$.ajax({
+				type : 'post',
+				url : '../user/deleteUserById',
+				data : JSON.stringify(dataVo),
+				dataType : 'json',
+				contentType : "application/json; charset=utf-8",
+				success : function(data) {
+					if (data.success == "true") {
+						$('#grid').datagrid('reload');
+						$.messager.alert('提示',data.msg,"info");
+					} else {
+						$.messager.alert('提示',	data.msg);
+					}
+				}
+			});
+		} else {
+			return;
+		}
+	});
 }
 
 function doSearch(){
 	//$('#searchWindow').window("open");
+}
+/**
+ * 保存更新
+ */
+function saveUpdate(){
+	var data = $("#updateUserForm").serialize();
+	//alert(data)
+	if($("#updateUserForm").form("validate")) {
+		$.ajax({
+			type: 'post',
+			url: "../user/updateUser",
+			data: JSON.stringify(conveterParamsToJson(data)),
+			dataType: 'json',
+			contentType: "application/json; charset=utf-8",
+			success: function(data) {
+				if(data.success == "true") {
+					$("#grid").datagrid('reload');
+					$.messager.alert('更新成功', data.msg, "info");
+				} else {
+					$.messager.alert('更新失败', data.msg, "error");
+				}
+			}
+		});
+	} else {
+		return;
+	}
+	$('#updateUser').dialog('close');
+	$("#updateUserForm").form('reset');
+}
+/**
+ * 保存添加
+ */
+function saveAdd(){
+	var data = $("#addUserForm").serialize();
+	//alert(data)
+	if($("#addUserForm").form("validate")) {
+		$.ajax({
+			type: 'post',
+			url: "../user/addUser",
+			data: JSON.stringify(conveterParamsToJson(data)),
+			dataType: 'json',
+			contentType: "application/json; charset=utf-8",
+			success: function(data) {
+				if(data.success == "true") {
+					$("#grid").datagrid('reload');
+					$.messager.alert('添加成功', data.msg, "info");
+				} else {
+					$.messager.alert('添加失败', data.msg, "error");
+				}
+			}
+		});
+	} else {
+		return;
+	}
+	$('#addUser').dialog('close');
+	$("#addUserForm").form('reset');
 }

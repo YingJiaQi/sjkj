@@ -69,6 +69,8 @@ public class Login {
 		
 		try {
 			SecurityUtils.getSubject().login(new UsernamePasswordToken(username, password));
+			//登录次数加1，最后更新时间修改,根据用户账号
+			userService.updateLoginTimesAndLastLoginTime(username);
 			result.put("success", "true");
 			result.put("msg", "登录成功");
 			return new ResponseEntity<Object>(result,HttpStatus.OK);

@@ -1,7 +1,6 @@
 package com.sjkj.service.user.impl;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -9,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -36,7 +36,6 @@ import com.sjkj.pojo.User;
 import com.sjkj.pojo.UserRoleLink;
 import com.sjkj.service.user.UserService;
 import com.sjkj.vo.PageBean;
-import com.sjkj.vo.VEasyuiTree;
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired
@@ -50,9 +49,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private SystemComponentsDao systemComponentsDao;
 	@Override
-	public User findUserByUsername(String username) {
+	public User findUserByUsername(String userAccount) {
 		Example example = new Example(User.class);
-		example.createCriteria().andEqualTo("userName", username);
+		example.createCriteria().andEqualTo("userCode", userAccount);
 		example.createCriteria().andEqualTo("isDel", 0);
 		List<User> user = userDao.selectByExample(example);
 		if(user.isEmpty()){
@@ -169,6 +168,84 @@ public class UserServiceImpl implements UserService {
 		PageInfo<User> po = new PageInfo<User>(uList);
 		result.put("total", po.getTotal());
 		result.put("rows", po.getList());
+		return result;
+	}
+	@Override
+	public void updateLoginTimesAndLastLoginTime(String userAccount) {
+		Example example = new Example(User.class);
+		example.createCriteria().andEqualTo("isDel", 0);
+		example.createCriteria().andEqualTo("userCode", userAccount);
+		List<User> selectByExample = userDao.selectByExample(example);
+		User user = selectByExample.get(0);
+		user.setLastLoginTime(new Date());
+		if(StringUtils.isNoneBlank(user.getLoginTimes()+"") && user.getLoginTimes() != null){
+			user.setLoginTimes(user.getLoginTimes()+1);
+		}else{
+			user.setLoginTimes(1);
+		}
+		userDao.updateByPrimaryKey(user);
+	}
+	@Override
+	public Map<String, Object> updateUser(User user) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		User u = userDao.selectByPrimaryKey(user.getId());
+		u.setBirthday(user.getBirthday());
+		u.setIsActive(user.getIsActive());
+		u.setUpdateTime(new Date());
+		u.setUserEmail(user.getUserEmail());
+		u.setUserGender(user.getUserGender());
+		u.setUserMobile(user.getUserMobile());
+		u.setUserName(user.getUserName());
+		int updateByPrimaryKey = userDao.updateByPrimaryKey(u);
+		if(updateByPrimaryKey >0){
+			result.put("success", "true");
+			result.put("msg", "更新成功");
+		}else{
+			result.put("success", "false");
+			result.put("msg", "更新失败");
+		}
+		return result;
+	}
+	@Override
+	public Map<String, String> deleteUserById(User user) {
+		Map<String, String> result = new HashMap<String, String>();
+		User u = userDao.selectByPrimaryKey(user.getId());
+		u.setUpdateTime(new Date());
+		u.setIsActive(0);
+		u.setIsDel(1);
+		int updateByPrimaryKey = userDao.updateByPrimaryKey(u);
+		if(updateByPrimaryKey >0){
+			result.put("success", "true");
+			result.put("msg", "删除成功");
+		}else{
+			result.put("success", "false");
+			result.put("msg", "删除失败");
+		}
+		return result;
+	}
+	@Override
+	public Map<String, String> addUser(User user) {
+		Map<String, String> result = new HashMap<String, String>();
+		//用户账号不能重复
+		Example example = new Example(User.class);
+		example.createCriteria().andEqualTo("userCode", user.getUserCode());
+		example.createCriteria().andEqualTo("isDel", 0);
+		List<User> selectByExample = userDao.selectByExample(example);
+		if(selectByExample.size() >0){
+			result.put("success", "false");
+			result.put("msg", "用户账号已存在");
+			return result;
+		}
+		user.setCreateTime(new Date());
+		user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		user.setIsDel(0);
+		user.setLastLoginTime(new Date());
+		user.setLoginTimes(0);
+		user.setUpdateTime(user.getCreateTime());
+		user.setUserPassword("4QrcOUm6Wau+VuBX8g+IPg==");//初始密码123456
+		userDao.updateByPrimaryKey(user);
+		result.put("success", "true");
+		result.put("msg", "添加成功，初始密码123456");
 		return result;
 	}
 }
