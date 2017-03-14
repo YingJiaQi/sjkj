@@ -87,6 +87,7 @@ public class User  extends BasePojo{
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
+	@JSONField(format= "yyyy-MM-dd HH:mm:ss")
 	public Date getBirthday() {
 		return birthday;
 	}

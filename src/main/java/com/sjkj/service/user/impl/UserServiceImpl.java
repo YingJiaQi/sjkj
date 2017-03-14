@@ -22,6 +22,8 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.abel533.entity.Example;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.sjkj.dao.AuthorityDao;
 import com.sjkj.dao.RoleAuthorityLinkDao;
 import com.sjkj.dao.SystemComponentsDao;
@@ -33,6 +35,7 @@ import com.sjkj.pojo.SystemComponents;
 import com.sjkj.pojo.User;
 import com.sjkj.pojo.UserRoleLink;
 import com.sjkj.service.user.UserService;
+import com.sjkj.vo.PageBean;
 import com.sjkj.vo.VEasyuiTree;
 @Service
 public class UserServiceImpl implements UserService {
@@ -155,5 +158,17 @@ public class UserServiceImpl implements UserService {
 			menu.add(m);
 		}
 		return menu;
+	}
+	@Override
+	public Map<String, Object> getUserList(PageBean pageBean) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		PageHelper.startPage(pageBean.getPage(), pageBean.getRows());
+		Example example = new Example(User.class);
+		example.createCriteria().andEqualTo("isDel", 0);
+		List<User> uList = userDao.selectByExample(example);
+		PageInfo<User> po = new PageInfo<User>(uList);
+		result.put("total", po.getTotal());
+		result.put("rows", po.getList());
+		return result;
 	}
 }
