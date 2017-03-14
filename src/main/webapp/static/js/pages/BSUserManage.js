@@ -2,12 +2,15 @@ function openpages(obj){
 	var text = $(obj).html();
 	if(text.indexOf("后台用户管理") >0){
 		//工具栏
-		var toolbar = [ {
+		var toolbar = [{
+			id : 'button-search',
+			text : '<input type="text" id="searchKey" prompt="账号" value="账号"/>',
+		}, {
 			id : 'button-search',	
 			text : '查询',
 			iconCls : 'icon-search',
 			handler : doSearch
-		}, {
+		},  {
 			id : 'button-add',
 			text : '增加',
 			iconCls : 'icon-add',
@@ -110,10 +113,11 @@ function doAdd(){
 function doDelete(){
 	$.messager.confirm('提示:',	'你确认要删除吗?',	function(event) {
 		if (event) {
-			var id = $('#grid').datagrid("getSelected");
+			var data = $('#grid').datagrid("getSelected");
 			var dataVo = {
-				id : id
+				id : data.id
 			};
+			
 			$.ajax({
 				type : 'post',
 				url : '../user/deleteUserById',
@@ -136,7 +140,8 @@ function doDelete(){
 }
 
 function doSearch(){
-	//$('#searchWindow').window("open");
+	var a = $("#searchKey").val();
+	alert(a)
 }
 /**
  * 保存更新

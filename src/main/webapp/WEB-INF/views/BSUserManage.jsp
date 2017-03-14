@@ -52,7 +52,7 @@
 		<a style="position:absolute;top:6px;left:92%" href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#addUser').dialog('close')"><b style="color:red">X</b></a>		
 		<form id="addUserForm">
 			<div style="margin-bottom:7px">
-				<input class="easyui-textbox" name="userCode" data-options="required:true,validType:'multiple[\'length[3,100]\',\'RegeMatch\']'"  prompt="账号"  readonly="readonly" style="width:100%">
+				<input class="easyui-textbox" name="userCode" data-options="required:true,validType:'multiple[\'length[3,100]\',\'RegeMatch\']'"  prompt="账号"  style="width:100%">
 			</div>
 			<div style="margin-bottom:7px">
 				<input class="easyui-textbox" name="userName" data-options="required:true,validType:'multiple[\'length[3,100]\',\'RegeMatch\']'"  prompt="用户名" style="width:100%">

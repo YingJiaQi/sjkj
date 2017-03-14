@@ -243,7 +243,7 @@ public class UserServiceImpl implements UserService {
 		user.setLoginTimes(0);
 		user.setUpdateTime(user.getCreateTime());
 		user.setUserPassword("4QrcOUm6Wau+VuBX8g+IPg==");//初始密码123456
-		userDao.updateByPrimaryKey(user);
+		userDao.insert(user);
 		result.put("success", "true");
 		result.put("msg", "添加成功，初始密码123456");
 		return result;
