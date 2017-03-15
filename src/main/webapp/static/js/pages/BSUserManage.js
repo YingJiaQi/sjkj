@@ -4,7 +4,7 @@ function openpages(obj){
 		//工具栏
 		var toolbar = [{
 			id : 'button-search',
-			text : '<input type="text" id="searchKey" prompt="账号" value="账号"/>',
+			text : '<input type="text" id="searchKey" placeholder="账号"/>',
 		}, {
 			id : 'button-search',	
 			text : '查询',
