@@ -42,6 +42,15 @@ public class Login {
 		return param;
 	}
 	/**
+	 * 前台转到其它页面
+	 * @param param
+	 * @return
+	 */
+	@RequestMapping(value="/pre/{value}")
+	public String toPrePages(@PathVariable("value")String param){
+		return param;
+	}
+	/**
 	 * 后台管理员登录
 	 * @param username
 	 * @param password
