@@ -4,8 +4,8 @@
 <html>
 <head>
 <title>拖放完成自定义页面</title>
-<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/jquery-1.11.3.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/pages/PreCustomPage.js"></script>
+<script type="text/javascript" id="jqueryUrl" src="${pageContext.request.contextPath }/static/js/jquery-1.11.3.js"></script>
+<script type="text/javascript" id="customJs" src="${pageContext.request.contextPath }/static/js/pages/PreCustomPage.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 body { background-color: #eee; }

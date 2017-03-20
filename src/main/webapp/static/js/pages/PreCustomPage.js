@@ -182,7 +182,25 @@ function savePage(obj){
 		}
 	});
 	$("#leftBox").remove();
+	$("#rightBox").remove();
 	$(obj).remove();
-	var oldHTML = document.getElementsByTagName('html')[0].innerHTML;
-	alert(oldHTML)
+	$("#jqueryUrl").remove();
+	$("#customJs").remove();
+	var head = document.getElementsByTagName('head')[0].innerHTML;
+	var body = document.getElementsByTagName('body')[0].innerHTML;
+	var dataVo = {head:head,body:body};
+	$.ajax({
+		type : 'post',
+		url : '../pre/saveCustomHtmls',
+		data : JSON.stringify(dataVo),
+		dataType : 'json',
+		contentType : "application/json; charset=utf-8",
+		success : function(data) {
+			if (data.success == "true") {
+				$.messager.alert('提示',data.msg,"info");
+			} else {
+				$.messager.alert('提示',	data.msg);
+			}
+		}
+	});
 }
