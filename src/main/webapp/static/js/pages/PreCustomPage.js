@@ -1,3 +1,5 @@
+var availHeight = null;//屏幕可见区域高
+var availWidth = null;//屏幕可见区域宽
 $(function() {
     $(document).mousemove(function(e) {
         if (!!this.move) {
@@ -23,22 +25,38 @@ $(function() {
             });
         }
     });
+    availHeight = window.screen.availHeight;
+    availWidth = document.body.clientWidth ;
+    $("#bottomBox").css("height",availHeight);
+    //调用插件
+    var playLocation = $("#domScrollPanel");
+    domCircleDisplay(plugArr, playLocation);
+    //下拉
+		$(openDrage).dragging({
+			move : 'y',
+			randomPosition : true
+		});
+/*	}).mouseup(function(e){
+		$(this).css("left","0").css("top","-140px");
+	});*/
 });
 function activeBox(obj){
 
-    $(".activeBox .activeBox_title").removeClass("activeBox_title");
-    $(".activeBox").removeClass("activeBox");
-
-
+/*    $(".activeBox .activeBox_title").removeClass("activeBox_title");
+    $(".activeBox").removeClass("activeBox");*/
+    
+    var moveBox =  null;
     $(obj).mousedown(function(e) {
-        var moveBox =  null;
-        if(($("#rightBox").offset().left - $(obj).offset().left) > 0){
+    	//加上180是因为插件的宽度
+        if(($("#bottomBox").offset().top+180 - $(this).offset().top) > 0){
             moveBox = $(this).parent().clone();
             $("body").append(moveBox);
-             var moveBox_title = $(moveBox).children("div").get(0);
+            var moveBox_title = $(moveBox).children("div").get(0);
             $(moveBox_title).addClass("activeBox_title");
             $(moveBox_title).parent().addClass("activeBox");
-            boxTitle = $(obj).attr("title");
+            $(moveBox_title).parent().addClass("positionStyle");
+            $(moveBox_title).parent().css("top",$(this).offset().top);
+            $(moveBox_title).parent().css("left",$(this).offset().left);
         }else{
             moveBox = $(this).parent();
             $(this).addClass("activeBox_title");
@@ -167,10 +185,24 @@ function activeBox(obj){
             }});
         }
     }).mouseup(function(e) {
-    	//不在rightBox中的bOx删除
-        if(($("#rightBox").offset().left - $(this).offset().left) > 0){
-        	$(this).parent().remove();
-        }
+    	$(".positionStyle").each(function(){
+    		//超过bottomBox左侧   删除
+            if(($("#bottomBox").offset().left - $(this).offset().left) > 0){
+            	$(this).remove();
+            }
+        	//超过bottomBox顶部  删除
+            if(($("#bottomBox").offset().top - $(this).offset().top) > 0){
+            	$(this).remove();
+        	}
+            //超过bottomBox右边框 删除
+            if((($(this).offset().left+$(this).get(0).offsetWidth) - $("#bottomBox").innerWidth()) > 0){
+            	$(this).remove();
+            }
+            //超过bottomBox下边框 删除
+            if($(this).offset().top - ($("#bottomBox").get(0).offsetHeight+210) > 0){
+            	$(this).remove();
+            }
+    	});
     });
     
 }
@@ -204,3 +236,156 @@ function savePage(obj){
 		}
 	});
 }
+
+$.fn.extend({
+		//---元素拖动插件
+    dragging:function(data){   
+		var $this = $(this);
+		var xPage;
+		var yPage;
+		var X;//
+		var Y;//
+		var xRand = 0;//
+		var yRand = 0;//
+		var father = $this.parent();
+		var defaults = {
+			move : 'both',
+			randomPosition : true ,
+			hander:1
+		}
+		var opt = $.extend({},defaults,data);
+		var movePosition = opt.move;
+		var random = opt.randomPosition;
+		
+		var hander = opt.hander;
+		
+		if(hander == 1){
+			hander = $this; 
+		}else{
+			hander = $this.find(opt.hander);
+		}
+		
+			
+		//---初始化
+		father.css({"position":"relative","overflow":"hidden"});
+		$this.css({"position":"absolute"});
+		hander.css({"cursor":"move"});
+
+		var faWidth = father.width();
+		var faHeight = father.height();
+		var thisWidth = $this.width()+parseInt($this.css('padding-left'))+parseInt($this.css('padding-right'));
+		var thisHeight = $this.height()+parseInt($this.css('padding-top'))+parseInt($this.css('padding-bottom'));
+		
+		var mDown = false;//
+		var positionX;
+		var positionY;
+		var moveX ;
+		var moveY ;
+		
+		if(random){
+			$thisRandom();
+		}
+		function $thisRandom(){ //随机函数
+			$this.each(function(index){
+				var randY = parseInt(Math.random()*(faHeight-thisHeight));///
+				var randX = parseInt(Math.random()*(faWidth-thisWidth));///
+				if(movePosition.toLowerCase() == 'x'){
+					$(this).css({
+						left:randX
+					});
+				}else if(movePosition.toLowerCase() == 'y'){
+					$(this).css({
+						top:randY
+					});
+				}else if(movePosition.toLowerCase() == 'both'){
+					$(this).css({
+						top:randY,
+						left:randX
+					});
+				}
+				
+			});	
+		}
+		
+		hander.mousedown(function(e){
+			father.children().css({"zIndex":"0"});
+			$this.css({"zIndex":"1"});
+			mDown = true;
+			X = e.pageX;
+			Y = e.pageY;
+			positionX = $this.position().left;
+			positionY = $this.position().top;
+			return false;
+		});
+			
+		$(document).mouseup(function(e){
+			mDown = false;
+		});
+			
+		$(document).mousemove(function(e){
+			xPage = e.pageX;//--
+			moveX = positionX+xPage-X;
+			
+			yPage = e.pageY;//--
+			moveY = positionY+yPage-Y;
+			
+			function thisXMove(){ //x轴移动
+				if(mDown == true){
+					$this.css({"left":moveX});
+				}else{
+					return;
+				}
+				if(moveX < 0){
+					$this.css({"left":"0"});
+				}
+				if(moveX > (faWidth-thisWidth)){
+					$this.css({"left":faWidth-thisWidth});
+				}
+				return moveX;
+			}
+			
+			function thisYMove(){ //y轴移动
+				if(mDown == true){
+					$this.css({"top":moveY});
+				}else{
+					return;
+				}
+				if(moveY < 0){
+					$this.css({"top":"0"});
+				}
+				if(moveY > (faHeight-thisHeight)){
+					$this.css({"top":faHeight-thisHeight});
+				}
+				return moveY;
+			}
+
+			function thisAllMove(){ //全部移动
+				if(mDown == true){
+					$this.css({"left":moveX,"top":moveY});
+				}else{
+					return;
+				}
+				if(moveX < 0){
+					$this.css({"left":"0"});
+				}
+				if(moveX > (faWidth-thisWidth)){
+					$this.css({"left":faWidth-thisWidth});
+				}
+
+				if(moveY < 0){
+					$this.css({"top":"0"});
+				}
+				if(moveY > (faHeight-thisHeight)){
+					$this.css({"top":faHeight-thisHeight});
+				}
+			}
+			if(movePosition.toLowerCase() == "x"){
+				thisXMove();
+			}else if(movePosition.toLowerCase() == "y"){
+				thisYMove();
+			}else if(movePosition.toLowerCase() == 'both'){
+				thisAllMove();
+			}
+		});
+    }
+}); 
