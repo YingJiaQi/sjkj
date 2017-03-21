@@ -24,12 +24,12 @@
 <script type="text/javascript"  src="${pageContext.request.contextPath }/static/js/picHandle.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation"> 
+<nav id="nav_head" class="navbar navbar-default navbar-fixed-top" role="navigation"> 
     <div class="container-fluid" id="domScrollPanel"> 
     </div>
-</nav><div style="visibility:hidden;height:210px">这是隐藏的部分</div>
+</nav><div id="hiddenDom" style="visibility:hidden;height:210px">这是隐藏的部分</div>
 <div class="openDrage"><img alt="" src="${pageContext.request.contextPath }/static/images/Pre/customPage/close.png" height="auto" width="80"/></div>
-
+<div class="btn btn-success btn-sm" onclick="savePage();" id="savePageButton">&nbsp;&nbsp;保存&nbsp;&nbsp;</div>
 <div id="bottomBox">
 
 </div>

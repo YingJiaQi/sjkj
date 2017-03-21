@@ -32,23 +32,56 @@ $(function() {
     var playLocation = $("#domScrollPanel");
     domCircleDisplay(plugArr, playLocation);
     //下拉
-		$(openDrage).dragging({
-			move : 'y',
-			randomPosition : true
-		});
-/*	}).mouseup(function(e){
-		$(this).css("left","0").css("top","-140px");
-	});*/
+	$(".openDrage").dragging({
+		move : 'y',
+		randomPosition : true
+	});
+	$(".openDrage").css("left","0").css("top","-140px");
+
+	$(".openDrage").mouseup(function(e){
+		if($(".openDrage img").attr("src").indexOf("close") >0 ){
+			
+			//关闭插件panel
+			$("#nav_head").css("display","none");
+			$("#hiddenDom").css("display","none");
+			$(".openDrage img").attr("src","../static/images/Pre/customPage/open.png");
+			$(".openDrage").css("top","-320px");
+			$("#savePageButton").css("display","none");
+			//将页面所有元素position属性高度减200px;
+			$("*").each(function(index){
+				//外面框架一定不要加title
+				if($(this).hasClass("positionStyle")){
+					$(this).css("top",$(this).offset().top-210);
+				}
+			});
+		}else{
+			//复位
+			$(this).css("left","0").css("top","-140px");
+			$("#nav_head").css("display","block");
+			$("#hiddenDom").css("display","block");
+			$("#savePageButton").css("display","block");
+			$(".openDrage img").attr("src","../static/images/Pre/customPage/close.png");
+			//将页面所有元素position属性高度加200px;
+			$("*").each(function(index){
+				//外面框架一定不要加title
+				if($(this).hasClass("positionStyle")){
+					$(this).css("top",$(this).offset().top+210);
+				}
+			});
+		}
+	});
 });
 function activeBox(obj){
 
-/*    $(".activeBox .activeBox_title").removeClass("activeBox_title");
-    $(".activeBox").removeClass("activeBox");*/
+    $(".activeBox .activeBox_title").removeClass("activeBox_title");
+    $(".activeBox").removeClass("activeBox");
     
     var moveBox =  null;
     $(obj).mousedown(function(e) {
     	//加上180是因为插件的宽度
-        if(($("#bottomBox").offset().top+180 - $(this).offset().top) > 0){
+        //if(($("#bottomBox").offset().top+180 - $(this).offset().top) > 0){
+    	//alert($(this).parent().css("position"))
+    	if($(this).parent().css("position") == "static"){
             moveBox = $(this).parent().clone();
             $("body").append(moveBox);
             var moveBox_title = $(moveBox).children("div").get(0);
@@ -78,8 +111,12 @@ function activeBox(obj){
             {'mousemove':function(e){
                 $(this).css({cursor: "default"});
                 var offset = $(this).offset(), resize=true;
-                var x = e.clientX, y = e.clientY, t = offset.top, l = offset.left, w = $(this).width(), h = $(this).height(), ww = $('.main_tabletop').height(), b = 10;
-                if(x<(l+b) && y > (t+ww) && y < (t+h-b)){
+                var x = e.clientX, y = e.clientY, t = offset.top, l = offset.left, w = $(this).width(), h = $(this).height(), ww = $('.boxTopDrage').height(), b = 10;
+            	//自已添加的qq变量，只有这样当滚动条下拉时，改变盒子形状功能才能使用，只在y上加qq，因为滚动条位置改变只对该变量有影响
+                var qq = $(document).scrollTop();//查询滚动条当前位置（距离顶部）
+              
+                //alert(y+"---"+t)
+                if(x<(l+b) && y+qq > (t+ww) && y+qq < (t+h-b)){
                     //左边
                     //alert('左边')
                     $(this).css({cursor: "w-resize"});
@@ -99,9 +136,9 @@ function activeBox(obj){
                             });
                         }});
                     }});
-                }else if(x<(l+w) && x>(l+w-b) &&  y > (t+ww) && y < (t+h-b)){
+                }else if(x<(l+w) && x>(l+w-b) &&  y+qq > (t+ww) && y+qq < (t+h-b)){
                     //右边
-                    //alert('右边')
+                	// alert('右边')
                     $(this).css({cursor: "e-resize"});
                     $(this).unbind("mousedown").bind({"mousedown":function(e){
                         var $p = $(this);
@@ -111,9 +148,9 @@ function activeBox(obj){
                             };
                         resizeBox($p, posix, e);
                     }});
-                }else if(y<(t+h) && y>(t+h-b) && x>(l+b) && x<(l+w-b)){
+                }else if(y+qq<(t+h) && y+qq>(t+h-b) && x>(l+b) && x<(l+w-b)){
                     //下边拖拽
-                    //alert('下边拖拽')
+                	//alert('下边拖拽')
                     $(this).css({cursor: "s-resize"});
                     $(this).unbind("mousedown").bind({"mousedown":function(e){
                             var $p = $(this);
@@ -124,9 +161,9 @@ function activeBox(obj){
                             resizeBox($p, posix, e);
                         }
                     });
-                }else if(x<(l+b) && y>(t+h-b) && y<(t+h)){
+                }else if(x<(l+b) && y+qq>(t+h-b) && y+qq<(t+h)){
                     //左斜角
-                    //alert('左斜角')
+                	//alert('左斜角')
                     $(this).css({cursor: "sw-resize"});
                     $(this).unbind("mousedown").bind({"mousedown":function(e){
                         var $p = $(this);
@@ -145,9 +182,9 @@ function activeBox(obj){
                             });
                         }});
                     }});
-                }else if(y<(t+h) && y>(t+h-b) && x<(l+w) && x>(l+w-b)){
+                }else if(y+qq<(t+h) && y+qq>(t+h-b) && x<(l+w) && x>(l+w-b)){
                     //右斜角
-                    //alert('右斜角')
+                	//alert('右斜角')
                     $(this).css({cursor: "se-resize"});
                     $(this).unbind("mousedown").bind({"mousedown":function(e){
                         var $p = $(this);
@@ -165,7 +202,7 @@ function activeBox(obj){
                         }});
                     }
                     });
-                }else if(y<(t+ww) && x>l && x<(l+w)){
+                }else if(y+qq<(t+ww) && x>l && x<(l+w)){
                     //拖拽区域
                     $(this).css({cursor: "move"});
                     $(this).unbind("mousedown");
@@ -206,16 +243,20 @@ function activeBox(obj){
     });
     
 }
+//保存修改的页面
 function savePage(obj){
+	//将页面所有元素position属性高度减200px;
 	$("*").each(function(index){
 		//外面框架一定不要加title
-		if(($("#rightBox").offset().left - $(this).offset().left) > 0 && $(this).attr("title") != null){
-			$(this).parent().remove();
+		if($(this).hasClass("positionStyle")){
+			$(this).css("top",$(this).offset().top-210);
 		}
 	});
-	$("#leftBox").remove();
-	$("#rightBox").remove();
-	$(obj).remove();
+	$("#nav_head").remove();
+	$("#hiddenDom").remove();
+	$(".openDrage").remove();
+	$("#savePageButton").remove();
+	$("#bottomBox").remove();
 	$("#jqueryUrl").remove();
 	$("#customJs").remove();
 	var head = document.getElementsByTagName('head')[0].innerHTML;
@@ -239,8 +280,9 @@ function savePage(obj){
 
 $.fn.extend({
 		//---元素拖动插件
-    dragging:function(data){   
+    dragging:function(data){ 
 		var $this = $(this);
+		if($($this).offset().top )
 		var xPage;
 		var yPage;
 		var X;//
@@ -267,7 +309,9 @@ $.fn.extend({
 		
 			
 		//---初始化
-		father.css({"position":"relative","overflow":"hidden"});
+		if($(this).attr("class") != "openDrage"){
+			father.css({"position":"relative","overflow":"hidden"});
+		}
 		$this.css({"position":"absolute"});
 		hander.css({"cursor":"move"});
 
@@ -308,8 +352,11 @@ $.fn.extend({
 		}
 		
 		hander.mousedown(function(e){
-			father.children().css({"zIndex":"0"});
-			$this.css({"zIndex":"1"});
+			if($(this).attr("class") != "openDrage"){
+				father.children().css({"zIndex":"0"});
+				$this.css({"zIndex":"1"});
+			}
+			
 			mDown = true;
 			X = e.pageX;
 			Y = e.pageY;
