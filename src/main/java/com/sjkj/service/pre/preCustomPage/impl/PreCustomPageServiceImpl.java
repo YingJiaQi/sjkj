@@ -1,4 +1,4 @@
-package com.sjkj.service.pre.impl;
+package com.sjkj.service.pre.preCustomPage.impl;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.sjkj.service.pre.PreCustomPageService;
+import com.sjkj.service.pre.preCustomPage.PreCustomPageService;
 import com.sjkj.utils.PropsUtil;
 import com.sjkj.utils.times.DateUtil;
 @Service

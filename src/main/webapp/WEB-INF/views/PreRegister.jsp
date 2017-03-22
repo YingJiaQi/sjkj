@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/pages/pre/PreRegister.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/base64.js"></script>
 </head>
 <body>
 <div class="container">
@@ -42,7 +43,7 @@
 			                        <span class="needWrite">*</span>
 			                        <span id="pwdStrength"></span>
 			                        <div class="form-group">
-			                            <input type="password" class="form-control" id="password" name="password" placeholder="密　码">
+			                            <input type="password" class="form-control" id="password" name="userPassword" placeholder="密　码">
 			                            <i class="fa fa-lock"></i>
 			                        </div>
 			                       	<span class="needWrite">*</span>
@@ -53,7 +54,7 @@
 			                        <span class="needWrite">*</span>
 			                        <span id="emailValidate"></span>
 			                        <div class="form-group">
-			                            <input type="text" class="form-control" id="email" name="email" placeholder="邮箱">
+			                            <input type="text" class="form-control" id="email" name="userEmail" placeholder="邮箱">
 			                            <i class="fa  fa-envelope"></i>
 			                        </div>
 			                    </form>

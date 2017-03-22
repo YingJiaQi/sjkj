@@ -20,6 +20,7 @@ public class DateUtil {
     public static final String YMD6 = "HH";
     public static final String YMD7 = "yyyy-MM-dd HH:mm";
     public static final String YMD8 = "yyyy";
+    public static final String YMD9 = "yyyyMMddHHmm";
     public static final String YMD_FULL = "yyyy-MM-dd HH:mm:ss";
     public static final String NUMBER_INT = "###";
     public static final String NUMBER_FLOAT = "####.##";

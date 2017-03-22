@@ -1,8 +1,11 @@
 package com.sjkj.pojo.pre;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Table;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.sjkj.pojo.BasePojo;
 
 @Table(name = "tbl_pre_user")
@@ -20,13 +23,28 @@ public class PreUser  extends BasePojo{
 	@Column(name="user_email")
 	private String userEmail;
 	@Column(name="birthday")
-	private String birthday;
+	private Date birthday;
 	@Column(name="privilege_level")
-	private String privilegeLevel;//0普通（默认），1单个模板，2自定义权限
+	private Integer privilegeLevel;//0普通（默认），1单个模板，2自定义权限
 	@Column(name="last_login_time")
-	private String lastLoginTime;
+	private Date lastLoginTime;
 	@Column(name="login_times")
-	private String loginTimes;
+	private Integer loginTimes;
+	
+	@JSONField(format= "yyyy-MM-dd HH:mm:ss")
+	public Date getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+	@JSONField(format= "yyyy-MM-dd HH:mm:ss")
+	public Date getLastLoginTime() {
+		return lastLoginTime;
+	}
+	public void setLastLoginTime(Date lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+	}
 	public String getUserCode() {
 		return userCode;
 	}
@@ -63,28 +81,16 @@ public class PreUser  extends BasePojo{
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public String getBirthday() {
-		return birthday;
-	}
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
-	public String getPrivilegeLevel() {
+	public Integer getPrivilegeLevel() {
 		return privilegeLevel;
 	}
-	public void setPrivilegeLevel(String privilegeLevel) {
+	public void setPrivilegeLevel(Integer privilegeLevel) {
 		this.privilegeLevel = privilegeLevel;
 	}
-	public String getLastLoginTime() {
-		return lastLoginTime;
-	}
-	public void setLastLoginTime(String lastLoginTime) {
-		this.lastLoginTime = lastLoginTime;
-	}
-	public String getLoginTimes() {
+	public Integer getLoginTimes() {
 		return loginTimes;
 	}
-	public void setLoginTimes(String loginTimes) {
+	public void setLoginTimes(Integer loginTimes) {
 		this.loginTimes = loginTimes;
 	}
 	
