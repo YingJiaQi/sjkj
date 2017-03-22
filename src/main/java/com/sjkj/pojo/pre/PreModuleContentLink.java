@@ -1,7 +1,9 @@
-package com.sjkj.pojo;
+package com.sjkj.pojo.pre;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+
+import com.sjkj.pojo.BasePojo;
 
 @Table(name = "tbl_pre_module_content_link")
 public class PreModuleContentLink  extends BasePojo{

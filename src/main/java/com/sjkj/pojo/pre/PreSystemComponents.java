@@ -1,7 +1,9 @@
-package com.sjkj.pojo;
+package com.sjkj.pojo.pre;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+
+import com.sjkj.pojo.BasePojo;
 
 @Table(name = "tbl_pre_sys_components")
 public class PreSystemComponents  extends BasePojo{

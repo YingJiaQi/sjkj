@@ -250,6 +250,7 @@ function savePage(obj){
 		//外面框架一定不要加title
 		if($(this).hasClass("positionStyle")){
 			$(this).css("top",$(this).offset().top-210);
+			$(this).children(".boxTopDrage").remove();
 		}
 	});
 	$("#nav_head").remove();
@@ -259,6 +260,7 @@ function savePage(obj){
 	$("#bottomBox").remove();
 	$("#jqueryUrl").remove();
 	$("#customJs").remove();
+	$("table").remove();
 	var head = document.getElementsByTagName('head')[0].innerHTML;
 	var body = document.getElementsByTagName('body')[0].innerHTML;
 	var dataVo = {head:head,body:body};

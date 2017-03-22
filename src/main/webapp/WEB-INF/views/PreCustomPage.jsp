@@ -18,8 +18,8 @@
 <link href="${pageContext.request.contextPath }/static/css/Pre/PreCustomPage.css" rel="stylesheet"> 
 <script type="text/javascript" id="jqueryUrl" src="${pageContext.request.contextPath }/static/js/jquery-1.11.3.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" id="customJs" src="${pageContext.request.contextPath }/static/js/pages/PreCustomPage.js"></script>
-<script type="text/javascript"  src="${pageContext.request.contextPath }/static/js/customPlug.js"></script>
+<script type="text/javascript" id="customJs" src="${pageContext.request.contextPath }/static/js/pages/pre/PreCustomPage.js"></script>
+<script type="text/javascript"  src="${pageContext.request.contextPath }/static/js/pages/pre/customPlug.js"></script>
 <script type="text/javascript"  src="${pageContext.request.contextPath }/static/js/webPagination.js"></script>
 <script type="text/javascript"  src="${pageContext.request.contextPath }/static/js/picHandle.js"></script>
 </head>
@@ -31,7 +31,28 @@
 <div class="openDrage"><img alt="" src="${pageContext.request.contextPath }/static/images/Pre/customPage/close.png" height="auto" width="80"/></div>
 <div class="btn btn-success btn-sm" onclick="savePage();" id="savePageButton">&nbsp;&nbsp;保存&nbsp;&nbsp;</div>
 <div id="bottomBox">
-
+		<table class="table table-hover">
+		<tbody>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+		</tbody>
+		</table>
 </div>
 </body>
 </html>

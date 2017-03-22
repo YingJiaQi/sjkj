@@ -36,7 +36,8 @@ public class PreCustomPageServiceImpl implements PreCustomPageService {
 			    "<![endif]--> "+
 			     "<script type='text/javascript' src='../utils/bootstrap.min.js'></script>"+
 			     "<script type='text/javascript' src='../utils/jquery-1.11.3.js'></script>"+
-			     "<link rel='stylesheet' type='text/css' href='../utils/bootstrap.min.css'></head>";
+			     "<link rel='stylesheet' type='text/css' href='../utils/bootstrap.min.css'>"+
+			     "<link rel='stylesheet' type='text/css' href='../utils/PreCustomPage.css'></head>";
 		body = "<body><div class='container'>"+body+"</div></body>";
 		String pageHtml = refer+head+body;
 		SimpleDateFormat sdf = new SimpleDateFormat(DateUtil.YMD1);

@@ -1,0 +1,30 @@
+.needWrite {
+	color:red;
+	font-size:20px;
+	position:absolute;
+	z-index:9999;
+	left:7%;
+	margin-top:1%;
+	font-weight:bold;
+}
+#pwdStrength  {
+	font-size:11px;
+	position:absolute;
+	z-index:9999;
+	left:70%;
+	margin-top:2%;
+}
+#userNameValidate{
+	font-size:11px;
+	position:absolute;
+	z-index:9999;
+	left:70%;
+	margin-top:2%;
+}
+#emailValidate {
+		font-size:11px;
+	position:absolute;
+	z-index:9999;
+	left:70%;
+	margin-top:2%;
+}

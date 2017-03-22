@@ -1,4 +1,4 @@
-body { background-color: #eee; padding:10px}
+body {padding:10px}
 .box {width: 160px; height: 160px; cursor: move; background-color: #FFF; border: 1px solid #CCCCCC}
 .boxTopDrage{width: 100%;height:20px;background:#ffee00;}
 .box2 {
@@ -13,6 +13,7 @@ body { background-color: #eee; padding:10px}
 	width:100%;
 	border: 2px solid red;
 	padding: 5px;
+	overflow:hidden;
 }
 .activeBox {
 	-webkit-box-shadow: 10px 10px 25px #ccc;
@@ -33,4 +34,7 @@ body { background-color: #eee; padding:10px}
 	left:95%;
 	top:180px;
 	cursor:pointer;
+}
+tr{
+	height:150px;
 }
