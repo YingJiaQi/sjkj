@@ -74,16 +74,30 @@ public class MyRealm extends AuthorizingRealm {
 	   //将token强制转换成usernamepasswordtoken对象，因为此对象可以获得管理器中的用户名和密码
 	    UsernamePasswordToken loginToke = (UsernamePasswordToken) token;
 		String username = loginToke.getUsername();// 客户提交的用户
-		// 通过密码校验完成 认证 系统而言 账号(唯一) 密码(可以重复) 通过账号--->密码 (数据库的密码)
-		User existUser = userService.findUserByUsername(username);
-		if (existUser == null) {
-			return null;
+		//判断是前台用户还是后台用户
+		if(username.contains("pre")){
+			//前台用户
+			int indexOf = username.indexOf("pre");
+			username = username.substring(indexOf+3);
+			
+			// 查询到用户存在 将数据库密码以及对象给予 AuthenticationInfo
+			// 参数一 表示 existUser 参数二 数据库查询 密码 参数三 spring 配置 里面 注册该real bean id 属性名称
+			// AuthenticationInfo info = new SimpleAuthenticationInfo(existUser, existUser.getPassword(), "bosrealm");
+			AuthenticationInfo info = new SimpleAuthenticationInfo(existUser, existUser.getUserPassword(), super.getName());
+			return info; // 返回控制 表示没有认证许可 认证失败 AuthenticationInfo*/
+
+		}else{
+			// 通过密码校验完成 认证 系统而言 账号(唯一) 密码(可以重复) 通过账号--->密码 (数据库的密码)
+			User existUser = userService.findUserByUsername(username);
+			if (existUser == null) {
+				return null;
+			}
+			// 查询到用户存在 将数据库密码以及对象给予 AuthenticationInfo
+			// 参数一 表示 existUser 参数二 数据库查询 密码 参数三 spring 配置 里面 注册该real bean id 属性名称
+			// AuthenticationInfo info = new SimpleAuthenticationInfo(existUser, existUser.getPassword(), "bosrealm");
+			AuthenticationInfo info = new SimpleAuthenticationInfo(existUser, existUser.getUserPassword(), super.getName());
+			return info; // 返回控制 表示没有认证许可 认证失败 AuthenticationInfo*/
 		}
-		// 查询到用户存在 将数据库密码以及对象给予 AuthenticationInfo
-		// 参数一 表示 existUser 参数二 数据库查询 密码 参数三 spring 配置 里面 注册该real bean id 属性名称
-		// AuthenticationInfo info = new SimpleAuthenticationInfo(existUser, existUser.getPassword(), "bosrealm");
-		AuthenticationInfo info = new SimpleAuthenticationInfo(existUser, existUser.getUserPassword(), super.getName());
-		return info; // 返回控制 表示没有认证许可 认证失败 AuthenticationInfo*/
 	 }
 
 }

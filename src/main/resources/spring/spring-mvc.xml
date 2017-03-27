@@ -77,16 +77,11 @@
 		<property name="maxUploadSize" value="5242880"></property>
 	</bean>
 	
-<!-- 	<mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
-	        <mvc:mapping path="/category/**" />
-	        <mvc:mapping path="/Commodity/**" />
-	        <mvc:mapping path="/CommoditySpecification/**" />
-	        <mvc:mapping path="/sys/**" />
-	        <mvc:mapping path="/user/**" />
-	        <mvc:mapping path="/webContentManager/**" />
-	        <bean class="com.syard.interceptor.LogInterceptor"></bean>
+	        <mvc:mapping path="/**" />
+	        <bean class="com.sjkj.interceptor.LoginInterceptor"></bean>
 	    </mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>
 	
 </beans>

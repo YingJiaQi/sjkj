@@ -11,13 +11,19 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.sjkj.utils.CustomRuntimeException;
 import com.sjkj.utils.Validator;
 
 
-
+/**
+ * 
+ * @author visionet
+ */
 public class StringUtil {
-	//private static Logger _log = LoggerFactory.getLogger(StringUtil.class);
+	private static Logger _log = LoggerFactory.getLogger(StringUtil.class);
 
 	public static String add(String s, String add) {
 		return add(s, add, StringPool.COMMA);
@@ -1246,8 +1252,7 @@ public class StringUtil {
 
     public static String GetNextString(String nowChar){
 
-        @SuppressWarnings("unused")
-		String[] str = {  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+        String[] str = {  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
                 "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W","X", "Y", "Z" };
         if(nowChar.equals("Z")){
             return "AA";
@@ -1304,7 +1309,6 @@ public class StringUtil {
 	public static <T> List<T> toList(String str,String split,Class<T> destinationClass){
 		if(str==null||str.isEmpty()) return null;
 		
-		@SuppressWarnings("rawtypes")
 		List list = new ArrayList<T>();
 
 		String[] array = str.split(split);
@@ -1321,6 +1325,7 @@ public class StringUtil {
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static List<String> toList(String str,String split){
 		return (List<String>)toList(str,split,String.class);
 	}
@@ -1404,7 +1409,7 @@ public class StringUtil {
 			char ch = content.charAt(i);
 
 			if (Character.isHighSurrogate(ch) || Character.isLowSurrogate(ch)) {
-				throw new CustomRuntimeException();
+				throw new CustomRuntimeException("非法的参数异常"+ch);
 			}
 		}
 	}

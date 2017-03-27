@@ -142,5 +142,5 @@ public interface File {
 	public String getContentType(String fileName);
 	
 	public void write(java.io.File file, InputStream is, int off) throws IOException;
-
+	
 }
