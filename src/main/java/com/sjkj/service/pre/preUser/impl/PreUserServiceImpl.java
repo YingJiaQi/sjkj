@@ -10,6 +10,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -83,6 +90,37 @@ public class PreUserServiceImpl implements PreUserService {
 		preUserDao.insert(preUser);
 		result.put("msg", "添加成功");
 		result.put("success", "true");
+		return result;
+	}
+	@Override
+	public Map<String, String> preUserLogin(PreUser preUser) {
+		Map<String, String> result = new HashMap<String, String>();
+		//密码处理
+		String password = null;
+		try {
+			BASE64Decoder base64 = new BASE64Decoder();
+			byte[] newPwds = base64.decodeBuffer(preUser.getUserPassword());
+			MessageDigest md5s = MessageDigest.getInstance("MD5");
+			byte[] digests = md5s.digest(newPwds);
+			BASE64Encoder base64ens = new BASE64Encoder();
+			//加密后的字符串
+			password = base64ens.encode(digests);
+		} catch (NoSuchAlgorithmException | IOException e) {
+			e.printStackTrace();
+		}
+		//前台用户输入的是，userCode或userName或userEmail由前台JS判断
+		try {
+			if(StringUtils.isNoneBlank(preUser.getUserCode())){
+				SecurityUtils.getSubject().login(new UsernamePasswordToken("pre"+preUser.getUserCode(),password));
+			}else if(StringUtils.isNoneBlank(preUser.getUserName())){
+				SecurityUtils.getSubject().login(new UsernamePasswordToken("pre"+preUser.getUserName(),password));
+			}else if(StringUtils.isNoneBlank(preUser.getUserEmail())){
+				SecurityUtils.getSubject().login(new UsernamePasswordToken("pre"+preUser.getUserEmail(),password));
+			}
+		} catch (AuthenticationException e) {
+			result.put("success", "false");
+			result.put("msg","用户名或密码错误");
+		}
 		return result;
 	}
 

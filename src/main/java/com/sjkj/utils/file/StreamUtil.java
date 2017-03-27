@@ -83,7 +83,7 @@ public class StreamUtil {
 			}
 		}
 	}
-
+	//输入流与输出流转换
 	public static void transfer(
 			InputStream inputStream, OutputStream outputStream)
 		throws IOException {

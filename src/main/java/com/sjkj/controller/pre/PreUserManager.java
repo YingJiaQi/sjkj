@@ -26,4 +26,13 @@ public class PreUserManager {
 	public ResponseEntity<?> addPreUser(@RequestBody  PreUser preUser){
 		return new ResponseEntity<Object>(preUserService.addPreUser(preUser),HttpStatus.OK);
 	}
+	/**
+	 * 前台用户登录
+	 * @param preUser
+	 * @return
+	 */
+	@RequestMapping(value="/preUserLogin", method=RequestMethod.POST)
+	public ResponseEntity<?> preUserLogin(@RequestBody  PreUser preUser){
+		return new ResponseEntity<Object>(preUserService.preUserLogin(preUser),HttpStatus.OK);
+	}
 }
