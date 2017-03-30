@@ -14,9 +14,9 @@
 <!--[if lt IE 9]>
      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-   <![endif]--> 
+   <![endif]-->
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/jquery-1.11.3.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/static/js/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/Pre/index.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/Pre/PreRegister.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -25,10 +25,39 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/base64.js"></script>
 </head>
 <body>
-<div class="container">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation"> 
+    <div class="container"> 
+    <div class="navbar-header"> 
+        <a class="navbar-brand" href="#">杰讯信息</a> 
+	    <span style="font-style:italic;font-size:0.9em;position:absolute;left:23%;top:53%">为时尚&nbsp;&nbsp;让我们一起努力！</span>
+    </div> 
+    <div> 
+        <ul class="nav navbar-nav" id="register-nav"> 
+            <li><a href="../">首页</a></li> 
+            <li><a href="#">我的书屋</a></li> 
+            <li class="dropdown"> 
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+                   	讯航<b class="caret"></b> 
+                </a> 
+                <ul class="dropdown-menu"> 
+                    <li><a href="#">jmeter</a></li> 
+                    <li><a href="#">EJB</a></li> 
+                    <li><a href="#">Jasper Report</a></li> 
+                    <li class="divider"></li> 
+                    <li><a href="#">分离的链接</a></li> 
+                    <li class="divider"></li> 
+                    <li><a href="#">另一个分离的链接</a></li> 
+                </ul> 
+            </li> 
+        </ul> 
+    </div> 
+    </div> 
+</nav>
+
+<div class="container-fluid" id="registerBody">
 	<div class="row">
-		<div class="col-md-6">
-			<div class="htmleaf-container" style="border:1px solid red">
+		<div class="col-md-offset-1 col-md-5">
+			<div class="htmleaf-container" id="registerPanel">
 				<div class="demo form-bg" style="padding: 20px 0;">
 			            <div class="row">
 			                <div class="col-md-12">

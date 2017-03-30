@@ -28,3 +28,15 @@
 	left:70%;
 	margin-top:2%;
 }
+#registerBody {
+	background-image: url("../../images/Pre/register/lu-girl.png");
+	background-repeat:no-repeat;
+	background-size:99.8% 99.8%;
+	margin-top:6%
+}
+#registerPanel {
+	opacity:0.96;
+}
+#register-nav{
+	float:right;
+}

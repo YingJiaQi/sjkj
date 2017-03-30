@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sjkj.pojo.pre.PreUser;
 import com.sjkj.service.pre.preUser.PreUserService;
+import com.sjkj.utils.MD5Util;
 
 @Controller
 @RequestMapping("/preUser")
