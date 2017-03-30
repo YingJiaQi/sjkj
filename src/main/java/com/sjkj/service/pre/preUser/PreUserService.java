@@ -18,5 +18,9 @@ public interface PreUserService {
 	 * @return
 	 */
 	Map<String, String> preUserLogin(PreUser preUser);
+	
+	PreUser findPreUserByUsername(String username);
+	PreUser findPreUserByUserCode(String substring);
+	PreUser findPreUserByUserEmail(String substring);
 
 }

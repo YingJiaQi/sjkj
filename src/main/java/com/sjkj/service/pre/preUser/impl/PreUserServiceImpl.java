@@ -76,7 +76,7 @@ public class PreUserServiceImpl implements PreUserService {
 			totalUser =1;
 		}
 		String userCount = (totalUser+1)+"";
-		while(userCount.length() < 7){
+		while(userCount.length() < 9){
 			userCount = "0"+userCount;
 		}
 		preUser.setUserCode(format+userCount);
@@ -110,18 +110,52 @@ public class PreUserServiceImpl implements PreUserService {
 		}
 		//前台用户输入的是，userCode或userName或userEmail由前台JS判断
 		try {
+			Example example = new Example(PreUser.class);
 			if(StringUtils.isNoneBlank(preUser.getUserCode())){
-				SecurityUtils.getSubject().login(new UsernamePasswordToken("pre"+preUser.getUserCode(),password));
+				SecurityUtils.getSubject().login(new UsernamePasswordToken("preUserCode"+preUser.getUserCode(),password));
+				example.createCriteria().andEqualTo("userCode", preUser.getUserCode());
 			}else if(StringUtils.isNoneBlank(preUser.getUserName())){
-				SecurityUtils.getSubject().login(new UsernamePasswordToken("pre"+preUser.getUserName(),password));
+				SecurityUtils.getSubject().login(new UsernamePasswordToken("preUserName"+preUser.getUserName(),password));
+				example.createCriteria().andEqualTo("userName", preUser.getUserName());
 			}else if(StringUtils.isNoneBlank(preUser.getUserEmail())){
-				SecurityUtils.getSubject().login(new UsernamePasswordToken("pre"+preUser.getUserEmail(),password));
+				SecurityUtils.getSubject().login(new UsernamePasswordToken("preUserEmail"+preUser.getUserEmail(),password));
+				example.createCriteria().andEqualTo("userEmail",preUser.getUserEmail());
+			}
+			//用户登录信息修改
+			example.createCriteria().andEqualTo("isDel", 0);
+			List<PreUser> selectByExample = preUserDao.selectByExample(example);
+			if(selectByExample.size() >0){
+				
 			}
 		} catch (AuthenticationException e) {
 			result.put("success", "false");
 			result.put("msg","用户名或密码错误");
 		}
 		return result;
+	}
+	@Override
+	public PreUser findPreUserByUsername(String username) {
+		Example example = new Example(PreUser.class);
+		example.createCriteria().andEqualTo("userName", username);
+		example.createCriteria().andEqualTo("isDel", 0);
+		List<PreUser> selectByExample = preUserDao.selectByExample(example);
+		return selectByExample.size() >0 ? selectByExample.get(0):null;
+	}
+	@Override
+	public PreUser findPreUserByUserCode(String usercode) {
+		Example example = new Example(PreUser.class);
+		example.createCriteria().andEqualTo("userCode", usercode);
+		example.createCriteria().andEqualTo("isDel", 0);
+		List<PreUser> selectByExample = preUserDao.selectByExample(example);
+		return selectByExample.size() >0 ? selectByExample.get(0):null;
+	}
+	@Override
+	public PreUser findPreUserByUserEmail(String useremail) {
+		Example example = new Example(PreUser.class);
+		example.createCriteria().andEqualTo("userEmail", useremail);
+		example.createCriteria().andEqualTo("isDel", 0);
+		List<PreUser> selectByExample = preUserDao.selectByExample(example);
+		return selectByExample.size() >0 ? selectByExample.get(0):null;
 	}
 
 }

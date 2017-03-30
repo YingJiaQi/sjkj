@@ -12,6 +12,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sjkj.pojo.User;
+import com.sjkj.pojo.pre.PreUser;
+import com.sjkj.service.pre.preUser.PreUserService;
 import com.sjkj.service.user.UserService;
 
 
@@ -20,6 +22,8 @@ public class MyRealm extends AuthorizingRealm {
 	//依赖注入
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private PreUserService preUserService;
 	/*@Autowired
 	private UserRoleLinkDao userRoleLinkDao;
 	@Autowired
@@ -79,11 +83,30 @@ public class MyRealm extends AuthorizingRealm {
 			//前台用户
 			int indexOf = username.indexOf("pre");
 			username = username.substring(indexOf+3);
-			
+			PreUser pu = null;
+			if(username.indexOf("UserCode") >0){
+				int indexOf2 = username.indexOf("UserCode");
+				pu = preUserService.findPreUserByUserCode(username.substring(indexOf2+8));
+				if(pu == null){
+					return null;
+				}
+			}else if(username.indexOf("UserName") > 0){
+				int indexOf2 = username.indexOf("UserName");
+				pu = preUserService.findPreUserByUsername(username.substring(indexOf2+8));
+				if(pu == null){
+					return null;
+				}
+			}else if(username.indexOf("UserEmail") > 0){
+				int indexOf2 = username.indexOf("UserEmail");
+				pu = preUserService.findPreUserByUserEmail(username.substring(indexOf2+9));
+				if(pu == null){
+					return null;
+				}
+			}
 			// 查询到用户存在 将数据库密码以及对象给予 AuthenticationInfo
 			// 参数一 表示 existUser 参数二 数据库查询 密码 参数三 spring 配置 里面 注册该real bean id 属性名称
 			// AuthenticationInfo info = new SimpleAuthenticationInfo(existUser, existUser.getPassword(), "bosrealm");
-			AuthenticationInfo info = new SimpleAuthenticationInfo(existUser, existUser.getUserPassword(), super.getName());
+			AuthenticationInfo info = new SimpleAuthenticationInfo(pu, pu.getUserPassword(), super.getName());
 			return info; // 返回控制 表示没有认证许可 认证失败 AuthenticationInfo*/
 
 		}else{
