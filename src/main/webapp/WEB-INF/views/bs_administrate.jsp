@@ -5,24 +5,24 @@
 	<head>
 		<title>管理员</title>
 
-		<meta name="keywords" content="商品管理，自定义主页" />
-		<meta name="description" content="商品管理，自定义主页" />
+		<meta name="keywords" content="用户管理，自定义主页" />
+		<meta name="description" content="用户管理，自定义主页" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<!-- basic styles -->
 
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+		<link href="../static/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../static/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="../static/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
 
 		<!-- page specific plugin styles -->
 
-		<link rel="stylesheet" href="assets/css/jquery-ui-1.10.3.full.min.css" />
-		<link rel="stylesheet" href="assets/css/datepicker.css" />
-		<link rel="stylesheet" href="assets/css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="../static/assets/css/jquery-ui-1.10.3.full.min.css" />
+		<link rel="stylesheet" href="../static/assets/css/datepicker.css" />
+		<link rel="stylesheet" href="../static/assets/css/ui.jqgrid.css" />
 
 		<!-- fonts -->
 
@@ -30,25 +30,26 @@
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="assets/css/ace.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="../static/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="../static/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="../static/assets/css/ace-skins.min.css" />
 
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="../static/assets/css/ace-ie.min.css" />
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
 
-		<script src="assets/js/ace-extra.min.js"></script>
-
+		<script src="../static/assets/js/ace-extra.min.js"></script>
+		<script type="text/javascript" src="../static/js/pages/bs_administrate.js"></script>
+		<script type="text/javascript" src="../static/js/pages/Common.js"></script>
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script src="assets/js/html5shiv.js"></script>
-		<script src="assets/js/respond.min.js"></script>
+		<script src="../static/assets/js/html5shiv.js"></script>
+		<script src="../static/assets/js/respond.min.js"></script>
 		<![endif]-->
 	</head>
 
@@ -221,7 +222,7 @@
 
 								<li>
 									<a href="#">
-										<img src="assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+										<img src="../static/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
@@ -238,7 +239,7 @@
 
 								<li>
 									<a href="#">
-										<img src="assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+										<img src="../static/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
@@ -255,7 +256,7 @@
 
 								<li>
 									<a href="#">
-										<img src="assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+										<img src="../static/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Bob:</span>
@@ -281,7 +282,7 @@
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="../static/assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Welcome,</small>
 									Jason
@@ -294,23 +295,23 @@
 								<li>
 									<a href="#">
 										<i class="icon-cog"></i>
-										Settings
+										设置
 									</a>
 								</li>
 
 								<li>
 									<a href="#">
 										<i class="icon-user"></i>
-										Profile
+										个人中心
 									</a>
 								</li>
 
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="#"  onclick="loginOut();">
 										<i class="icon-off"></i>
-										Logout
+										退出
 									</a>
 								</li>
 							</ul>
@@ -366,8 +367,8 @@
 					</div><!-- #sidebar-shortcuts -->
 
 					<ul class="nav nav-list">
-						<li>
-							<a href="index.html">
+						<li >
+							<a href="bs_index">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 控制台 </span>
 							</a>
@@ -381,15 +382,15 @@
 							</a>
 
 							<ul class="submenu">
-								<li  class="active">
-									<a href="bs_administrate.html">
+								<li    class="active">
+									<a href="bs_administrate">
 										<i class="icon-double-angle-right"></i>
 										管理员
 									</a>
 								</li>
 
 								<li>
-									<a href="bs_authority.html">
+									<a href="bs_authority">
 										<i class="icon-double-angle-right"></i>
 										权限分配
 									</a>
@@ -397,7 +398,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="pre_userManager.html">
+							<a href="bs_userManager">
 								<i class="icon-user"></i>
 								<span class="menu-text"> 用户管理 </span>
 							</a>
@@ -413,31 +414,43 @@
 							<ul class="submenu">
 
 								<li>
-									<a href="pre_articalManager.html">
+									<a href="bs_articalManager">
 										<i class="icon-double-angle-right"></i>
 										文章管理
 									</a>
 								</li>
 								<li>
-									<a href="pre_commodityManager.html">
+									<a href="bs_commodityManager">
 										<i class="icon-double-angle-right"></i>
 										商品管理
 									</a>
 								</li>
+								<li >
+									<a href="bs_specificationParamManager">
+										<i class="icon-double-angle-right"></i>
+										规格参数
+									</a>
+								</li>
+								<li >
+									<a href="bs_specificationParamManager">
+										<i class="icon-double-angle-right"></i>
+										规格参数
+									</a>
+								</li>
 								<li>
-									<a href="pre_videoManager.html">
+									<a href="bs_videoManager">
 										<i class="icon-double-angle-right"></i>
 										视频管理
 									</a>
 								</li>
 								<li>
-									<a href="pre_advManager.html">
+									<a href="bs_advManager">
 										<i class="icon-double-angle-right"></i>
 										广告管理
 									</a>
 								</li>
-								<li>
-									<a href="pre_contentAssociated.html">
+								<li >
+									<a href="bs_contentAssociated">
 										<i class="icon-double-angle-right"></i>
 										内容关联
 									</a>
@@ -445,7 +458,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="calendar.html">
+							<a href="bs_calendar">
 								<i class="icon-calendar"></i>
 
 								<span class="menu-text">
@@ -456,8 +469,8 @@
 								</span>
 							</a>
 						</li>
-						<li>
-							<a href="gallery.html">
+						<li >
+							<a href="bs_image">
 								<i class="icon-picture"></i>
 								<span class="menu-text"> 相册 </span>
 							</a>
@@ -486,9 +499,9 @@
 							</li>
 
 							<li>
-								<a href="#">权限管理</a>
+								<a href="#">用户管理</a>
 							</li>
-							<li class="active">管理员</li>
+							<li class="active">用户管理</li>
 						</ul><!-- .breadcrumb -->
 
 						<div class="nav-search" id="nav-search">
@@ -502,15 +515,15 @@
 					</div>
 
 					<div class="page-content">
-						<div class="page-header">
+						<!-- <div class="page-header">
 							<h1>
-								管理员
+								用户管理
 								<small>
 									<i class="icon-double-angle-right"></i>
-									后台管理员管理
+									用户管理
 								</small>
 							</h1>
-						</div><!-- /.page-header -->
+						</div>/.page-header -->
 
 						<div class="row">
 							<div class="col-xs-12">
@@ -599,77 +612,54 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='../static/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- <![endif]-->
 
 		<!--[if IE]>
 <script type="text/javascript">
- window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+ window.jQuery || document.write("<script src='../static/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if("ontouchend" in document) document.write("<script src='../static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-		<script src="assets/js/bootstrap.min.js"></script>
-		<script src="assets/js/typeahead-bs2.min.js"></script>
+		<script src="../static/assets/js/bootstrap.min.js"></script>
+		<script src="../static/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
-		<script src="assets/js/date-time/bootstrap-datepicker.min.js"></script>
-		<script src="assets/js/jqGrid/jquery.jqGrid.min.js"></script>
-		<script src="assets/js/jqGrid/i18n/grid.locale-en.js"></script>
+		<script src="../static/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+		<script src="../static/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
+		<script src="../static/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
 
 		<!-- ace scripts -->
 
-		<script src="assets/js/ace-elements.min.js"></script>
-		<script src="assets/js/ace.min.js"></script>
+		<script src="../static/assets/js/ace-elements.min.js"></script>
+		<script src="../static/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 
 		<script type="text/javascript">
-			var grid_data = 
-			[ 
-				{id:"1",name:"Desktop Computer",note:"note",stock:"Yes",ship:"FedEx", sdate:"2007-12-03"},
-				{id:"2",name:"Laptop",note:"Long text ",stock:"Yes",ship:"InTime",sdate:"2007-12-03"},
-				{id:"3",name:"LCD Monitor",note:"note3",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"4",name:"Speakers",note:"note",stock:"No",ship:"ARAMEX",sdate:"2007-12-03"},
-				{id:"5",name:"Laser Printer",note:"note2",stock:"Yes",ship:"FedEx",sdate:"2007-12-03"},
-				{id:"6",name:"Play Station",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"7",name:"Mobile Telephone",note:"note",stock:"Yes",ship:"ARAMEX",sdate:"2007-12-03"},
-				{id:"8",name:"Server",note:"note2",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"9",name:"Matrix Printer",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"10",name:"Desktop Computer",note:"note",stock:"Yes",ship:"FedEx", sdate:"2007-12-03"},
-				{id:"11",name:"Laptop",note:"Long text ",stock:"Yes",ship:"InTime",sdate:"2007-12-03"},
-				{id:"12",name:"LCD Monitor",note:"note3",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"13",name:"Speakers",note:"note",stock:"No",ship:"ARAMEX",sdate:"2007-12-03"},
-				{id:"14",name:"Laser Printer",note:"note2",stock:"Yes",ship:"FedEx",sdate:"2007-12-03"},
-				{id:"15",name:"Play Station",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"16",name:"Mobile Telephone",note:"note",stock:"Yes",ship:"ARAMEX",sdate:"2007-12-03"},
-				{id:"17",name:"Server",note:"note2",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"18",name:"Matrix Printer",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"19",name:"Matrix Printer",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"20",name:"Desktop Computer",note:"note",stock:"Yes",ship:"FedEx", sdate:"2007-12-03"},
-				{id:"21",name:"Laptop",note:"Long text ",stock:"Yes",ship:"InTime",sdate:"2007-12-03"},
-				{id:"22",name:"LCD Monitor",note:"note3",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"23",name:"Speakers",note:"note",stock:"No",ship:"ARAMEX",sdate:"2007-12-03"}
-			];	
-			
+		var jqGridRowId = null;
 			jQuery(function($) {
+				var wh = $(window).height();
+				wh = wh-186;
 				var grid_selector = "#grid-table";
 				var pager_selector = "#grid-pager";
 			
 				jQuery(grid_selector).jqGrid({
 					//direction: "rtl",
-					
-					data: grid_data,
-					datatype: "local",
-					height: 390,
-					colNames:['操作', 'ID','Last Sales','Name', 'Stock', 'Ship via','Notes'],
+					//data: grid_data,
+					url:'../user/getUserList',
+					datatype: "json",
+					height: wh,
+					mtype: 'POST',
+					colNames:['操作','','编号','用户名', '性别', '邮箱','生日','登录次数','最后登录时间','手机号','是否启用'],
 					colModel:[
-						{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
+						{name:'myac',index:'', width:70, fixed:true, sortable:false, resize:false,
 							formatter:'actions', 
 							formatoptions:{ 
 								keys:true,
@@ -678,12 +668,18 @@
 								//editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
 							}
 						},
-						{name:'id',index:'id', width:60, sorttype:"int", editable: true},
-						{name:'sdate',index:'sdate',width:90, editable:true, sorttype:"date",unformat: pickDate},
-						{name:'name',index:'name', width:150,editable: true,editoptions:{size:"20",maxlength:"30"}},
-						{name:'stock',index:'stock', width:70, editable: true,edittype:"checkbox",editoptions: {value:"Yes:No"},unformat: aceSwitch},
-						{name:'ship',index:'ship', width:90, editable: true,edittype:"select",editoptions:{value:"FE:FedEx;IN:InTime;TN:TNT;AR:ARAMEX"}},
-						{name:'note',index:'note', width:150, sortable:false,editable: true,edittype:"textarea", editoptions:{rows:"2",cols:"10"}} 
+						{name:'id',index:'id', hidden:true},
+						{name:'userCode',index:'userCode', width:60, editable: false},
+						{name:'userName',index:'userName',width:60, editable:true,editoptions:{size:"20",maxlength:"50"}},
+						{name:'userGender',index:'userGender', width:60, editable: true,edittype:"select",editoptions:{value:"1:男;0:女"},formatter: reverseGender},
+						{name:'userEmail',index:'userEmail', width:60, editable: true,editoptions:{size:"20",maxlength:"50"}},
+						{name:'birthday',index:'birthday',width:90, editable:true, sorttype:"date",unformat: pickDate},
+						{name:'loginTimes',index:'loginTimes', width:40, editable: false,sorttype:"int"},
+						{name:'lastLoginTime',index:'lastLoginTime',width:90, editable:false, sorttype:"date"},
+						{name:'userMobile',index:'userMobile', width:60, editable: true,editoptions:{size:"20",maxlength:"50"}},
+						{name:'isActive',index:'isActive', width:70, editable: true,edittype:"checkbox",editoptions: {value:"Yes:No"},unformat: aceSwitch,formatter:reverseActive},
+						/* {name:'ship',index:'ship', width:90, editable: true,edittype:"select",editoptions:{value:"FE:FedEx;IN:InTime;TN:TNT;AR:ARAMEX"}},
+						{name:'note',index:'note', width:150, sortable:false,editable: true,edittype:"textarea", editoptions:{rows:"2",cols:"10"}} */ 
 					], 
 			
 					viewrecords : true,
@@ -692,7 +688,9 @@
 					pager : pager_selector,
 					altRows: true,
 					//toppager: true,
-					
+					onSelectRow: function (rowid, status) {
+						jqGridRowId = rowid;//给最外层的selId赋值
+					},
 					multiselect: true,
 					//multikey: "ctrlKey",
 			        multiboxonly: true,
@@ -707,8 +705,8 @@
 							enableTooltips(table);
 						}, 0);
 					},
-			
-					editurl: $path_base+"/dummy.html",//nothing is saved
+					
+					editurl: "../user/operateUser",//nothing is saved
 					/*caption: "jqGrid with inline editing",*/
 					autowidth: true
 			
@@ -726,15 +724,35 @@
 							.after('<span class="lbl"></span>');
 					}, 0);
 				}
+				function sexSwitch(cellvalue, options, cell){
+					setTimeout(function(){
+						$(cell) .find('input[type=checkbox]')
+								.wrap('<label class="inline" />')
+							.addClass('ace ace-switch ace-switch-5')
+							.after('<span class="lbl">12</span>');
+					}, 0);
+				}
 				//enable datepicker
 				function pickDate( cellvalue, options, cell ) {
 					setTimeout(function(){
 						$(cell) .find('input[type=text]')
-								.datepicker({format:'yyyy-mm-dd' , autoclose:true}); 
+								.datepicker({format:'yyyy-mm-dd ' , autoclose:true}); 
 					}, 0);
 				}
-			
-			
+				function reverseGender(cellvalue, options, cell){
+					if(cellvalue == 0){
+						return "女";
+					}else{
+						return "男";
+					}
+				}
+				function reverseActive(cellvalue, options, cell){
+					if(cellvalue == 0){
+						return "NO";
+					}else{
+						return "YES";
+					}
+				}
 				//navButtons
 				jQuery(grid_selector).jqGrid('navGrid',pager_selector,
 					{ 	//navbar options
@@ -759,6 +777,7 @@
 							var form = $(e[0]);
 							form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
 							style_edit_form(form);
+							 var $cellDate = $("#grid-table").getCell(jqGridRowId,'birthday');
 						}
 					},
 					{
@@ -938,6 +957,7 @@
 			
 			});
 		</script>
-	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+				<div style="display:none"><script src='../static/assets/js/stat.js'></script></div>
+		
 </body>
 </html>

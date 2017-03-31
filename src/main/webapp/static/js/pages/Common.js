@@ -13,71 +13,71 @@ function conveterParamsToJson(paramsAndValues) {
     return jsonObj;  
 } 
 /**
-*easyui校验方法扩展
-*/
-$.extend($.fn.validatebox.defaults.rules, {
-	multiple: {
-		validator: function(value, vtypes) {
-			var returnFlag = true;
-			var opts = $.fn.validatebox.defaults;
-			for(var i = 0; i < vtypes.length; i++) {
-				var methodinfo = /([a-zA-Z_]+)(.*)/.exec(vtypes[i]);
-				var rule = opts.rules[methodinfo[1]];
-				if(value && rule) {
-					var parame = eval(methodinfo[2]);
-					if(!rule["validator"](value, parame)) {
-						returnFlag = false;
-						this.message = rule.message;
-						break;
-					}
-				}
-			}
-			return returnFlag;
-		}
-	},
-	minLength: {
-		validator: function(value, param) {
-			return value.length >= param[0];
-		},
-		message: '请至少输入(2)个字符.'
-	},
-	equals: {
-		validator: function(value, param) {
-			return value.length == param[0];
-		},
-		message: '长度必须为(2)个字符.'
-	},
-	RegeMatch: {
-		validator: function(value, param) {
-			var pattern = new RegExp("[~'!@#$%^&*()-+_=:]");
-			return !pattern.test(value);
-		},
-		message: '非法字符.'
-	},
-	phone: {
-        // 验证手机号码
-        validator: function (value) {
-            return /^(13|15|18)\d{9}$/i.test(value); //这里就是一个正则表达式
-        },
-        message: '手机号码格式不正确'           //这里是错误后的提示信息
-    },
-})
-/**
- * easyui-datebox修改默认样式
- * @param date
- * @returns {String}
+ * 退出登录
  */
-function yStyle(date){  
-    var y = date.getFullYear();  
-    var m = date.getMonth()+1;  
-    var d = date.getDate();  
-    return  y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);  
-}  
-function yDate(s){
-   var t = Date.parse(s);
-   if (!isNaN(t)){
-    return new Date(t);
-   } else {
-    return new Date();
-   }
-}  
+function loginOut(){
+	$.ajax({
+		type: "POST",
+		url: "../user/loginOut",
+		success: function(data) {
+			location.href = '../login/bs_login';
+		}
+	});
+}
+/**
+ * 修改密码
+ */
+function changePassword(){
+	var old = $("#oldPwd").val();
+	if(old == null || old == ""){
+		$("#popup_oldPwd").dialog("open").dialog("center");
+		return;
+	}
+	var newPwd = $("#newPwd").val();
+	if(newPwd == null || newPwd == ""){
+		$("#popup_newPwd").dialog("open").dialog("center");
+		return;
+	}
+	var reNewPwd = $("#reNewPwd").val();
+	if(reNewPwd == null || reNewPwd == ""){
+		$("#popup_reNewPwd").dialog("open").dialog("center");
+		return;
+	}
+	if(reNewPwd != newPwd){
+		$("#popup_pwdCompare").dialog("open").dialog("center");
+		return;
+	}
+	var BASE64 = new Base64(); 
+	var dataVo = {
+		"newPwd": BASE64.encode(newPwd),
+		"oldPwd": BASE64.encode(old)
+	};
+	$.ajax({
+		type: "POST",
+		url: "../user/changePwd",
+		data: JSON.stringify(dataVo),
+		dataType: 'json',
+		contentType: "application/json; charset=utf-8",
+		success: function(data) {
+			if(data.success == "true") {
+				$.messager.alert("恭喜", data.msg +
+					"-将在3秒后自动跳转至登录页面",
+					"info");
+				for(var i = 3; i >= 0; i--) {
+					window.setTimeout(
+						'toLoginPage(' + i +
+						')',
+						(3 - i) * 1000);
+				}
+			} else {
+				$.messager.alert("出错了！",
+					data.msg);
+			}
+		}
+	});
+}
+function toLoginPage(num) {
+	if(num == 0) {
+		window.location.href = "../login/bs_login";
+	}
+}

@@ -11,11 +11,11 @@
 
 		<!-- basic styles -->
 
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+		<link href="../static/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../static/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="../static/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
 
 		<!-- page specific plugin styles -->
@@ -26,11 +26,11 @@
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="assets/css/ace.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
-
+		<link rel="stylesheet" href="../static/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="../static/assets/css/ace-rtl.min.css" />
+		<script type="text/javascript" src="../static/js/base64.js"></script>
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="../static/assets/css/ace-ie.min.css" />
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
@@ -38,9 +38,42 @@
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script src="assets/js/html5shiv.js"></script>
-		<script src="assets/js/respond.min.js"></script>
+		<script src="../static/assets/js/html5shiv.js"></script>
+		<script src="../static/assets/js/respond.min.js"></script>
 		<![endif]-->
+		<script type="text/javascript">
+		function login(){
+			var username = $("#username").val();
+			if(username == null || username == ""){
+				$("#showWrongNews").css("display","block").html("<b style='color:red;'>用户名不能为空</b>");
+				return;
+			}
+			var password = $("#pwd").val();
+			if(password == null || password == ""){
+				$("#showWrongNews").css("display","block").html("<b style='color:red;'>密码不能为空</b>");
+				return;
+			}
+			var BASE64 = new Base64(); 
+			var dataVo = {
+				"username": BASE64.encode(username),
+				"password": BASE64.encode(password)
+			};
+			$.ajax({
+				type: "POST",
+				url: "${pageContext.request.contextPath }/login/initUser",
+				contentType: "application/json",
+				data: JSON.stringify(dataVo),
+				success: function(jsonResult) {
+					if(jsonResult.success == 'true') {
+						window.location.href = "${pageContext.request.contextPath }/login/bs_index";
+					} else {
+						$(".promptErrorMessage").css("display","block");
+						$(".promptErrorMessage").html(jsonResult.msg);
+					}
+				}
+			});
+		}
+	</script>
 	</head>
 
 	<body class="login-layout">
@@ -75,14 +108,14 @@
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="用户名或邮箱地址" />
+															<input id="username" type="text" class="form-control" placeholder="用户名或邮箱地址" />
 															<i class="icon-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="密码" />
+															<input id="pwd" type="password" class="form-control" placeholder="密码" />
 															<i class="icon-lock"></i>
 														</span>
 													</label>
@@ -95,7 +128,7 @@
 															<span class="lbl">记住用户名</span>
 														</label>
 
-														<button type="button" class="width-35 pull-right btn btn-sm btn-primary">
+														<button type="button" onclick="login();" class="width-35 pull-right btn btn-sm btn-primary">
 															<i class="icon-key"></i>
 															登录
 														</button>
@@ -104,6 +137,8 @@
 													<div class="space-4"></div>
 												</fieldset>
 											</form>
+											<div id="showWrongNews" class="social-or-login center" style="display:none">
+											</div>
 											<!-- 第三方登录 -->
 											<!-- <div class="social-or-login center">
 												<span class="bigger-110">Or Login Using</span>
@@ -279,19 +314,19 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='../static/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- <![endif]-->
 
 		<!--[if IE]>
 <script type="text/javascript">
- window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+ window.jQuery || document.write("<script src='../static/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if("ontouchend" in document) document.write("<script src='../static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- inline scripts related to this page -->
@@ -302,6 +337,5 @@
 			 jQuery('#'+id).addClass('visible');
 			}
 		</script>
-	<div style="display:none"><script src='assets/js/stat.js'></script></div>
 </body>
 </html>

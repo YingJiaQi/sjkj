@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,7 @@ import com.sjkj.pojo.SystemComponents;
 import com.sjkj.pojo.User;
 import com.sjkj.pojo.UserRoleLink;
 import com.sjkj.service.user.UserService;
+import com.sjkj.utils.times.DateUtil;
 import com.sjkj.vo.PageBean;
 @Service
 public class UserServiceImpl implements UserService {
@@ -186,8 +189,8 @@ public class UserServiceImpl implements UserService {
 		userDao.updateByPrimaryKey(user);
 	}
 	@Override
-	public Map<String, Object> updateUser(User user) {
-		Map<String, Object> result = new HashMap<String, Object>();
+	public Map<String, String> updateUser(User user) {
+		Map<String, String> result = new HashMap<String, String>();
 		User u = userDao.selectByPrimaryKey(user.getId());
 		u.setBirthday(user.getBirthday());
 		u.setIsActive(user.getIsActive());
@@ -239,13 +242,55 @@ public class UserServiceImpl implements UserService {
 		user.setCreateTime(new Date());
 		user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
 		user.setIsDel(0);
-		user.setLastLoginTime(new Date());
+		user.setLoginTimes(null);
+		user.setLastLoginTime(null);
 		user.setLoginTimes(0);
 		user.setUpdateTime(user.getCreateTime());
 		user.setUserPassword("4QrcOUm6Wau+VuBX8g+IPg==");//初始密码123456
 		userDao.insert(user);
 		result.put("success", "true");
 		result.put("msg", "添加成功，初始密码123456");
+		return result;
+	}
+	@Override
+	public Map<String, String> operateUser(HttpServletRequest param) {
+		String oper = param.getParameter("oper");
+		String userCode = param.getParameter("userCode");
+		String userName = param.getParameter("userName");
+		String userGender = param.getParameter("userGender");
+		String userEmail = param.getParameter("userEmail");
+		String birthday = param.getParameter("birthday");
+		String isActive = param.getParameter("isActive");
+		String userMobile = param.getParameter("userMobile");
+		String id = param.getParameter("id");
+		User user = new User();
+		try {
+			user.setBirthday(DateUtil.convertDate(birthday));
+			if(StringUtils.equals("YES", isActive)){
+				user.setIsActive(1);
+			}else{
+				user.setIsActive(0);
+			}
+			user.setUserCode(userCode);
+			user.setUserEmail(userEmail);
+			user.setUserGender(Integer.parseInt(userGender));
+			user.setUserMobile(userMobile);
+			user.setUserName(userName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Map<String, String> result = new HashMap<String,String>();
+		if(StringUtils.equals(oper, "edit")){
+			user.setId(id);
+			result = updateUser(user);
+		}
+		if(StringUtils.equals(oper, "add")){
+			result = addUser(user);
+		}
+		if(StringUtils.equals(oper, "add")){
+			user.setId(id);
+			result = deleteUserById(user);
+		}
 		return result;
 	}
 }

@@ -3,6 +3,8 @@ package com.sjkj.service.user;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.util.MultiValueMap;
 
 import com.sjkj.pojo.SystemComponents;
@@ -45,7 +47,7 @@ public interface UserService {
 	 * @param user
 	 * @return
 	 */
-	Map<String, Object> updateUser(User user);
+	Map<String, String> updateUser(User user);
 	/**
 	 * 删除用户信息
 	 * @param userID
@@ -58,5 +60,6 @@ public interface UserService {
 	 * @return
 	 */
 	Map<String, String> addUser(User user);
+	Map<String, String> operateUser(HttpServletRequest param);
 
 }

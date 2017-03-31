@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,4 +88,14 @@ public class UserController {
 	public ResponseEntity<?> addUser(@RequestBody User user) {
 		return new ResponseEntity<Object>(userService.addUser(user), HttpStatus.OK);
 	}
+	/**
+	 * 添加用户信息
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/operateUser", method = RequestMethod.POST)
+	public ResponseEntity<?> operateUser(HttpServletRequest request) {
+		return new ResponseEntity<Object>(userService.operateUser(request), HttpStatus.OK);
+	}
+	
 }

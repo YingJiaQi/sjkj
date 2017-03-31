@@ -10,11 +10,11 @@
 
 		<!-- basic styles -->
 
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+		<link href="../static/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../static/assets/css/font-awesome.min.css" />
 
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="../static/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
 
 		<!-- page specific plugin styles -->
@@ -25,25 +25,25 @@
 
 		<!-- ace styles -->
 
-		<link rel="stylesheet" href="assets/css/ace.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="../static/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="../static/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="../static/assets/css/ace-skins.min.css" />
 
 		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		  <link rel="stylesheet" href="../static/assets/css/ace-ie.min.css" />
 		<![endif]-->
 
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
 
-		<script src="assets/js/ace-extra.min.js"></script>
+		<script src="../static/assets/js/ace-extra.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
-		<script src="assets/js/html5shiv.js"></script>
-		<script src="assets/js/respond.min.js"></script>
+		<script src="../static/assets/js/html5shiv.js"></script>
+		<script src="../static/assets/js/respond.min.js"></script>
 		<![endif]-->
 	</head>
 
@@ -216,7 +216,7 @@
 
 								<li>
 									<a href="#">
-										<img src="assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+										<img src="../static/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
@@ -233,7 +233,7 @@
 
 								<li>
 									<a href="#">
-										<img src="assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+										<img src="../static/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
@@ -250,7 +250,7 @@
 
 								<li>
 									<a href="#">
-										<img src="assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+										<img src="../static/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Bob:</span>
@@ -276,7 +276,7 @@
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="../static/assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>Welcome,</small>
 									Jason
@@ -361,13 +361,12 @@
 					</div><!-- #sidebar-shortcuts -->
 
 					<ul class="nav nav-list">
-						<li class="active">
-							<a href="index.html">
+						<li>
+							<a href="bs_index">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 控制台 </span>
 							</a>
 						</li>
-
 						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-key"></i>
@@ -377,15 +376,15 @@
 							</a>
 
 							<ul class="submenu">
-								<li>
-									<a href="bs_administrate.html">
+								<li >
+									<a href="bs_administrate">
 										<i class="icon-double-angle-right"></i>
-										后台管理员
+										管理员
 									</a>
 								</li>
 
 								<li>
-									<a href="bs_authority.html">
+									<a href="bs_authority">
 										<i class="icon-double-angle-right"></i>
 										权限分配
 									</a>
@@ -393,7 +392,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="pre_userManager.html">
+							<a href="bs_userManager">
 								<i class="icon-user"></i>
 								<span class="menu-text"> 用户管理 </span>
 							</a>
@@ -409,31 +408,37 @@
 							<ul class="submenu">
 
 								<li>
-									<a href="pre_articalManager.html">
+									<a href="bs_articalManager">
 										<i class="icon-double-angle-right"></i>
 										文章管理
 									</a>
 								</li>
 								<li>
-									<a href="pre_commodityManager.html">
+									<a href="bs_commodityManager">
 										<i class="icon-double-angle-right"></i>
 										商品管理
 									</a>
 								</li>
+								<li >
+									<a href="bs_specificationParamManager">
+										<i class="icon-double-angle-right"></i>
+										规格参数
+									</a>
+								</li>
 								<li>
-									<a href="pre_videoManager.html">
+									<a href="bs_videoManager">
 										<i class="icon-double-angle-right"></i>
 										视频管理
 									</a>
 								</li>
 								<li>
-									<a href="pre_advManager.html">
+									<a href="bs_advManager">
 										<i class="icon-double-angle-right"></i>
 										广告管理
 									</a>
 								</li>
 								<li>
-									<a href="pre_contentAssociated.html">
+									<a href="bs_contentAssociated">
 										<i class="icon-double-angle-right"></i>
 										内容关联
 									</a>
@@ -441,7 +446,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="calendar.html">
+							<a href="bs_calendar">
 								<i class="icon-calendar"></i>
 
 								<span class="menu-text">
@@ -453,7 +458,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="gallery.html">
+							<a href="bs_image">
 								<i class="icon-picture"></i>
 								<span class="menu-text"> 相册 </span>
 							</a>
@@ -629,31 +634,32 @@
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
-			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+			window.jQuery || document.write("<script src='../static/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
 
 		<!-- <![endif]-->
 
 		<!--[if IE]>
 <script type="text/javascript">
- window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+ window.jQuery || document.write("<script src='../static/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 
 		<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if("ontouchend" in document) document.write("<script src='../static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-		<script src="assets/js/bootstrap.min.js"></script>
-		<script src="assets/js/typeahead-bs2.min.js"></script>
+		<script src="../static/assets/js/bootstrap.min.js"></script>
+		<script src="../static/assets/js/typeahead-bs2.min.js"></script>
 
 		<!-- page specific plugin scripts -->
 
 		<!-- ace scripts -->
 
-		<script src="assets/js/ace-elements.min.js"></script>
-		<script src="assets/js/ace.min.js"></script>
+		<script src="../static/assets/js/ace-elements.min.js"></script>
+		<script src="../static/assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
-	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+				<div style="display:none"><script src='../static/assets/js/stat.js'></script></div>
+		
 </body>
 </html>
