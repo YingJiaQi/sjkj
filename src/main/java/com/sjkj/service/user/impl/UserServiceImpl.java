@@ -3,6 +3,7 @@ package com.sjkj.service.user.impl;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -36,6 +37,7 @@ import com.sjkj.pojo.RoleAuthorityLink;
 import com.sjkj.pojo.SystemComponents;
 import com.sjkj.pojo.User;
 import com.sjkj.pojo.UserRoleLink;
+import com.sjkj.pojo.pre.PreUser;
 import com.sjkj.service.user.UserService;
 import com.sjkj.utils.times.DateUtil;
 import com.sjkj.vo.PageBean;
@@ -169,7 +171,9 @@ public class UserServiceImpl implements UserService {
 		example.createCriteria().andEqualTo("isDel", 0);
 		List<User> uList = userDao.selectByExample(example);
 		PageInfo<User> po = new PageInfo<User>(uList);
-		result.put("total", po.getTotal());
+		result.put("records", po.getTotal());
+		result.put("page", pageBean.getPage());
+		//result.put("total", po.getTotal()/pageBean.getRows())//总页数
 		result.put("rows", po.getList());
 		return result;
 	}
@@ -231,14 +235,29 @@ public class UserServiceImpl implements UserService {
 		Map<String, String> result = new HashMap<String, String>();
 		//用户账号不能重复
 		Example example = new Example(User.class);
-		example.createCriteria().andEqualTo("userCode", user.getUserCode());
+		example.createCriteria().andEqualTo("userName", user.getUserName());
 		example.createCriteria().andEqualTo("isDel", 0);
 		List<User> selectByExample = userDao.selectByExample(example);
 		if(selectByExample.size() >0){
 			result.put("success", "false");
-			result.put("msg", "用户账号已存在");
+			result.put("msg", "用户名已存在");
 			return result;
 		}
+		//userCode组成   时间+7位用户注册序号前位补0
+		SimpleDateFormat sdf = new SimpleDateFormat(DateUtil.YMD9);
+		String format = sdf.format(new Date());
+		
+		User record = new User();
+		record.setIsDel(0);
+		int totalUser = userDao.selectCount(record);
+		if(totalUser == 0){
+			totalUser =1;
+		}
+		String userCount = (totalUser+1)+"";
+		while(userCount.length() < 3){
+			userCount = "0"+userCount;
+		}
+		user.setUserCode(format+userCount);
 		user.setCreateTime(new Date());
 		user.setId(UUID.randomUUID().toString().replaceAll("-", ""));
 		user.setIsDel(0);
@@ -254,7 +273,15 @@ public class UserServiceImpl implements UserService {
 	}
 	@Override
 	public Map<String, String> operateUser(HttpServletRequest param) {
+		Map<String, String> result = new HashMap<String,String>();
 		String oper = param.getParameter("oper");
+		User user = new User();
+		String id = param.getParameter("id");
+		if(StringUtils.equals(oper, "del")){
+			user.setId(id);
+			result = deleteUserById(user);
+			return result;
+		}
 		String userCode = param.getParameter("userCode");
 		String userName = param.getParameter("userName");
 		String userGender = param.getParameter("userGender");
@@ -262,8 +289,6 @@ public class UserServiceImpl implements UserService {
 		String birthday = param.getParameter("birthday");
 		String isActive = param.getParameter("isActive");
 		String userMobile = param.getParameter("userMobile");
-		String id = param.getParameter("id");
-		User user = new User();
 		try {
 			user.setBirthday(DateUtil.convertDate(birthday));
 			if(StringUtils.equals("YES", isActive)){
@@ -279,17 +304,12 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Map<String, String> result = new HashMap<String,String>();
 		if(StringUtils.equals(oper, "edit")){
 			user.setId(id);
 			result = updateUser(user);
 		}
 		if(StringUtils.equals(oper, "add")){
 			result = addUser(user);
-		}
-		if(StringUtils.equals(oper, "add")){
-			user.setId(id);
-			result = deleteUserById(user);
 		}
 		return result;
 	}

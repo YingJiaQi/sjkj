@@ -2,8 +2,12 @@ package com.sjkj.service.pre.preUser;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.util.MultiValueMap;
 
 import com.sjkj.pojo.pre.PreUser;
+import com.sjkj.vo.PageBean;
 
 public interface PreUserService {
 	/**
@@ -22,5 +26,16 @@ public interface PreUserService {
 	PreUser findPreUserByUsername(String username);
 	PreUser findPreUserByUserCode(String substring);
 	PreUser findPreUserByUserEmail(String substring);
+	/**
+	 * 获取前台用户数据
+	 * @return
+	 */
+	Map<String, Object> getUserList(PageBean pageBean);
+	/**
+	 * 操作用户数据
+	 * @param user
+	 * @return
+	 */
+	Map<String, String> operatePreUser(HttpServletRequest request);
 
 }

@@ -1,5 +1,7 @@
 package com.sjkj.controller.pre;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.sjkj.pojo.pre.PreUser;
 import com.sjkj.service.pre.preUser.PreUserService;
 import com.sjkj.utils.MD5Util;
+import com.sjkj.vo.PageBean;
 
 @Controller
 @RequestMapping("/preUser")
@@ -34,5 +37,22 @@ public class PreUserManager {
 	@RequestMapping(value="/preUserLogin", method=RequestMethod.POST)
 	public ResponseEntity<?> preUserLogin(@RequestBody  PreUser preUser){
 		return new ResponseEntity<Object>(preUserService.preUserLogin(preUser),HttpStatus.OK);
+	}
+	/**
+	 * 获取前台用户数据
+	 * @return
+	 */
+	@RequestMapping(value = "/getUserList", method = RequestMethod.POST)
+	public ResponseEntity<?> getUserList(PageBean pageBean) {
+		return new ResponseEntity<Object>(preUserService.getUserList(pageBean), HttpStatus.OK);
+	}
+	/**
+	 * 操作用户数据
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/operatePreUser", method = RequestMethod.POST)
+	public ResponseEntity<?> operatePreUser(HttpServletRequest request) {
+		return new ResponseEntity<Object>(preUserService.operatePreUser(request), HttpStatus.OK);
 	}
 }

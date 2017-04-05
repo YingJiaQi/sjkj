@@ -642,44 +642,20 @@
 		<!-- inline scripts related to this page -->
 
 		<script type="text/javascript">
-			var grid_data = 
-			[ 
-				{id:"1",name:"Desktop Computer",note:"note",stock:"Yes",ship:"FedEx", sdate:"2007-12-03"},
-				{id:"2",name:"Laptop",note:"Long text ",stock:"Yes",ship:"InTime",sdate:"2007-12-03"},
-				{id:"3",name:"LCD Monitor",note:"note3",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"4",name:"Speakers",note:"note",stock:"No",ship:"ARAMEX",sdate:"2007-12-03"},
-				{id:"5",name:"Laser Printer",note:"note2",stock:"Yes",ship:"FedEx",sdate:"2007-12-03"},
-				{id:"6",name:"Play Station",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"7",name:"Mobile Telephone",note:"note",stock:"Yes",ship:"ARAMEX",sdate:"2007-12-03"},
-				{id:"8",name:"Server",note:"note2",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"9",name:"Matrix Printer",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"10",name:"Desktop Computer",note:"note",stock:"Yes",ship:"FedEx", sdate:"2007-12-03"},
-				{id:"11",name:"Laptop",note:"Long text ",stock:"Yes",ship:"InTime",sdate:"2007-12-03"},
-				{id:"12",name:"LCD Monitor",note:"note3",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"13",name:"Speakers",note:"note",stock:"No",ship:"ARAMEX",sdate:"2007-12-03"},
-				{id:"14",name:"Laser Printer",note:"note2",stock:"Yes",ship:"FedEx",sdate:"2007-12-03"},
-				{id:"15",name:"Play Station",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"16",name:"Mobile Telephone",note:"note",stock:"Yes",ship:"ARAMEX",sdate:"2007-12-03"},
-				{id:"17",name:"Server",note:"note2",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"18",name:"Matrix Printer",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"19",name:"Matrix Printer",note:"note3",stock:"No", ship:"FedEx",sdate:"2007-12-03"},
-				{id:"20",name:"Desktop Computer",note:"note",stock:"Yes",ship:"FedEx", sdate:"2007-12-03"},
-				{id:"21",name:"Laptop",note:"Long text ",stock:"Yes",ship:"InTime",sdate:"2007-12-03"},
-				{id:"22",name:"LCD Monitor",note:"note3",stock:"Yes",ship:"TNT",sdate:"2007-12-03"},
-				{id:"23",name:"Speakers",note:"note",stock:"No",ship:"ARAMEX",sdate:"2007-12-03"}
-			];	
-			
 			jQuery(function($) {
 				var grid_selector = "#grid-table";
 				var pager_selector = "#grid-pager";
-			
+				var wh = $(window).height();
+				wh = wh-186;
 				jQuery(grid_selector).jqGrid({
 					//direction: "rtl",
 					
-					data: grid_data,
-					datatype: "local",
-					height: 390,
-					colNames:['操作', 'ID','Last Sales','Name', 'Stock', 'Ship via','Notes'],
+					//data: grid_data,
+					url:'../preUser/getUserList',
+					datatype: "json",
+					height: wh,
+					mtype: 'POST',
+					colNames:['操作', '','用户编码','用户账号','性别', '手机号', '邮箱','生日','权限级别','最后登录时间','登录次数'],
 					colModel:[
 						{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
 							formatter:'actions', 
@@ -690,12 +666,16 @@
 								//editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
 							}
 						},
-						{name:'id',index:'id', width:60, sorttype:"int", editable: true},
-						{name:'sdate',index:'sdate',width:90, editable:true, sorttype:"date",unformat: pickDate},
-						{name:'name',index:'name', width:150,editable: true,editoptions:{size:"20",maxlength:"30"}},
-						{name:'stock',index:'stock', width:70, editable: true,edittype:"checkbox",editoptions: {value:"Yes:No"},unformat: aceSwitch},
-						{name:'ship',index:'ship', width:90, editable: true,edittype:"select",editoptions:{value:"FE:FedEx;IN:InTime;TN:TNT;AR:ARAMEX"}},
-						{name:'note',index:'note', width:150, sortable:false,editable: true,edittype:"textarea", editoptions:{rows:"2",cols:"10"}} 
+						{name:'id',index:'id', hidden:true},
+						{name:'userCode',index:'userCode', width:120, editable: false},
+						{name:'userName',index:'userName',width:80, editable:true,editoptions:{size:"20",maxlength:"50"}},
+						{name:'userGender',index:'userGender', width:50, editable: true,edittype:"select",editoptions:{value:"1:男;0:女"},formatter: reverseGender},
+						{name:'userMobile',index:'userMobile', width:100, editable: true,editoptions:{size:"20",maxlength:"50"}},
+						{name:'userEmail',index:'userEmail', width:120, editable: true,editoptions:{size:"20",maxlength:"50"}},
+						{name:'birthday',index:'birthday',width:140, editable:true, sorttype:"date",unformat: pickDate},
+						{name:'privilegeLevel',index:'privilegeLevel',width:80, editable:true, sorttype:"int"},
+						{name:'lastLoginTime',index:'lastLoginTime',width:130, editable:false, sorttype:"date"},
+						{name:'loginTimes',index:'loginTimes', width:70, editable: false,sorttype:"int"},
 					], 
 			
 					viewrecords : true,
@@ -720,7 +700,7 @@
 						}, 0);
 					},
 			
-					editurl: $path_base+"/dummy.html",//nothing is saved
+					editurl: "../preUser/operatePreUser",//nothing is saved
 					/*caption: "jqGrid with inline editing",*/
 					autowidth: true
 			
@@ -745,7 +725,20 @@
 								.datepicker({format:'yyyy-mm-dd' , autoclose:true}); 
 					}, 0);
 				}
-			
+				function reverseGender(cellvalue, options, cell){
+					if(cellvalue == 0){
+						return "女";
+					}else{
+						return "男";
+					}
+				}
+				function reverseActive(cellvalue, options, cell){
+					if(cellvalue == 0){
+						return "NO";
+					}else{
+						return "YES";
+					}
+				}
 			
 				//navButtons
 				jQuery(grid_selector).jqGrid('navGrid',pager_selector,

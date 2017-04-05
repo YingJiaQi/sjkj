@@ -429,7 +429,7 @@
 										视频管理
 									</a>
 								</li>
-								<li  class="active">
+								<li>
 									<a href="bs_advManager">
 										<i class="icon-double-angle-right"></i>
 										广告管理

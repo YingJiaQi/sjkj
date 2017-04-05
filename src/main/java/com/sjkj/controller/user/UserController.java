@@ -89,7 +89,7 @@ public class UserController {
 		return new ResponseEntity<Object>(userService.addUser(user), HttpStatus.OK);
 	}
 	/**
-	 * 添加用户信息
+	 * 操作用户数据
 	 * @param user
 	 * @return
 	 */
