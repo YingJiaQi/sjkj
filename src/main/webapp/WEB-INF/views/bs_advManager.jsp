@@ -1695,17 +1695,6 @@
 		</div><!-- /.main-container -->
 
 		<!-- basic scripts -->
-
-		<!--[if !IE]> -->
-
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
-
 		<!--[if !IE]> -->
 
 		<script type="text/javascript">
@@ -1729,7 +1718,7 @@
 		<!-- page specific plugin scripts -->
 
 		<!--[if lte IE 8]>
-		  <script src="assets/js/excanvas.min.js"></script>
+		  <script src="../static/assets/js/excanvas.min.js"></script>
 		<![endif]-->
 
 		<script src="../static/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
