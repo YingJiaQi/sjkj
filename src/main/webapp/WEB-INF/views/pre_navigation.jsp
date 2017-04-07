@@ -1,8 +1,8 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html lang="zxx">
-
 	<head>
-		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta content="" name="description">
 		<meta content="" name="keywords">
@@ -13,8 +13,8 @@
 		<link rel="shortcut icon" type="image/png" href="favicon.png" />
 		<!--[if (gt IE 9)|!(IE)]><!-->
 		<!-- custom CSS -->
-		<link href="css/main.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="css/navigation.css" />
+		<link href="${pageContext.request.contextPath }/static/css/Pre/main.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/Pre/navigation.css" />
 		<!-- END custom CSS -->
 		<!--<![endif]-->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -23,45 +23,7 @@
             <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
-		<title></title>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$("#metro_box").css("margin-top", "10px");
-				//链接在新窗口打开
-				$(".a_link dd a").attr("target", "_blank");
-				$(".a_link ul li>a").hover(function() {
-					var a_href = $(this).attr("href");
-					$(this).siblings().find("a").attr("href", a_href);
-				});
-				
-				$(".navClassify").css("border","1px solid grey");
-				$(".navClassify:eq(0)").css("border","2px solid #F38844");
-				$(".navClassify:eq(0)").css("border-right","none");
-				$(".navClassify:eq(0)").css("background-color", "#EEEEEE");
-				
-				
-				$(".navClassify").mouseover(function(e){
-					$(".navClassify").css("border","1px solid grey");
-					$(".navClassify").css("background-color", "white");
-					$(this).css("border","2px solid #F38844");
-					$(this).css("border-right","none");
-					$(this).css("background-color", "#EEEEEE");
-					var liList = $("#navCategoryList li");
-					for(var i=0;i<liList.length;i++){
-						if($(liList[i]).text() ==$(this).text()){
-							var dd = $("#metro_box dl dd")[i];
-							$(dd).siblings().css("display", "none");
-							$(dd).css("display", "block");
-						}
-					}
-				}).mouseout(function(e){
-					//$(this).css("border","1px solid grey");
-					//$(this).css("border-right","1px solid grey");
-				})
-			})
-		</script>
+		
 	</head>
 
 	<body>
@@ -104,10 +66,8 @@
 							</div>
 							<div class="col-xs-6 col-sm-7">
 								<div class="exchange">
-									<p class="exchange__name">Central Bank Rate</p>
-									<p class="exchange__course">
-										$<span>32.32</span>&#8364;<span>28.23</span>
-									</p>
+									      <a href="${pageContext.request.contextPath }/pre/user/pre_login" class="btn btn-lg btn-info">登录</a>
+                               		<a href="${pageContext.request.contextPath }/pre/PreCustomPage" class="btn-link"  target="_blank" >自定义页面</a>
 								</div>
 							</div>
 						</div>
@@ -136,21 +96,21 @@
                                         </button>
 									</form>
 								</li>
-								 <li class="active">
+								 <li>
                                     <span class="wsmenu-click"></span>
-                                    <a href="index.html">主页</a>
+                                    <a href="${pageContext.request.contextPath }">主页</a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
-                                    <a href="node.html">生活点滴</a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_node">生活点滴</a>
+                                </li>
+                                <li  class="active">
+                                    <span class="wsmenu-click"></span>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_navigation">导航</a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
-                                    <a href="navigation.html">导航</a>
-                                </li>
-                                <li>
-                                    <span class="wsmenu-click"></span>
-                                    <a href="stackRoom.html">书库</a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_stackRoom">书库</a>
                                 </li>
 								<!--<li>
 									<span class="wsmenu-click"></span>
@@ -580,6 +540,55 @@
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='${pageContext.request.contextPath }/static/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+			<script type="text/javascript">
+				 window.jQuery || document.write("<script src='${pageContext.request.contextPath }/static/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+			</script>
+		<![endif]-->
+		<script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
+		<title></title>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#metro_box").css("margin-top", "10px");
+				//链接在新窗口打开
+				$(".a_link dd a").attr("target", "_blank");
+				$(".a_link ul li>a").hover(function() {
+					var a_href = $(this).attr("href");
+					$(this).siblings().find("a").attr("href", a_href);
+				});
+				
+				$(".navClassify").css("border","1px solid grey");
+				$(".navClassify:eq(0)").css("border","2px solid #F38844");
+				$(".navClassify:eq(0)").css("border-right","none");
+				$(".navClassify:eq(0)").css("background-color", "#EEEEEE");
+				
+				
+				$(".navClassify").mouseover(function(e){
+					$(".navClassify").css("border","1px solid grey");
+					$(".navClassify").css("background-color", "white");
+					$(this).css("border","2px solid #F38844");
+					$(this).css("border-right","none");
+					$(this).css("background-color", "#EEEEEE");
+					var liList = $("#navCategoryList li");
+					for(var i=0;i<liList.length;i++){
+						if($(liList[i]).text() ==$(this).text()){
+							var dd = $("#metro_box dl dd")[i];
+							$(dd).siblings().css("display", "none");
+							$(dd).css("display", "block");
+						}
+					}
+				}).mouseout(function(e){
+					//$(this).css("border","1px solid grey");
+					//$(this).css("border-right","1px solid grey");
+				})
+			})
+		</script>
 	</body>
 
 </html>

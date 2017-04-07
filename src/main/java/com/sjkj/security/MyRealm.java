@@ -84,21 +84,15 @@ public class MyRealm extends AuthorizingRealm {
 			int indexOf = username.indexOf("pre");
 			username = username.substring(indexOf+3);
 			PreUser pu = null;
-			if(username.indexOf("UserCode") >0){
-				int indexOf2 = username.indexOf("UserCode");
-				pu = preUserService.findPreUserByUserCode(username.substring(indexOf2+8));
+			if(username.indexOf("@") >0 && username.indexOf("com")>0){
+				//邮箱登录
+				pu = preUserService.findPreUserByUserEmail(username);
 				if(pu == null){
 					return null;
 				}
-			}else if(username.indexOf("UserName") > 0){
-				int indexOf2 = username.indexOf("UserName");
-				pu = preUserService.findPreUserByUsername(username.substring(indexOf2+8));
-				if(pu == null){
-					return null;
-				}
-			}else if(username.indexOf("UserEmail") > 0){
-				int indexOf2 = username.indexOf("UserEmail");
-				pu = preUserService.findPreUserByUserEmail(username.substring(indexOf2+9));
+			}else{
+				//用户名登录
+				pu = preUserService.findPreUserByUsername(username);
 				if(pu == null){
 					return null;
 				}

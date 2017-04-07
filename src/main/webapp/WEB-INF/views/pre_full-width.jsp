@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<!DOCTYPE html>
 <html lang="zxx">
     <head>
         <meta charset="utf-8">
@@ -21,7 +23,7 @@
             <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <title>404 Page</title>
+        <title></title>
     </head>
     <body>
         <div class="wrapper-sticky-footer">
@@ -129,8 +131,8 @@
                                         <li>
                                             <span class="wsmenu-click"></span>
                                             <a href="">Other
-										        <span class="arrow"></span>
-			                                </a>
+										<span class="arrow"></span>
+			                        </a>
                                             <ul class="wsmenu-submenu">
                                                 <li>
                                                     <a href="404.html">404 page</a>
@@ -204,23 +206,51 @@
                     </div>
                 </header>
                 <!-- END header -->
-                <!-- Content-->
-                <div class="wrap-error">
-                    <div class="error clearfix">
-                        <div class="error__left">
-                            <p class="error__text">404</p>
-                        </div>
-                        <div class="error__right">
-                            <div class="error__head">Page not found...</div>
-                            <p class="error__text">We're sorry, but we can't find the page you were looking for. It's probably some thing we've done wrong but now we know about it we'll try to fix it. In the meantime, try one of this options:</p>
-                            <ul class="error__list">
-                                <li>
-                                    <a href="#" class="link">Go back to previous page</a>
-                                </li>
-                                <li>
-                                    <a href="index.html" class="link">Go to homepage</a>
-                                </li>
-                            </ul>
+                <!-- content-->
+                <!-- title -->
+                <div class="wrap wrap_white">
+                    <div class="container title">
+                        <h1 class="title__h1 underscore">Economy</h1>
+                    </div>
+                </div>
+                <!-- END title -->
+                <div class="wrap wrap_gray pt20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="wrap-thumbnail">
+                                <div class="thumbnail">
+                                    <div class="thumbnail__news news">
+                                        <p class="news__category underscore">Economy</p>
+                                        <a href="" class="news__caption">Can explode at anytime: Scientists reveal giant sinkhole to appear in Siberia</a>
+                                        <p class="news__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                            commodo consequat.</p>
+                                        <p class="news__desc"><strong>Can explode at anytime: Scientists reveal giant sinkhole to appear in Siberia</strong></p>
+                                        <p class="news__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi asperiores ea fuga inventore laudantium, minima non quam repellat temporibus voluptatem. Ab accusantium ad aliquid aperiam beatae consequatur cumque
+                                            deleniti distinctio dolorem doloremque ducimus ea eaque enim eos error esse est explicabo fugit incidunt inventore ipsam, laborum laudantium magni nam, odit omnis praesentium quaerat quam, quia quidem recusandae
+                                            similique soluta temporibus totam velit veritatis voluptatibus. Architecto culpa dolorem inventore minima officiis optio, sit? Ab aliquid assumenda dolores facilis, fugiat hic illum laudantium maiores minus
+                                            nam nemo nihil nulla, quae quia sint, ullam ut. Animi atque debitis fugiat, id incidunt labore porro quasi recusandae! Assumenda dolor eligendi fugiat iusto labore quisquam saepe voluptas voluptates. Adipisci
+                                            amet architecto aut commodi cum deserunt dolore doloremque ea esse et eum expedita explicabo itaque iure modi numquam odio optio possimus praesentium quae, quaerat quam quo repellendus tenetur veniam vero voluptatem
+                                            voluptates. Aliquam debitis explicabo fuga voluptatem.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="thumbnail">
+                                    <div class="thumbnail__news news">
+                                        <p class="news__category underscore">Economy</p>
+                                        <a href="" class="news__caption">Can explode at anytime: Scientists reveal giant sinkhole to appear in Siberia</a>
+                                        <p class="news__desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                            commodo consequat.</p>
+                                        <p class="news__desc"><strong>Can explode at anytime: Scientists reveal giant sinkhole to appear in Siberia</strong></p>
+                                        <p class="news__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi asperiores ea fuga inventore laudantium, minima non quam repellat temporibus voluptatem. Ab accusantium ad aliquid aperiam beatae consequatur cumque
+                                            deleniti distinctio dolorem doloremque ducimus ea eaque enim eos error esse est explicabo fugit incidunt inventore ipsam, laborum laudantium magni nam, odit omnis praesentium quaerat quam, quia quidem recusandae
+                                            similique soluta temporibus totam velit veritatis voluptatibus. Architecto culpa dolorem inventore minima officiis optio, sit? Ab aliquid assumenda dolores facilis, fugiat hic illum laudantium maiores minus
+                                            nam nemo nihil nulla, quae quia sint, ullam ut. Animi atque debitis fugiat, id incidunt labore porro quasi recusandae! Assumenda dolor eligendi fugiat iusto labore quisquam saepe voluptas voluptates. Adipisci
+                                            amet architecto aut commodi cum deserunt dolore doloremque ea esse et eum expedita explicabo itaque iure modi numquam odio optio possimus praesentium quae, quaerat quam quo repellendus tenetur veniam vero voluptatem
+                                            voluptates. Aliquam debitis explicabo fuga voluptatem.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

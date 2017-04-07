@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<!DOCTYPE html>
 <html lang="zxx">
     <head>
         <meta charset="utf-8">
@@ -10,11 +12,9 @@
         <meta content="telephone=no" name="format-detection">
         <!-- favicon -->
         <link rel="shortcut icon" type="image/png" href="favicon.png" />
-        <script type="text/javascript" src="js/jquery.min.js"></script>
         <!--[if (gt IE 9)|!(IE)]><!-->
         <!-- custom CSS -->
-        <link href="css/main.css" rel="stylesheet" type="text/css" />
-        <link href="css/index.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath }/static/css/Pre/main.css" rel="stylesheet" type="text/css" />
         <!-- END custom CSS -->
         <!--<![endif]-->
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -23,7 +23,7 @@
             <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <title>杰讯信息</title>
+        <title></title>
     </head>
     <body>
         <!-- Header -->
@@ -65,10 +65,8 @@
                             </div>
                             <div class="col-xs-6 col-sm-7">
                                 <div class="exchange">
-                                    <p class="exchange__name">musicBox location</p>
-                                    <p class="exchange__course">
-                                        $<span>32.32</span>&#8364;<span>28.23</span>
-                                    </p>
+                                       <a href="${pageContext.request.contextPath }/pre/user/pre_login" class="btn btn-lg btn-info">登录</a>
+                               		<a href="${pageContext.request.contextPath }/pre/PreCustomPage" class="btn-link"  target="_blank" >自定义页面</a>
                                 </div>
                             </div>
                         </div>
@@ -97,36 +95,31 @@
                                         </button>
                                     </form>
                                 </li>
-
-                                <li class="active">
+                              <li>
                                     <span class="wsmenu-click"></span>
-                                    <a href="index.html">主页</a>
+                                    <a href="${pageContext.request.contextPath }">主页</a>
+                                </li>
+                                <li  class="active">
+                                    <span class="wsmenu-click"></span>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_node">生活点滴</a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
-                                    <a href="node.html">生活点滴</a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_navigation">导航</a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
-                                    <a href="navigation.html">导航</a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_stackRoom">书库</a>
                                 </li>
-                                <li>
-                                    <span class="wsmenu-click"></span>
-                                    <a href="stackRoom.html">书库</a>
-                                </li>
-                                <!--<li>
-                                    <span class="wsmenu-click"></span>
-                                    <a href="category.html">家</a>
-                                </li>
-                                <li>
+                               <!-- <li>
                                     <span class="wsmenu-click"></span>
                                     <a href="category.html">People</a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
                                     <a href="category.html">Main</a>
-                                </li>-->
-                                <!--<li>
+                                </li>
+                                <li>
                                     <span class="wsmenu-click"></span>
                                     <a href="">Other
         							<span class="arrow"></span>
@@ -150,13 +143,13 @@
                                     </ul>
                                 </li>-->
                                 <li class="navbar-right hidden-xs">
-                                    <form class="navbar-form" role="search">
+                                    <form class="navbar-form " role="search">
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Search">
                                         </div>
                                         <button type="submit" class="btn btn-search">
                                             <i class="icon-search"></i>
-                                            <br/>Search
+                                            <br>Search
                                         </button>
                                     </form>
                                 </li>
@@ -205,96 +198,19 @@
         </header>
         <!-- END header -->
         <!-- header slider -->
-        <div class="slate_gray">
-            <div class="container">
-                <div class="row header_news_panel">
-                    <!-- Tab panes -->
-                    <div class="col-sm-8 tab-content tab-content_mob-p0">
-                        <div role="tabpanel" class="tab-pane fade in active" id="home">
-                            <img src="img/content/slide1.jpg" alt="main img" class="tab-pane__img">
-                            <div class="header_news_text tab-pane__block">
-                                <p class="tab-pane__category yel_line">People</p>
-                                <a class="tab-pane__title">The Visions's Rainbow</a>
-                                <p class="tab-pane__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="profile">
-                            <img src="img/content/slide2.jpg" alt="main img" class="tab-pane__img">
-                            <div class="header_news_text tab-pane__block">
-                                <p class="tab-pane__category yel_line">People</p>
-                                <a class="tab-pane__title">The Visions's Rainbow</a>
-                                <p class="tab-pane__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="messages">
-                            <img src="img/content/slide1.jpg" alt="main img" class="tab-pane__img">
-                            <div class="header_news_text tab-pane__block">
-                                <p class="tab-pane__category yel_line">People</p>
-                                <a class="tab-pane__title">The Visions's Rainbow</a>
-                                <p class="tab-pane__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="settings">
-                            <img src="img/content/slide2.jpg" alt="main img" class="tab-pane__img">
-                            <div class="header_news_text tab-pane__block">
-                                <p class="tab-pane__category yel_line">People</p>
-                                <a class="tab-pane__title">The Visions's Rainbow</a>
-                                <p class="tab-pane__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END Tab panes -->
-                    <!-- Nav tabs -->
-                    <div class="col-sm-4 news-tabs">
-                        <p class="news-tabs__title h2">Last news</p>
-                        <ul class="news-tabs__nav nav nav-tabs shadow_text" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#home" role="tab" data-toggle="tab">
-                                    <span class="time">today, 10:11</span>
-                                    Volkswagen hit by multiple probes in US Volkswagen hit by multiple probes in US
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#profile" role="tab" data-toggle="tab">
-                                    <span class="time">today, 11:22</span>
-                                    Volkswagen hit by multiple probes in US Volkswagen hit by multiple probes in US
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#messages" role="tab" data-toggle="tab">
-                                    <span class="time">today, 12:33</span>
-                                    Volkswagen hit by multiple probes in US Volkswagen hit by multiple probes in US
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#settings" role="tab" data-toggle="tab">
-                                    <span class="time">today, 14:44</span>
-                                    Volkswagen hit by multiple probes in US Volkswagen hit by multiple probes in US
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- END Nav tabs -->
-                </div>
-            </div>
-        </div>
-        <!-- END header slider -->
-        <!-- top news-->
         <section>
             <!-- top news -->
-            <!-- title -->
             <div class="wrap wrap_white">
                 <div class="container title">
-                    <h1 class="title__h1 underscore">快捷入口</h1>
+                    <h2 class="title__h1 underscore ">经过火的洗礼，泥巴也会有坚强的体魄！</h2>
                 </div>
             </div>
-            <!-- END title -->
             <div class="wrap wrap_gray pt20">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="thumbnail thumbnail_big">
-                                <img src="img/content/news1.jpg" height="350" width="560" alt="News">
+                                <img src="img/content/news1.jpg" height="349" width="560" alt="News">
                                 <div class="caption thumbnail__caption">
                                     <div class="news caption__news">
                                         <p class="news__category yellow-line">Economy</p>
@@ -328,20 +244,20 @@
                                     <div class="news caption__news">
                                         <p class="news__category yellow-line">Economy</p>
                                         <a href="news.html" class="news__link">
-                                            <p class="news__text">Еhe world's economy is improving and good times</p>
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
                                         </a>
                                     </div>
                                     <div class="posted">
-                                        <span class="posted__date">today, 12:11</span>
+                                        <span class="posted__date">today, 12:30</span>
                                         <ul class="posted__icon">
                                             <li>
                                                 <span>
-                                                <i class="icon-comment-empty"></i>11
+                                                <i class="icon-comment-empty"></i>29
                                             </span>
                                             </li>
                                             <li>
                                                 <span>
-                                                <i class="icon-eye"></i>1.1k
+                                                <i class="icon-eye"></i>2.3k
                                             </span>
                                             </li>
                                         </ul>
@@ -358,20 +274,20 @@
                                     <div class="news caption__news">
                                         <p class="news__category yellow-line">Economy</p>
                                         <a href="news.html" class="news__link">
-                                            <p class="news__text">The euro needs to everyone in a large amount</p>
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
                                         </a>
                                     </div>
                                     <div class="posted">
-                                        <span class="posted__date">today, 19:30</span>
+                                        <span class="posted__date">today, 12:30</span>
                                         <ul class="posted__icon">
                                             <li>
                                                 <span>
-                                                <i class="icon-comment-empty"></i>294
+                                                <i class="icon-comment-empty"></i>29
                                             </span>
                                             </li>
                                             <li>
                                                 <span>
-                                                <i class="icon-eye"></i>2.9k
+                                                <i class="icon-eye"></i>2.3k
                                             </span>
                                             </li>
                                         </ul>
@@ -386,23 +302,22 @@
                                 </a>
                                 <div class="caption thumbnail__caption">
                                     <div class="news caption__news">
-                                        <i class="icon-play"></i>
-                                        <p class="news__category yellow-line">People</p>
+                                        <p class="news__category yellow-line">Economy</p>
                                         <a href="news.html" class="news__link">
-                                            <p class="news__text">NEWS: People began to love each other in large numbers online (Video)</p>
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
                                         </a>
                                     </div>
                                     <div class="posted">
-                                        <span class="posted__date">today, 2:39</span>
+                                        <span class="posted__date">today, 12:30</span>
                                         <ul class="posted__icon">
                                             <li>
                                                 <span>
-                                                <i class="icon-comment-empty"></i>9
+                                                <i class="icon-comment-empty"></i>29
                                             </span>
                                             </li>
                                             <li>
                                                 <span>
-                                                <i class="icon-eye"></i>1.3k
+                                                <i class="icon-eye"></i>2.3k
                                             </span>
                                             </li>
                                         </ul>
@@ -417,22 +332,22 @@
                                 </a>
                                 <div class="caption thumbnail__caption">
                                     <div class="news caption__news">
-                                        <p class="news__category yellow-line">Sport</p>
+                                        <p class="news__category yellow-line">Economy</p>
                                         <a href="news.html" class="news__link">
-                                            <p class="news__text">Athletes are confident of victory in all competitions</p>
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
                                         </a>
                                     </div>
                                     <div class="posted">
-                                        <span class="posted__date">today, 14:34</span>
+                                        <span class="posted__date">today, 12:30</span>
                                         <ul class="posted__icon">
                                             <li>
                                                 <span>
-                                                <i class="icon-comment-empty"></i>58
+                                                <i class="icon-comment-empty"></i>29
                                             </span>
                                             </li>
                                             <li>
                                                 <span>
-                                                <i class="icon-eye"></i>8.8k
+                                                <i class="icon-eye"></i>2.3k
                                             </span>
                                             </li>
                                         </ul>
@@ -440,8 +355,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-sm-3">
                             <div class="thumbnail thumbnail_small">
                                 <a href="news.html" class="thumbnail__link">
@@ -449,23 +362,22 @@
                                 </a>
                                 <div class="caption thumbnail__caption">
                                     <div class="news caption__news">
-                                        <i class="icon-play"></i>
-                                        <p class="news__category yellow-line">People</p>
+                                        <p class="news__category yellow-line">Economy</p>
                                         <a href="news.html" class="news__link">
-                                            <p class="news__text">All the people of the world love each other and say hello</p>
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
                                         </a>
                                     </div>
                                     <div class="posted">
-                                        <span class="posted__date">today, 12:37</span>
+                                        <span class="posted__date">today, 12:30</span>
                                         <ul class="posted__icon">
                                             <li>
                                                 <span>
-                                                <i class="icon-comment-empty"></i>20
+                                                <i class="icon-comment-empty"></i>29
                                             </span>
                                             </li>
                                             <li>
                                                 <span>
-                                                <i class="icon-eye"></i>1.2k
+                                                <i class="icon-eye"></i>2.3k
                                             </span>
                                             </li>
                                         </ul>
@@ -482,20 +394,20 @@
                                     <div class="news caption__news">
                                         <p class="news__category yellow-line">Economy</p>
                                         <a href="news.html" class="news__link">
-                                            <p class="news__text">Attention: The poor become rich, rich richer</p>
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
                                         </a>
                                     </div>
                                     <div class="posted">
-                                        <span class="posted__date">today, 11:30</span>
+                                        <span class="posted__date">today, 12:30</span>
                                         <ul class="posted__icon">
                                             <li>
                                                 <span>
-                                                <i class="icon-comment-empty"></i>21
+                                                <i class="icon-comment-empty"></i>29
                                             </span>
                                             </li>
                                             <li>
                                                 <span>
-                                                <i class="icon-eye"></i>1.9k
+                                                <i class="icon-eye"></i>2.3k
                                             </span>
                                             </li>
                                         </ul>
@@ -510,23 +422,22 @@
                                 </a>
                                 <div class="caption thumbnail__caption">
                                     <div class="news caption__news">
-                                        <i class="icon-play"></i>
-                                        <p class="news__category yellow-line">Sport</p>
+                                        <p class="news__category yellow-line">Economy</p>
                                         <a href="news.html" class="news__link">
-                                            <p class="news__text">The winners of sports games already online (Video)</p>
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
                                         </a>
                                     </div>
                                     <div class="posted">
-                                        <span class="posted__date">today, 10:36</span>
+                                        <span class="posted__date">today, 12:30</span>
                                         <ul class="posted__icon">
                                             <li>
                                                 <span>
-                                                <i class="icon-comment-empty"></i>17
+                                                <i class="icon-comment-empty"></i>29
                                             </span>
                                             </li>
                                             <li>
                                                 <span>
-                                                <i class="icon-eye"></i>2.0k
+                                                <i class="icon-eye"></i>2.3k
                                             </span>
                                             </li>
                                         </ul>
@@ -541,9 +452,249 @@
                                 </a>
                                 <div class="caption thumbnail__caption">
                                     <div class="news caption__news">
-                                        <p class="news__category yellow-line">Business</p>
+                                        <p class="news__category yellow-line">Economy</p>
                                         <a href="news.html" class="news__link">
-                                            <p class="news__text">The best exchange rates and motivation for you</p>
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 12:30</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>29
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>2.3k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="img/content/news10.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">Economy</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 12:30</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>29
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>2.3k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="img/content/news11.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">Economy</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 12:30</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>29
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>2.3k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="img/content/news12.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">Economy</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 12:30</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>29
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>2.3k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="img/content/news13.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">Economy</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 12:30</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>29
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>2.3k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="img/content/news12.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">Economy</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 12:30</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>29
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>2.3k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="img/content/news12.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">Economy</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 12:30</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>29
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>2.3k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="img/content/news12.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">Economy</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
+                                        </a>
+                                    </div>
+                                    <div class="posted">
+                                        <span class="posted__date">today, 12:30</span>
+                                        <ul class="posted__icon">
+                                            <li>
+                                                <span>
+                                                <i class="icon-comment-empty"></i>29
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <span>
+                                                <i class="icon-eye"></i>2.3k
+                                            </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail thumbnail_small">
+                                <a href="news.html" class="thumbnail__link">
+                                    <img src="img/content/news12.jpg" height="153" width="270" alt="News">
+                                </a>
+                                <div class="caption thumbnail__caption">
+                                    <div class="news caption__news">
+                                        <p class="news__category yellow-line">Economy</p>
+                                        <a href="news.html" class="news__link">
+                                            <p class="news__text">CEO who jacked up price of AIDS pill to $750 faces major backlash</p>
                                         </a>
                                     </div>
                                     <div class="posted">
@@ -565,102 +716,54 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+						<ul class="pagination">
+							<li class="disabled">
+								<a href="#">
+									<i class="icon-double-angle-left"></i>
+								</a>
+							</li>
+							<li class="previous">
+								<a href="#">&larr; Older</a>
+							</li>
+							<li class="active">
+								<a href="#">1</a>
+							</li>
+	
+							<li>
+								<a href="#">2</a>
+							</li>
+	
+							<li>
+								<a href="#">3</a>
+							</li>
+	
+							<li>
+								<a href="#">4</a>
+							</li>
+	
+							<li>
+								<a href="#">5</a>
+							</li>
+							<li class="next">
+								<a href="#">Newer &rarr;</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="icon-double-angle-right"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
                 </div>
-                <!-- btn load-->
-                <div class="ajax_load">
-                    <i class="icon-arrows-cw"></i>Load more
-                    <svg width="128" height="40" viewBox="0 0 128 40" xmlns="http://www.w3.org/2000/svg">
-                        <rect x='0' y='0' fill='none' width='128' height='40'></rect>
-                    </svg>
-                </div>
-                <!-- END btn load-->
             </div>
             <!-- /container-->
         </section>
         <!-- /top news -->
-        <section>
-            <!-- top news -->
-            <!-- title -->
-            <div class="wrap wrap_white">
-                <div class="container title">
-                    <h1 class="title__h1 underscore">照片墙</h1>
-                </div>
-            </div>
-            <!-- END title -->
-        </section>
-         <section class="wrap wrap_gray pt20">
-	        <div class="container">
-	        	<div class="row">
-	        		<div class="col-md-3 col-sm-6 versePic">
-				        <div class="brand horizontal horizontals">
-							<a target="_blank" href="#"><img alt="" src="img/mywall/001.png" class="img-responsive img-rounded"/><div class="info">图1</div></a>
-						</div>
-	        		</div>
-	        		<div class="col-md-3 col-sm-6 versePic">
-				        <div class="brand horizontal horizontals">
-							<a target="_blank" href="#"><img alt="" src="img/mywall/002.png" class="img-responsive img-rounded"/><div class="info">图1</div></a>
-						</div>
-	        		</div>
-	        		<div class="col-md-3 col-sm-6 versePic">
-				        <div class="brand horizontal horizontals">
-							<a target="_blank" href="#"><img alt="" src="img/mywall/003.png" class="img-responsive img-rounded"/><div class="info">图1</div></a>
-						</div>
-	        		</div>
-	        		<div class="col-md-3 col-sm-6 versePic">
-				        <div  class="brand horizontal horizontals">
-							<a target="_blank" href="#"><img alt="" src="img/mywall/004.png" class="img-responsive img-rounded"/><div class="info">图1</div></a>
-						</div>
-	        		</div>
-	        	</div>
-	        	<div class="row" style="margin-top: 3%;">
-	        		<div class="col-md-3 col-sm-6 versePic">
-				        <div class="brand horizontal horizontals">
-							<a target="_blank" href="#"><img alt="" src="img/mywall/005.png" class="img-responsive img-rounded"/><div class="info">图1</div></a>
-						</div>
-	        		</div>
-	        		<div class="col-md-3 col-sm-6 versePic">
-				        <div class="brand horizontal horizontals">
-							<a target="_blank" href="#"><img alt="" src="img/mywall/006.png" class="img-responsive img-rounded"/><div class="info">图1</div></a>
-						</div>
-	        		</div>
-	        		<div class="col-md-3 col-sm-6 versePic">
-				        <div class="brand horizontal horizontals">
-							<a target="_blank" href="#"><img alt="" src="img/mywall/007.png" class="img-responsive img-rounded"/><div class="info">图1</div></a>
-						</div>
-	        		</div>
-	        		<div class="col-md-3 col-sm-6 versePic">
-				        <div  class="brand horizontal horizontals">
-							<a target="_blank" href="#"><img alt="" src="img/mywall/008.png" class="img-responsive img-rounded"/><div class="info">图1</div></a>
-						</div>
-	        		</div>
-	        	</div>
-	        </div>
-        </section>
-        <script type="text/javascript">
-			//品牌翻转
-		var turn = function(target,time,opts){
-			target.find('a').hover(function(){
-					$(this).find('img').stop().animate(opts[0],time,function(){
-					$(this).hide().next().show();
-					$(this).next().animate(opts[1],time);
-				});
-			},function(){
-					$(this).find('.info').animate(opts[0],time,function(){
-					$(this).hide().prev().show();
-					$(this).prev().animate(opts[1],time);
-				});
-			});
-		}
-		var horizontalOpts = [{'height':0,'top':'200px'},{'width':'280px','top':0,'height':'400px'}];
-		turn($('.horizontals'),100,horizontalOpts);
-		</script>
         <section class="wrap wrap_gray">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 projects">
-                        <div class="projects__title">
-                            <h2 class="block-title__h2">广告位</h2>
-                        </div>
+                    <div class="col-sm-9 projects">
                         <!-- banner -->
                         <div class="banner">
                             <img src="img/content/banner.jpg" height="221" width="850" alt="image" class="banner__img">
@@ -671,6 +774,23 @@
                             </div>
                         </div>
                         <!-- END banner -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="twitter">
+                            <!--<div class="twitter__header">
+                                <p class="twitter__header__name">@barclee</p>
+                                <p class="twitter__header__text">Hello, world</p>
+                            </div>-->
+                            <div class="twitter__body">
+                                <div class="message">
+                                    <p class="message__time">about 5 hours ago</p>
+                                    <p class="message__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <a href="#" class="message__link">
+                                        <i class="icon-reply"></i>Reply
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -709,9 +829,20 @@
         </footer>
         <!-- END Footer -->
         <!-- All JavaScript libraries -->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+			window.jQuery || document.write("<script src='${pageContext.request.contextPath }/static/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+			<script type="text/javascript">
+				 window.jQuery || document.write("<script src='${pageContext.request.contextPath }/static/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+			</script>
+		<![endif]-->
+		<script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
 		<!-- Custom JavaScript -->
-        <script src="js/main.js"></script>
+        <script src="${pageContext.request.contextPath }/static/js/pages/pre/main.js"></script>
     </body>
 </html>
+

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<!DOCTYPE html>
 <html lang="zxx">
     <head>
         <meta charset="utf-8">
@@ -12,7 +14,7 @@
         <link rel="shortcut icon" type="image/png" href="favicon.png" />
         <!--[if (gt IE 9)|!(IE)]><!-->
         <!-- custom CSS -->
-        <link href="css/main.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath }/static/css/Pre/main.css" rel="stylesheet" type="text/css" />
         <!-- END custom CSS -->
         <!--<![endif]-->
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -63,10 +65,8 @@
                             </div>
                             <div class="col-xs-6 col-sm-7">
                                 <div class="exchange">
-                                    <p class="exchange__name">Central Bank Rate</p>
-                                    <p class="exchange__course">
-                                        $<span>32.32</span>&#8364;<span>28.23</span>
-                                    </p>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_login" class="btn btn-lg btn-info">登录</a>
+                               		<a href="${pageContext.request.contextPath }/pre/PreCustomPage" class="btn-link"  target="_blank" >自定义页面</a>
                                 </div>
                             </div>
                         </div>
@@ -95,21 +95,21 @@
                                         </button>
                                     </form>
                                 </li>
-                                 <li class="active">
+                                <li>
                                     <span class="wsmenu-click"></span>
-                                    <a href="index.html">主页</a>
+                                    <a href="${pageContext.request.contextPath }">主页</a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
-                                    <a href="node.html">生活点滴</a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_node">生活点滴</a>
                                 </li>
-                                <li>
+                                <li >
                                     <span class="wsmenu-click"></span>
-                                    <a href="navigation.html">导航</a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_navigation">导航</a>
                                 </li>
-                                <li>
+                                <li  class="active">
                                     <span class="wsmenu-click"></span>
-                                    <a href="stackRoom.html">书库</a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_stackRoom">书库</a>
                                 </li>
                                 <!--<li>
                                     <span class="wsmenu-click"></span>
