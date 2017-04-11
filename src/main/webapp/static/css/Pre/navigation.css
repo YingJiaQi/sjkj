@@ -57,6 +57,8 @@
 .next{ float:right;cursor:pointer;}
 #addCategory {color: white;cursor: pointer;padding: 1px 2px;}
 #updateCategory {color: white;cursor: pointer;padding: 1px 2px;}
-
-
+/*搜索 start*/
+#nav_search{}
+#nav_search_content{}
+/*搜索 end*/
 
