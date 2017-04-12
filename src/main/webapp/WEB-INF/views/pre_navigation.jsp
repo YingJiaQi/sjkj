@@ -207,21 +207,10 @@
 				<div class="col-md-3"></div>
 				<div class="vspace-sm-16"></div>
 				<div class="col-md-6" id="nav_search_content">
-					<div class="btn-group">
-						<button type="button" class="btn btn-primary">原始</button>
-						<button type="button" class="btn btn-primary dropdown-toggle" 
-								data-toggle="dropdown">
-							<span class="caret"></span>
-							<span class="sr-only">切换下拉菜单</span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">功能</a></li>
-							<li><a href="#">另一个功能</a></li>
-							<li><a href="#">其他</a></li>
-							<li class="divider"></li>
-							<li><a href="#">分离的链接</a></li>
-						</ul>
-					</div>
+				<iframe id="baiduframe" marginwidth="0" marginheight="0" scrolling="no"
+				  framespacing="0" vspace="0" hspace="0" frameborder="0" width="200" height="30" 
+				  src="http://unstat.baidu.com/bdun.bsc?tn=sitesowang&cv=1&cid=316&csid=102&bgcr=ffffff&ftcr=000000&urlcr=0000ff&tbsz=80">
+				</iframe>
 				</div>
 				<div class="col-md-3"></div>
 			</div>
