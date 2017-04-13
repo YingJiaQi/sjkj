@@ -9,7 +9,7 @@
 #navCategoryBox{height:530px;overflow: hidden;}
 
 
-#metro_box{ width:90%}
+#metro_box{ width:100%}
 .bg0{ background:#93C5EA url(../img/brand/metro_bg.png) repeat center top;}
 .bg1{ background:#93C5EA url(../img/brand/bg1.jpg) repeat-x center top;}
 .bg2{ background:#bdbac5 url(../img/brand/bg2.jpg) no-repeat center top;}
@@ -22,7 +22,10 @@
 #metro_box dl dt div{ float:right; font-size:12px;}
 .nav a{ border-top:3px solid #fff; text-decoration:none; padding:3px; color:#000; font-family:"微软雅黑"; cursor:pointer;}
 .nav a:hover, #a_hover{ border-top:3px solid #f60; color:#F60; font-weight:bold;}
-
+a {
+	color:white;
+	font-size:10px
+}
 #metro_box dl dd ul{ width:990px; height:510px; overflow:hidden;}
 #metro_box dl dd ul li{ width:240px; height:120px; overflow:hidden;  float:left; margin:3px;_margin:2px; _display:inline; padding:1px; opacity:0.9;filter:alpha(opacity=90); position:relative;}
 #metro_box dl dd ul li span{ display:none;}

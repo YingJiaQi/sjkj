@@ -1,102 +1,108 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="java.io.*,java.util.* " %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html>
 <html lang="zxx">
-	<head>
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<meta content="" name="description">
-		<meta content="" name="keywords">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="HandheldFriendly" content="true">
-		<meta content="telephone=no" name="format-detection">
-		<!-- favicon -->
-		<link rel="shortcut icon" type="image/png" href="favicon.png" />
-		<!--[if (gt IE 9)|!(IE)]><!-->
-		<!-- custom CSS -->
-		<link href="${pageContext.request.contextPath }/static/css/Pre/main.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/Pre/navigation.css" />
-		<!-- END custom CSS -->
-		<!--<![endif]-->
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
+    <head>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta content="" name="description">
+        <meta content="" name="keywords">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="HandheldFriendly" content="true">
+        <meta content="telephone=no" name="format-detection">
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/png" href="favicon.png" />
+        <!--[if (gt IE 9)|!(IE)]><!-->
+        <!-- custom CSS -->
+        <link href="${pageContext.request.contextPath }/static/css/Pre/main.css" rel="stylesheet" type="text/css" />
+        <link href="${pageContext.request.contextPath }/static/css/Pre/navigation.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!-- END custom CSS -->
+        <!--<![endif]-->
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-		
-	</head>
-
-	<body>
-		<!-- Header -->
-		<header id="header" class="header">
-			<div class="header__top">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="wrap-logo">
-								<a href="index.html" class="logo"></a>
-							</div>
-						</div>
-						<div class="col-sm-offset-2 col-md-offset-5 col-sm-6 col-md-4 hidden-xs">
-							<div class="col-xs-4 col-sm-5">
-								<div class="weather">
-									<div class="weather__temperature">
-										<span class="icon-sun"></span>
-										<em class="active">+8 C</em>
-										<em>+2 C</em>
-										<em>+3 C</em>
-									</div>
-									<div class="weather__city">
-										<em>London</em>
-										<div class="weather__city__list">
-											<ul>
-												<li class="active">
-													<a href="#">London</a>
-												</li>
-												<li>
-													<a href="#">Moscow</a>
-												</li>
-												<li>
-													<a href="#">Kiev</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xs-6 col-sm-7">
-								<div class="exchange">
-									      <a href="${pageContext.request.contextPath }/pre/user/pre_login" class="btn btn-lg btn-info">登录</a>
-                               		<a href="${pageContext.request.contextPath }/pre/PreCustomPage" class="btn-link"  target="_blank" >自定义页面</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="wsmenucontent overlapblackbg"></div>
-			<div class="wsmenuexpandermain slideRight">
-				<a id="navToggle" class="animated-arrow slideLeft">
-					<span></span>
-				</a>
-			</div>
-			<div class="header_down">
-				<div class="container">
-					<div class="wrapper clearfix bigmegamenu">
-						<!--Main Menu HTML Code-->
-						<nav class="wsmenu slideLeft clearfix">
-							<ul class="mobile-sub wsmenu-list">
-								<li class="visible-xs">
-									<form class="navbar-form mob_search" role="search">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Search">
-										</div>
-										<button type="submit" class="btn btn-search">
+        <title>杰讯信息</title>
+    </head>
+    <body>
+        <!-- Header -->
+        <header id="header" class="header">
+            <div class="header__top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="wrap-logo">
+                                <a href="index.html" class="logo"></a>
+                            </div>
+                        </div>
+                        <div class="col-sm-offset-2 col-md-offset-5 col-sm-6 col-md-4 hidden-xs">
+                            <div class="col-xs-4 col-sm-5">
+                                <div class="weather">
+                                    <div class="weather__temperature">
+                                        <span class="icon-sun"></span>
+                                        <em class="active">+8 C</em>
+                                        <em>+2 C</em>
+                                        <em>+3 C</em>
+                                    </div>
+                                    <div class="weather__city">
+                                        <em>London</em>
+                                        <div class="weather__city__list">
+                                            <ul>
+                                                <li class="active">
+                                                    <a href="#">London</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Moscow</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Kiev</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-7" style="padding:6%;color:white">
+								<shiro:guest>  
+                                	<a href="${pageContext.request.contextPath }/pre/user/pre_login" class="btn btn-lg btn-info">登录</a>
+								</shiro:guest>
+								<shiro:user>  
+								    欢迎, <shiro:principal property="userName"/>, <a href="${pageContext.request.contextPath}/pre/loginOut" onclick="loginOut();">退出</a>  
+	                               	<a href="${pageContext.request.contextPath }/pre/PreCustomPage" class="btn-link"  target="_blank" >自定义页面</a>
+								</shiro:user>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wsmenucontent overlapblackbg"></div>
+            <div class="wsmenuexpandermain slideRight">
+                <a id="navToggle" class="animated-arrow slideLeft">
+                    <span></span>
+                </a>
+            </div>
+            <div class="header_down">
+                <div class="container">
+                    <div class="wrapper clearfix bigmegamenu">
+                        <!--Main Menu HTML Code-->
+                        <nav class="wsmenu slideLeft clearfix">
+                            <ul class="mobile-sub wsmenu-list">
+                                <li class="visible-xs">
+                                    <form class="navbar-form mob_search" role="search">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Search">
+                                        </div>
+                                        <button type="submit" class="btn btn-search">
                                             <i class="icon-search"></i>
                                         </button>
-									</form>
-								</li>
-								 <li>
+                                    </form>
+                                </li>
+
+                                <li>
                                     <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }">主页</a>
                                 </li>
@@ -106,119 +112,109 @@
                                 </li>
                                 <li  class="active">
                                     <span class="wsmenu-click"></span>
-                                    <a href="${pageContext.request.contextPath }/pre/user/pre_navigation">导航</a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_navigation"><b style="color:green">导航</b></a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }/pre/user/pre_stackRoom">书库</a>
                                 </li>
-								<!--<li>
-									<span class="wsmenu-click"></span>
-									<a href="category.html">Religion</a>
-								</li>
-								<li>
-									<span class="wsmenu-click"></span>
-									<a href="category.html">People</a>
-								</li>
-								<li>
-									<span class="wsmenu-click"></span>
-									<a href="category.html">Main</a>
-								</li>
-								<li>
-									<span class="wsmenu-click"></span>
-									<a href="">Other
-										<span class="arrow"></span>
-									</a>
-									<ul class="wsmenu-submenu">
-										<li>
-											<a href="404.html">404 page</a>
-										</li>
-										<li>
-											<a href="category.html">Category page</a>
-										</li>
-										<li>
-											<a href="news.html">News page</a>
-										</li>
-										<li>
-											<a href="search-result.html">Search result</a>
-										</li>
-										<li>
-											<a href="full-width.html">Full width</a>
-										</li>
-									</ul>
-								</li>-->
-								<li class="navbar-right hidden-xs">
-									<form class="navbar-form " role="search">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Search">
-										</div>
-										<button type="submit" class="btn btn-search">
-                                            <i class="icon-search"></i>
-                                            <br>Search
+                                <!--<li>
+                                    <span class="wsmenu-click"></span>
+                                    <a href="category.html">家</a>
+                                </li>
+                                <li>
+                                    <span class="wsmenu-click"></span>
+                                    <a href="category.html">People</a>
+                                </li>
+                                <li>
+                                    <span class="wsmenu-click"></span>
+                                    <a href="category.html">Main</a>
+                                </li>-->
+                                <!--<li>
+                                    <span class="wsmenu-click"></span>
+                                    <a href="">Other
+        							<span class="arrow"></span>
+                                </a>
+                                    <ul class="wsmenu-submenu">
+                                        <li>
+                                            <a href="404.html">404 page</a>
+                                        </li>
+                                        <li>
+                                            <a href="category.html">Category page</a>
+                                        </li>
+                                        <li>
+                                            <a href="news.html">News page</a>
+                                        </li>
+                                        <li>
+                                            <a href="search-result.html">Search result</a>
+                                        </li>
+                                        <li>
+                                            <a href="full-width.html">Full width</a>
+                                        </li>
+                                    </ul>
+                                </li>-->
+                                <li class="navbar-right hidden-xs">
+                                    <form action="http://www.baidu.com/baidu" target="_blank" class="navbar-form" role="search">
+                                        <input name=tn type=hidden value=baidu>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name=word placeholder="请输入关键字">
+                                        </div>
+                                        <button type="submit" class="btn btn-search">
+                                            <img src="http://img.baidu.com/search/img/baidulogo_clarity_80_29.gif" alt="Baidu"  border="0">
+                                            <br/>百度搜索
                                         </button>
-									</form>
-								</li>
-								<li>
-									<div class="visible-xs col-sm-offset-5 col-sm-4">
-										<div class="col-sm-5">
-											<div class="weather">
-												<div class="weather__temperature">
-													<span class="icon-sun"></span>
-													<em>+8 C</em>
-												</div>
-												<div class="weather__city">
-													<em>London</em>
-													<div class="weather__city__list">
-														<ul>
-															<li class="active">
-																<a href="#">London</a>
-															</li>
-															<li>
-																<a href="#">Moscow</a>
-															</li>
-															<li>
-																<a href="#">Kiev</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-7">
-											<div class="exchange">
-												<p class="exchange__name">Central Bank Rate</p>
-												<p class="exchange__course">
-													$<span>32.32</span>&#8364;<span>28.23</span>
-												</p>
-											</div>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</nav>
-						<!--Menu HTML Code-->
-					</div>
-				</div>
-			</div>
-		</header>
-		<!-- END header -->
-		<div class="container">
-			<div class="row" id="nav_search">
-				<div class="col-md-3"></div>
-				<div class="vspace-sm-16"></div>
-				<div class="col-md-6" id="nav_search_content">
-				<iframe id="baiduframe" marginwidth="0" marginheight="0" scrolling="no"
-				  framespacing="0" vspace="0" hspace="0" frameborder="0" width="200" height="30" 
-				  src="http://unstat.baidu.com/bdun.bsc?tn=sitesowang&cv=1&cid=316&csid=102&bgcr=ffffff&ftcr=000000&urlcr=0000ff&tbsz=80">
-				</iframe>
-				</div>
-				<div class="col-md-3"></div>
-			</div>
-		</div>
-		<!--body -->
-		<div class="container">
+                                    </form>
+                                    <!-- 百度搜索框提示 -->  
+			        				<script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script>
+                                </li>
+                                <li>
+                                    <div class="visible-xs col-sm-offset-5 col-sm-4">
+                                        <div class="col-sm-5">
+                                            <div class="weather">
+                                                <div class="weather__temperature">
+                                                    <span class="icon-sun"></span>
+                                                    <em>+8 C</em>
+                                                </div>
+                                                <div class="weather__city">
+                                                    <em>London</em>
+                                                    <div class="weather__city__list">
+                                                        <ul>
+                                                            <li class="active">
+                                                                <a href="#">London</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Moscow</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Kiev</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <div class="exchange">
+                                                <p class="exchange__name">Central Bank Rate</p>
+                                                <p class="exchange__course">
+                                                    $<span>32.32</span>&#8364;<span>28.23</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!--Menu HTML Code-->
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- END header -->
+        <!-- content top -->
+        <div class="container">
 			<div class="row">
-				<div class="col-md-2" id="navCategoryBox">
+				<div class="col-md-2 col-sm-3 col-xs-4" id="navCategoryBox">
 					<!--头部导航开始-->
 					<ul class="nav nav-pills nav-stacked" id="navCategoryList">
 						<li><a class="navClassify">常用链接</a></li>
@@ -241,46 +237,62 @@
 					</ul>
 					<!--头部导航结束-->
 				</div>
-				<div class="col-md-10">
+				<div class="col-md-10 col-sm-9 col-xs-8">
 					<!--logo区开始-->
 					<div id="metro_box" class="a_link">
 						<dl>
 							<dd style="display:bolck;">
+							<div class="row">
 								<!--名站导航-->
-								<ul>
-										<li class="one" id="logo_001">
-										<a href="http://google.hk"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_001.png" width="240" height="120" alt="google"></a><span><a href="#">谷歌</a></span></li>
-										<li id="logo_002">
-										<a href="http://www.bizhiyun.com"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_004d.png" width="240" height="120" alt=" 壁纸云高清桌面壁纸"></a><span><a href="#">壁纸云桌面壁纸</a></span></li>
-										<li id="logo_003">
-										<a href="http://www.youku.com"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_003.png" width="240" height="120" alt=""></a><span><a href="#">优酷</a></span></li>
-										<li class="four" id="logo_004">
-										<a href="http://www.weibo.com"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_004.png" width="240" height="120" alt=""></a><span><a href="#">新浪微博</a></span></li>
-										<li class="one" id="logo_005">
-										<a href="http://www.taobao.com/go/chn/tbk_channel/channelcode.php?pid=mm_33201743_3168968_10472364&eventid=101329"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_005.png" width="240" height="120" alt=""></a><span><a href="#">淘宝网</a></span></li>
-										<li id="logo_006">
-										<a href="http://www.360buy.com"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_006.png" width="240" height="120" alt=""></a><span><a href="#">京东商城</a></span></li>
-										<li id="logo_007">
-										<a href="http://www.amazon.cn/?_encoding=UTF8&camp=536&creative=3200&linkCode=ur2&tag=528888-23"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_007.png" width="240" height="120" alt=""></a><span><a href="#">亚马逊</a></span></li>
-										<li class="four" id="logo_008">
-										<a href="http://www.dangdang.com/?_ddclickunion=P-315673|ad_type=10|sys_id=1#dd_refer=http%3A%2F%2Fmyler.cn%2F"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_008.png" width="240" height="120" alt=""></a><span><a href="#">当当网</a></span></li>
-										<li class="one" id="logo_009">
-										<a href="http://qiyi.com"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_009.png" width="240" height="120" alt=""></a><span><a href="#">奇艺网</a></span></li>
-										<li id="logo_010">
-										<a href="http://www.tudou.com"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_010.png" width="240" height="120" alt=""></a><span><a href="#">土豆网</a></span></li>
-										<li id="logo_011">
-										<a href="http://www.renren.com"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_011.png" width="240" height="120" alt=""></a><span><a href="#">人人网</a></span></li>
-										<li class="four" id="logo_012">
-										<a href="http://s.click.taobao.com/t_11?e=%2BtSC5ziSlQIKXTum23VHLUx2Mi9BvFxTCg7CN9kKD8HJdox0eUoImgi5Ng%3D%3D&p=mm_33201743_3168968_10561464"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_012.png" width="240" height="120" alt=""></a><span><a href="#">凡客诚品</a></span></li>
-										<li class="one" id="logo_013">
-										<a href="http://www.people.com.cn"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_013.png" width="240" height="120" alt=""></a><span><a href="#">人民网</a></span></li>
-										<li id="logo_014">
-										<a href="http://www.cntv.cn"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_014.png" width="240" height="120" alt=""></a><span><a href="#">中国网络电视台</a></span></li>
-										<li id="logo_015">
-										<a href="http://sohu.com"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_015.png" width="240" height="120" alt=""></a><span><a href="#">搜狐网</a></span></li>
-										<li class="four" id="logo_016">
-										<a href="http://www.aspjzy.com"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_016.png" width="240" height="120" alt=""></a><span><a href="#">ASP集中营</a></span></li>
-								</ul>
+									<div class="col-md-3 col-sm-4 col-xs-6 one" id="logo_001">
+										<a href="http://google.hk" class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_001.png"  alt="google"></a><span><a href="#" >谷歌</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6" id="logo_002">
+										<a href="http://www.bizhiyun.com" class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_004d.png"  alt=""></a><span><a href="#">壁纸</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6" id="logo_003">
+										<a href="http://www.youku.com" class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_003.png"  alt=""></a><span><a href="#">优酷</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6" id="logo_004">
+										<a href="http://www.weibo.com" class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_004.png"  alt=""></a><span><a href="#">新浪微博</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6 one" id="logo_005">
+										<a href="http://www.taobao.com/go/chn/tbk_channel/channelcode.php?pid=mm_33201743_3168968_10472364&eventid=101329"  class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_005.png" alt=""></a><span><a href="#">淘宝网</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6" id="logo_006">
+										<a href="http://www.360buy.com" class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_006.png" alt=""></a><span><a href="#">京东商城</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6" id="logo_007">
+										<a href="http://www.amazon.cn/?_encoding=UTF8&camp=536&creative=3200&linkCode=ur2&tag=528888-23" class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_007.png" alt=""></a><span><a href="#">亚马逊</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6" id="logo_008">
+										<a href="http://www.dangdang.com/?_ddclickunion=P-315673|ad_type=10|sys_id=1#dd_refer=http%3A%2F%2Fmyler.cn%2F" class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_008.png" alt=""></a><span><a href="#">当当网</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6 one" id="logo_009">
+										<a href="http://qiyi.com"  class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_009.png"  alt=""></a><span><a href="#">奇艺网</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6" id="logo_010">
+										<a href="http://www.tudou.com"  class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_010.png" alt=""></a><span><a href="#">土豆网</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6" id="logo_011">
+										<a href="http://www.renren.com" class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_011.png" alt=""></a><span><a href="#">人人网</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6 four" id="logo_012">
+										<a href="http://s.click.taobao.com/t_11?e=%2BtSC5ziSlQIKXTum23VHLUx2Mi9BvFxTCg7CN9kKD8HJdox0eUoImgi5Ng%3D%3D&p=mm_33201743_3168968_10561464"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_012.png" alt=""></a><span><a href="#">凡客诚品</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6 one" id="logo_013">
+										<a href="http://www.people.com.cn" class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_013.png"  alt=""></a><span><a href="#">人民网</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6" id="logo_014">
+										<a href="http://www.cntv.cn" class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_014.png" alt=""></a><span><a href="#">中国电视台</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6" id="logo_015">
+										<a href="http://sohu.com" class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_015.png"  alt=""></a><span><a href="#">搜狐网</a></span>
+									</div>
+									<div class="col-md-3 col-sm-4 col-xs-6 four" id="logo_016">
+										<a href="http://www.aspjzy.com" class="img-responsive"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_016.png" alt=""></a><span><a href="#">ASP集中营</a></span>
+									</div>
+							</div>
 							</dd>
 							<dd style="display:none;">
 								<!--视频音乐-->
@@ -519,6 +531,41 @@
 				</div>
 			</div>
 		</div>
+        <!-- content end -->
+        <!-- Footer -->
+        <footer class="footer slate_gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="text-center" style="color: white;">Copyright &copy; 2017.佳奇网络</p>
+                    </div>
+                    <!--<div class="col-sm-6">
+                        <div class="social navbar-right">
+                            <p class="social__text">We are in social networks</p>
+                            <ul class="social__list">
+                                <li class="social__item">
+                                    <a class="facebook" href="#">
+                                        <i class="icon-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="social__item">
+                                    <a class="twitter" href="#">
+                                        <i class="icon-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="social__item">
+                                    <a class="gplus" href="#">
+                                        <i class="icon-gplus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </footer>
+        <!-- END Footer -->
+        <!-- All JavaScript libraries -->
 		<script type="text/javascript">
 			window.jQuery || document.write("<script src='${pageContext.request.contextPath }/static/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
 		</script>
@@ -531,7 +578,10 @@
 			</script>
 		<![endif]-->
 		<script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
-		<script src="${pageContext.request.contextPath }/static/js/pages/pre/navication.js"></script>
+		<!-- Custom JavaScript -->
+        <script src="${pageContext.request.contextPath }/static/js/pages/pre/main.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/pages/pre/index.js"></script>
+
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("#metro_box").css("margin-top", "10px");
@@ -568,6 +618,5 @@
 				})
 			})
 		</script>
-	</body>
-
+    </body>
 </html>
