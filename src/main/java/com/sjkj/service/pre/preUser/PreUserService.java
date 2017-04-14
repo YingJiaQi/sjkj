@@ -37,5 +37,9 @@ public interface PreUserService {
 	 * @return
 	 */
 	Map<String, String> operatePreUser(HttpServletRequest request);
+	/**
+	 * 获取该用户收藏的所有网址
+	 */
+	Map<String, Object> getCollectionWebsite();
 
 }

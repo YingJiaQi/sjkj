@@ -24,7 +24,7 @@
 .nav a:hover, #a_hover{ border-top:3px solid #f60; color:#F60; font-weight:bold;}
 a {
 	color:white;
-	font-size:10px
+	font-size:12px
 }
 #metro_box dl dd ul{ width:990px; height:510px; overflow:hidden;}
 #metro_box dl dd ul li{ width:240px; height:120px; overflow:hidden;  float:left; margin:3px;_margin:2px; _display:inline; padding:1px; opacity:0.9;filter:alpha(opacity=90); position:relative;}
@@ -64,4 +64,14 @@ a {
 #nav_search{}
 #nav_search_content{}
 /*搜索 end*/
-
+/*收藏网址左右箭头开始*/
+.saveUrlStyle{
+	position:absolute;
+	z-index:9999;
+	top:30%;
+	left:95%;
+	width:2%
+}
+.saveUrlStyleBottom{
+}
+/*收藏网址左右箭头结束*/

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace： 名称空间 可以随意命名 -->
+<mapper namespace="com.sjkj.dao.pre.PreUserBrandLinkDao">
+	
+	<select id="getUserBrandLinkList" resultType="PreUserBrandLink">
+		select * from tbl_pre_user_brand_link where user_id = #{uid} and user_code = #{userCode} and is_deleted = 0 
+		and brand_category_name = #{bcName} and brand_category_id = #{bcId}
+	</select>
+<!-- 	<delete id="deleteUsers" parameterType="java.util.List">
+		delete from tb_user where id in 
+		<foreach collection="ids" item="id" open="(" close=")" separator=",">#{id}</foreach>
+	</delete>
+	<select id="getMaxUserCode"  resultType="java.lang.String">
+		select max(user_code) from tbl_s_user
+	</select> -->
+</mapper>

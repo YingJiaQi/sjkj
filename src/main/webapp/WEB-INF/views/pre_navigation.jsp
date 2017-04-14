@@ -159,13 +159,12 @@
                                         <div class="form-group">
                                             <input type="text" class="form-control" name=word placeholder="请输入关键字">
                                         </div>
-                                        <button type="submit" class="btn btn-search">
+                                        <button type="submit" class="btn btn-search" style="padding-top:12px">
                                             <img src="http://img.baidu.com/search/img/baidulogo_clarity_80_29.gif" alt="Baidu"  border="0">
-                                            <br/>百度搜索
                                         </button>
                                     </form>
                                     <!-- 百度搜索框提示 -->  
-			        				<script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script>
+			        				<!-- <script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script> -->
                                 </li>
                                 <li>
                                     <div class="visible-xs col-sm-offset-5 col-sm-4">
@@ -212,18 +211,18 @@
         </header>
         <!-- END header -->
         <!-- content top -->
-        <div class="container">
+        <div class="container" id="contentEntity">
 			<div class="row">
 				<div class="col-md-2 col-sm-3 col-xs-4" id="navCategoryBox">
 					<!--头部导航开始-->
 					<ul class="nav nav-pills nav-stacked" id="navCategoryList">
-						<li><a class="navClassify">常用链接</a></li>
+						<!-- <li><a class="navClassify">常用链接</a></li>
 						<li><a class="navClassify">视频音乐</a></li>
 						<li><a class="navClassify">新闻资讯</a></li>
 						<li><a class="navClassify">购物淘宝</a></li>
 						<li><a class="navClassify">游戏娱乐</a></li>
 						<li><a class="navClassify">实用工具</a></li>
-						<li><a class="navClassify">影视资源</a></li>
+						<li><a class="navClassify">影视资源</a></li> -->
 						<li>
 							<div style="border:2px solid grey;background-color: #303D4A;padding: 2px;text-align: center;">
 								<!--左右箭头开始-->
@@ -233,7 +232,7 @@
 								<span id="addCategory" onclick="">添加</span>
 								<span id="updateCategory" onclick="">修改</span>
 							</div>
-						</li>						
+						</li>	
 					</ul>
 					<!--头部导航结束-->
 				</div>
@@ -241,7 +240,7 @@
 					<!--logo区开始-->
 					<div id="metro_box" class="a_link">
 						<dl>
-							<dd style="display:bolck;">
+							<%-- <dd style="display:bolck;">
 							<div class="row">
 								<!--名站导航-->
 									<div class="col-md-3 col-sm-4 col-xs-6 one" id="logo_001">
@@ -519,18 +518,27 @@
 									<li class="four" id="logo_016">
 										<a href="http://www.ziyuanhai.com/"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/logo_001f.png" width="240" height="120" alt="google"></a><span><a href="#">唐老虎</a></span></li>
 								</ul>
-							</dd>
+							</dd> --%>
 						</dl>
 			
 					</div>
 					<!--logo区结束-->
-					<!--左右箭头开始-->
-					<div class="prev"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/arr_left.png" width="31" height="67"></div>
-					<div class="next"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/arr_right.png" width="31" height="67"></div>
-					<!--左右箭头结束-->
+					<div class="saveUrlStyleBottom visible-xs">
+						<div class="prev"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/green_left.png"  class="img-responsive" height="15px" width="20px"></div>
+						<div class="next"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/green_right.png"  class="img-responsive"  height="15px" width="20px"></div>
+					</div>
+					
 				</div>
 			</div>
 		</div>
+		<!--收藏网址左右箭头开始-->
+		<div class="saveUrlStyle hidden-xs">
+			<div class="prev"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/green_left.png"  class="img-responsive"></div><br>
+			<div style="visibility:hidden;height:2%;overflow:hidden">这是个隐藏的内容</div>
+			<div class="next"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/green_right.png"  class="img-responsive"></div>
+		</div>
+		<br>
+		<!--收藏网址左右箭头结束-->
         <!-- content end -->
         <!-- Footer -->
         <footer class="footer slate_gray">
@@ -580,43 +588,6 @@
 		<script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
 		<!-- Custom JavaScript -->
         <script src="${pageContext.request.contextPath }/static/js/pages/pre/main.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/pages/pre/index.js"></script>
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$("#metro_box").css("margin-top", "10px");
-				//链接在新窗口打开
-				$(".a_link dd a").attr("target", "_blank");
-				$(".a_link ul li>a").hover(function() {
-					var a_href = $(this).attr("href");
-					$(this).siblings().find("a").attr("href", a_href);
-				});
-				
-				$(".navClassify").css("border","1px solid grey");
-				$(".navClassify:eq(0)").css("border","2px solid #F38844");
-				$(".navClassify:eq(0)").css("border-right","none");
-				$(".navClassify:eq(0)").css("background-color", "#EEEEEE");
-				
-				
-				$(".navClassify").mouseover(function(e){
-					$(".navClassify").css("border","1px solid grey");
-					$(".navClassify").css("background-color", "white");
-					$(this).css("border","2px solid #F38844");
-					$(this).css("border-right","none");
-					$(this).css("background-color", "#EEEEEE");
-					var liList = $("#navCategoryList li");
-					for(var i=0;i<liList.length;i++){
-						if($(liList[i]).text() ==$(this).text()){
-							var dd = $("#metro_box dl dd")[i];
-							$(dd).siblings().css("display", "none");
-							$(dd).css("display", "block");
-						}
-					}
-				}).mouseout(function(e){
-					//$(this).css("border","1px solid grey");
-					//$(this).css("border-right","1px solid grey");
-				})
-			})
-		</script>
+        <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/pages/pre/navication.js"></script>
     </body>
 </html>

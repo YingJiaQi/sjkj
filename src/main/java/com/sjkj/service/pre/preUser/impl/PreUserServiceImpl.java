@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -22,20 +23,34 @@ import org.springframework.stereotype.Service;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.github.abel533.entity.Example;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sjkj.dao.pre.PreBrandDao;
+import com.sjkj.dao.pre.PreUserBrandCategoryDao;
+import com.sjkj.dao.pre.PreUserBrandLinkDao;
 import com.sjkj.dao.pre.PreUserDao;
-import com.sjkj.pojo.User;
+import com.sjkj.pojo.pre.PreBrand;
 import com.sjkj.pojo.pre.PreUser;
+import com.sjkj.pojo.pre.PreUserBrandCategory;
+import com.sjkj.pojo.pre.PreUserBrandLink;
+import com.sjkj.service.BaseService;
 import com.sjkj.service.pre.preUser.PreUserService;
 import com.sjkj.utils.Base64;
 import com.sjkj.utils.times.DateUtil;
 import com.sjkj.vo.PageBean;
 @Service
-public class PreUserServiceImpl implements PreUserService {
+public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserService {
 	@Autowired
 	private PreUserDao preUserDao;
+	@Autowired
+	private PreUserBrandCategoryDao preUserBrandCategoryDao;
+	@Autowired
+	private PreUserBrandLinkDao preUserBrandLinkDao;
+	@Autowired
+	private PreBrandDao preBrandDao;
 	@Override
 	public Map<String, String> addPreUser(PreUser preUser) {
 		Map<String, String> result = new HashMap<String, String>();
@@ -285,6 +300,54 @@ public class PreUserServiceImpl implements PreUserService {
 			result = addUser(user);
 		}
 		return result;
+	}
+	@Override
+	public Map<String, Object> getCollectionWebsite() {
+		Map<String, Object> result = new HashMap<String, Object>();
+		Object principal = SecurityUtils.getSubject().getPrincipal();
+		String jsonString = JSON.toJSONString(principal);
+		if(jsonString.equals("null") || jsonString == "null"){
+			result.put("success", "false");
+			result.put("msg", "请登录");
+			return result;
+		}
+		JSONObject parseObject = JSON.parseObject(jsonString);
+		String userCode = parseObject.get("userCode").toString();
+		String uid = parseObject.get("id").toString();
+		//获取该用户的收藏分类
+		List<PreUserBrandCategory> pubcList = preUserBrandCategoryDao.getCategoryList(uid,userCode);
+		Map<String, Object> categoryLinkList = new HashMap<String, Object>();
+		if(pubcList.size() > 0){
+			result.put("pubcList", pubcList);
+			//当有分类时，循环查询该分类下所有的详细地址
+			for(int i=0;i<pubcList.size();i++){
+				PreUserBrandCategory preUserBrandCategory = pubcList.get(i);
+				List<PreUserBrandLink> publList = preUserBrandLinkDao.getUserBrandLinkList(uid,userCode,preUserBrandCategory.getBrandCategoryName(),preUserBrandCategory.getId());
+				//根据关联信息到brand表中查找详细数据
+				if(publList.size() >0){
+					//类目下存在收藏的地址
+					List<PreBrand> pblistDetail = new ArrayList<PreBrand>();
+					for(int j=0;j<publList.size();j++){
+						Example  pb= new Example(PreBrand.class);
+						pb.createCriteria().andEqualTo("id", publList.get(j).getBrandId());
+						pb.createCriteria().andEqualTo("brandName", publList.get(j).getBrandName());
+						pb.createCriteria().andEqualTo("isDel", 0);
+						List<PreBrand> pbList = preBrandDao.selectByExample(pb);
+						pblistDetail.addAll(pbList);
+					}
+					categoryLinkList.put(i+"", pblistDetail);
+				}else{
+					categoryLinkList.put(i+"", null);
+				}
+			}
+			result.put("publList", categoryLinkList);
+			result.put("success", "true");
+		}else{
+			result.put("success", "false");
+			result.put("msg", "没有收藏网址");
+		}
+		return result;
+		
 	}
 
 }

@@ -75,4 +75,11 @@ public class PreUserManager {
 		SecurityUtils.getSubject().logout();
 		return new ResponseEntity<Object>("", HttpStatus.OK);
 	}
+	/**
+	 * 获取该用户收藏的所有网址
+	 */
+	@RequestMapping(value="/getCollectionWebsite")
+	public ResponseEntity<?> getCollectionWebsite(){
+		return new ResponseEntity<Object>(preUserService.getCollectionWebsite(),HttpStatus.OK);
+	}
 }
