@@ -10,8 +10,16 @@ public class PreBrand extends BasePojo{
 	private String brandName;
 	@Column(name="brand_code")
 	private String brandCode;
+	@Column(name="brand_img_url")
+	private String brandImgUrl;
 	@Column(name="brand_url")
 	private String brandUrl;
+	public String getBrandImgUrl() {
+		return brandImgUrl;
+	}
+	public void setBrandImgUrl(String brandImgUrl) {
+		this.brandImgUrl = brandImgUrl;
+	}
 	public String getBrandName() {
 		return brandName;
 	}

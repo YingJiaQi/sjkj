@@ -9,15 +9,7 @@
 #navCategoryBox{height:530px;overflow: hidden;}
 
 
-#metro_box{ width:100%}
-.bg0{ background:#93C5EA url(../img/brand/metro_bg.png) repeat center top;}
-.bg1{ background:#93C5EA url(../img/brand/bg1.jpg) repeat-x center top;}
-.bg2{ background:#bdbac5 url(../img/brand/bg2.jpg) no-repeat center top;}
-.bg3{ background:#bdbac5 url(../img/brand/bg3.jpg) no-repeat center top;}
-.bg4{ background:#bdbac5 url(../img/brand/bg4.jpg) no-repeat center top;}
-.bg5{ background:#bdbac5 url(../img/brand/bg5.jpg) repeat center top;}
-.bg6{ background:#bdbac5 url(../img/brand/bg6.jpg) no-repeat center top;}
-#metro_box dl dt{ height:35px; line-height:35px;margin-bottom:20px;}
+#metro_box{ width:100%;margin-top:20px}
 #metro_box dl dt h1{ font-size:32px; font-family:"微软雅黑","黑体"; color:#fff; font-weight:normal; float:left;}
 #metro_box dl dt div{ float:right; font-size:12px;}
 .nav a{ border-top:3px solid #fff; text-decoration:none; padding:3px; color:#000; font-family:"微软雅黑"; cursor:pointer;}
@@ -75,3 +67,6 @@ a {
 .saveUrlStyleBottom{
 }
 /*收藏网址左右箭头结束*/
+.customBtn {
+	color:white;
+}
