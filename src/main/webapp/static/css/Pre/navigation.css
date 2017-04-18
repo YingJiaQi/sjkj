@@ -70,3 +70,13 @@ a {
 .customBtn {
 	color:white;
 }
+#updateCategoryLeft{
+	height:280px;
+	overflow:auto;
+	border:1px solid grey;
+	font-size:13px;
+	font-weight: bold;
+}
+#updateCategoryRight{
+	/* width:99.9%; */
+}

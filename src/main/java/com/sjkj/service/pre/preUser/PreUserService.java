@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.util.MultiValueMap;
 
 import com.sjkj.pojo.pre.PreUser;
+import com.sjkj.pojo.pre.PreUserBrandCategory;
 import com.sjkj.vo.PageBean;
 
 public interface PreUserService {
@@ -41,5 +42,13 @@ public interface PreUserService {
 	 * 获取该用户收藏的所有网址
 	 */
 	Map<String, Object> getCollectionWebsite();
+	/**
+	 * 添加收藏分类
+	 */
+	Map<String, Object> addUrlCategory(PreUserBrandCategory pubc);
+	/**
+	 * 更新收藏分类
+	 */
+	Map<String, Object> updateUrlCategory(PreUserBrandCategory pubc);
 
 }

@@ -4,7 +4,20 @@
 <mapper namespace="com.sjkj.dao.pre.PreUserBrandCategoryDao">
 	
 	<select id="getCategoryList" resultType="PreUserBrandCategory">
-		select * from tbl_pre_user_brand_category where user_id = #{uid} and user_code = #{userCode} and is_deleted = 0
+		select * from tbl_pre_user_brand_category where user_id = #{uid} and user_code = #{userCode} and is_deleted = 0 order by brand_category_order 
+	</select>
+	<select id="findBrandCategoryByCategoryName" resultType="PreUserBrandCategory">
+		select * from tbl_pre_user_brand_category where brand_category_name = #{brandCategoryName} and  is_deleted = 0
+	</select>
+	<insert id="insertEntity" parameterType="PreUserBrandCategory"  useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		insert into tbl_pre_user_brand_category (
+			id,user_id,user_code,brand_category_order,brand_category_name,is_deleted,create_time,update_time
+		)values(
+		   #{id},#{userId},#{userCode},#{brandCategoryOrder},#{brandCategoryName},#{isDel},#{createTime},NOW()
+		);
+	</insert>
+	<select id="selectById" resultType="PreUserBrandCategory">
+		select * from tbl_pre_user_brand_category where id = #{id} and  is_deleted = 0
 	</select>
 <!-- 	<delete id="deleteUsers" parameterType="java.util.List">
 		delete from tb_user where id in 

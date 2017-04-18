@@ -225,20 +225,68 @@
 								<!--左右箭头结束-->
 								<span  class="btn customBtn" data-toggle="modal" data-target="#addUrlCategory" onmouseover="customBtnStyle(this);" onmouseout="customOut(this)">添加</span>
 								<!-- <a href="#" id="id-btn-dialog2" class="btn btn-info btn-sm customBtn">添加</a> -->
-								<span onclick="updateCategory();" class="btn customBtn" onmouseover="customBtnStyle(this);"  onmouseout="customOut(this)">修改</span>
+								<span  class="btn customBtn" data-toggle="modal" data-target="#updateUrlCategory" onmouseover="customBtnStyle(this);"  onmouseout="customOut(this)">修改</span>
 								<!-- 按钮触发模态框 -->
-								<!-- 模态框（Modal） -->
+								<!-- 模态框 添加（Modal） -->
 								<div class="modal fade" id="addUrlCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 								    <div class="modal-dialog">
 								        <div class="modal-content">
 								            <div class="modal-header">
 								                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								                <h4 class="modal-title" id="myModalLabel">添加收藏URL</h4>
+								                <h2 class="modal-title" id="myModalLabel">添加收藏分类</h2>
 								            </div>
-								            <div class="modal-body">在这里添加一些文本</div>
+								            <div class="modal-body">
+								            	<div class="container">
+								            		<div class="row">
+								            			<div class="col-xs-3 col-sm-3 col-md-3">
+								            				<label for="cateName" class="control-label"><small>分类名</small></label>
+								            			</div>
+								            			<div class="col-xs-8 col-sm-8 col-md-8">
+								            				<input type="text" class="form-control" id="cateName" placeholder="请输入收藏分类名">
+								            			</div>
+								            		</div>
+								            		<br>
+								            		<div class="row">
+								            			<div class="col-xs-3 col-sm-3 col-md-3">
+								            				<label for="orderList" class="control-label"><small>序列</small></label>
+								            			</div>
+								            			<div class="col-xs-8 col-sm-8 col-md-8">
+								            				<input type="text" class="form-control" id="orderList" placeholder="请输入显示顺序号，如1">
+								            				<span id="order_tip"></span>
+								            			</div>
+								            		</div>
+								            	</div>
+								            </div>
 								            <div class="modal-footer">
 								                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								                <button type="button" class="btn btn-primary">提交更改</button>
+								                <button type="button" class="btn btn-primary" onclick="addCategory();">保存</button>
+								            </div>
+								        </div><!-- /.modal-content -->
+								    </div><!-- /.modal -->
+								</div>
+								<!-- 模态框 更新（Modal） -->
+								<div class="modal fade" id="updateUrlCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								    <div class="modal-dialog">
+								        <div class="modal-content">
+								            <div class="modal-header">
+								                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								                <h4 class="modal-title" id="myModalLabel">更新收藏分类</h4>
+								            </div>
+								            <div class="modal-body">
+								            	<div class="container">
+								            		<div class="row">
+								            			<div class="col-xs-6 col-sm-6 col-md-6" id="updateCategoryLeft">
+								            			
+								            			</div>
+								            			<div class="col-xs-6 col-sm-6 col-md-6" id="updateCategoryRight">
+								            			
+								            			</div>
+								            		</div>
+								            	</div>
+								            </div>
+								            <div class="modal-footer">
+								                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+								                <button type="button" class="btn btn-primary" onclick="updateCategory();">更新</button>
 								            </div>
 								        </div><!-- /.modal-content -->
 								    </div><!-- /.modal -->

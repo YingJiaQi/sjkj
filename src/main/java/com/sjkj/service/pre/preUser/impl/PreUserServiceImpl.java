@@ -349,5 +349,104 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 		return result;
 		
 	}
+	@Override
+	public Map<String, Object> addUrlCategory(PreUserBrandCategory pubc) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		String brandCategoryName = pubc.getBrandCategoryName();
+		//判断收藏类目是否存在，若存在不添加
+		PreUserBrandCategory pp = preUserBrandCategoryDao.findBrandCategoryByCategoryName(brandCategoryName);
+		if(pp != null){
+			result.put("success", "false");
+			result.put("msg", "该类目已存在");
+			return result;
+		}
+		//排序
+		Object principal = SecurityUtils.getSubject().getPrincipal();
+		String jsonString = JSON.toJSONString(principal);
+		JSONObject parseObject = JSON.parseObject(jsonString);
+		String uid = parseObject.get("id").toString();
+		String userCode = parseObject.get("userCode").toString();
+		List<PreUserBrandCategory> categoryList = preUserBrandCategoryDao.getCategoryList(uid, userCode);
+		if(categoryList.size() >0){
+			for(PreUserBrandCategory ele:categoryList){
+				Integer brandCategoryOrder = ele.getBrandCategoryOrder();
+				Integer preOrder = pubc.getBrandCategoryOrder();
+				if(brandCategoryOrder >= preOrder){
+					//后台序列大于等于前台序列的，都加1，向后推一位
+					ele.setBrandCategoryOrder(++brandCategoryOrder);
+					ele.setUpdateTime(new Date());
+					preUserBrandCategoryDao.updateByPrimaryKey(ele);
+				}
+			}
+		}
+		
+		pubc.setCreateTime(new Date());
+		pubc.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		pubc.setIsDel(0);
+		pubc.setUpdateTime(new Date());
+		pubc.setUserCode(userCode);
+		pubc.setUserId(uid);
+		preUserBrandCategoryDao.insert(pubc);
+		result.put("success", "true");
+		result.put("msg", "添加成功");
+		return result;
+	}
+	@Override
+	public Map<String, Object> updateUrlCategory(PreUserBrandCategory pubc) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		//判断是否改变了顺序(前台暂用IsDel存储原先的序号),旧序号与新序号比对
+		int oldOrder = pubc.getIsDel();
+		if(oldOrder == pubc.getBrandCategoryOrder()){
+			//此是只要更新类目名即可
+			pubc.setIsDel(0);
+			PreUserBrandCategory selectByPrimaryKey = preUserBrandCategoryDao.selectById(pubc.getId());
+			selectByPrimaryKey.setBrandCategoryName(pubc.getBrandCategoryName());
+			selectByPrimaryKey.setUpdateTime(new Date());
+			preUserBrandCategoryDao.updateByPrimaryKey(selectByPrimaryKey);
+		}else{
+			//排序
+			Object principal = SecurityUtils.getSubject().getPrincipal();
+			String jsonString = JSON.toJSONString(principal);
+			JSONObject parseObject = JSON.parseObject(jsonString);
+			String uid = parseObject.get("id").toString();
+			String userCode = parseObject.get("userCode").toString();
+			List<PreUserBrandCategory> categoryList = preUserBrandCategoryDao.getCategoryList(uid, userCode);
+			if(categoryList.size() >0){
+				for(PreUserBrandCategory ele:categoryList){
+					Integer brandCategoryOrder = ele.getBrandCategoryOrder();
+					Integer newOrder = pubc.getBrandCategoryOrder();
+					if(newOrder >= oldOrder){
+						//新序列大于等于旧序列
+						if(brandCategoryOrder >= newOrder && brandCategoryOrder <= oldOrder){
+							//序列大于等于最新序列且序列小于等于旧序列的，都加1，向后推一位
+							ele.setBrandCategoryOrder(++brandCategoryOrder);
+							ele.setUpdateTime(new Date());
+							if(pubc.getId().equals(ele.getId())){
+								//更新类目名
+								ele.setBrandCategoryName(pubc.getBrandCategoryName());
+								ele.setBrandCategoryOrder(newOrder);
+							}
+							preUserBrandCategoryDao.updateByPrimaryKey(ele);
+						}
+					}else{
+						//新序列小于等于旧序列
+						if(brandCategoryOrder >= newOrder){
+							ele.setBrandCategoryOrder(++brandCategoryOrder);
+							ele.setUpdateTime(new Date());
+							if(pubc.getId().equals(ele.getId())){
+								//更新类目名
+								ele.setBrandCategoryName(pubc.getBrandCategoryName());
+								ele.setBrandCategoryOrder(newOrder);
+							}
+							preUserBrandCategoryDao.updateByPrimaryKey(ele);
+						}
+					}
+				}
+			}
+		}
+		result.put("success", "true");
+		result.put("msg", "更新成功");
+		return result;
+	}
 
 }

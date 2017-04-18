@@ -11,4 +11,10 @@ public interface PreUserBrandCategoryDao  extends Mapper<PreUserBrandCategory>{
 
 	List<PreUserBrandCategory> getCategoryList(@Param("uid")String uid, @Param("userCode")String userCode);
 
+	PreUserBrandCategory findBrandCategoryByCategoryName(@Param("brandCategoryName")String brandCategoryName);
+
+	void insertEntity(PreUserBrandCategory ele);
+
+	PreUserBrandCategory selectById(@Param("id")String id);
+
 }

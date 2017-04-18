@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sjkj.pojo.pre.PreUser;
+import com.sjkj.pojo.pre.PreUserBrandCategory;
 import com.sjkj.service.pre.preUser.PreUserService;
 import com.sjkj.utils.MD5Util;
 import com.sjkj.vo.PageBean;
@@ -81,5 +82,19 @@ public class PreUserManager {
 	@RequestMapping(value="/getCollectionWebsite")
 	public ResponseEntity<?> getCollectionWebsite(){
 		return new ResponseEntity<Object>(preUserService.getCollectionWebsite(),HttpStatus.OK);
+	}
+	/**
+	 * 添加收藏分类
+	 */
+	@RequestMapping(value="/user/addUrlCategory", method = RequestMethod.POST)
+	public ResponseEntity<?> addUrlCategory(@RequestBody PreUserBrandCategory pubc){
+		return new ResponseEntity<Object>(preUserService.addUrlCategory(pubc),HttpStatus.OK);
+	}
+	/**
+	 * 更新收藏分类
+	 */
+	@RequestMapping(value="/user/updateUrlCategory", method = RequestMethod.POST)
+	public ResponseEntity<?> updateUrlCategory(@RequestBody PreUserBrandCategory pubc){
+		return new ResponseEntity<Object>(preUserService.updateUrlCategory(pubc),HttpStatus.OK);
 	}
 }

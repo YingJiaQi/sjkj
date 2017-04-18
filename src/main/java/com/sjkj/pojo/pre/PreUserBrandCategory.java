@@ -11,15 +11,15 @@ public class PreUserBrandCategory extends BasePojo{
 	@Column(name="user_code")
 	private String userCode;
 	@Column(name="brand_category_order")
-	private String brandCategoryOrder;
+	private Integer brandCategoryOrder;
 	@Column(name="brand_category_name")
 	private String brandCategoryName;
 	
 	
-	public String getBrandCategoryOrder() {
+	public Integer getBrandCategoryOrder() {
 		return brandCategoryOrder;
 	}
-	public void setBrandCategoryOrder(String brandCategoryOrder) {
+	public void setBrandCategoryOrder(Integer brandCategoryOrder) {
 		this.brandCategoryOrder = brandCategoryOrder;
 	}
 	public String getUserId() {
