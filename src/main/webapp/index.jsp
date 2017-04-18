@@ -104,11 +104,11 @@
 
                                 <li class="active">
                                     <span class="wsmenu-click"></span>
-                                    <a href="${pageContext.request.contextPath }">主页</a>
+                                    <a href="#">主页</a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
-                                    <a href="${pageContext.request.contextPath }/pre/user/pre_node">生活点滴</a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_node">生活点滴1</a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
@@ -585,14 +585,14 @@
         <section>
             <!-- top news -->
             <!-- title -->
-            <div class="wrap wrap_white">
+            <div class="wrap wrap_white hidden-xs">
                 <div class="container title">
                     <h1 class="title__h1 underscore">照片墙</h1>
                 </div>
             </div>
             <!-- END title -->
         </section>
-         <section class="wrap wrap_gray pt20">
+         <section class="wrap wrap_gray pt20 hidden-xs">
 	        <div class="container">
 	        	<div class="row">
 	        		<div class="col-md-3 col-sm-6 versePic">
