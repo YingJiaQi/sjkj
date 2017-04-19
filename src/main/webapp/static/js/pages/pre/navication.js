@@ -117,7 +117,48 @@ $(function (){
 	});
 	$( "#categoryPrev" ).on('click', function(e) {
 		e.preventDefault();
-		alert("pre")
+		if(currPageCategory > 1){
+			//去除原先的数据
+			$(".navClassify").remove();
+			$("#detailUrlList").html("");
+			//当前页小于总页码时
+			for(var i =(currPageCategory-1-1)*8;i<(currPageCategory-1-1)*8+8;i++){
+				if(categoryUrlArray[i] != undefined){
+					//加新类目
+					$("#navCategoryList").append("<li><a class='navClassify' onmouseover='cateMouseOverStyle(this);' style='border:1px solid grey;display:block;text-align:center'>"+categoryUrlArray[i]+"</a></li>")
+					//加新类目下的关联
+					var htmlFrame = "<dd style='display:none;'><div class='row'>";
+					var htmlContent = "";
+					var htmlFrameEnd = "</div></dd>";
+					if(i == (currPageCategory-1-1)*8){
+						htmlFrame = "<dd style='display:bolck;'><div class='row'>";
+					}
+					var culd = categoryUrlLinkDetailArray[i].split("&");
+					if(culd+"" != "null"){
+						for(var k=0;k<culd.length;k++){
+							var arr = (culd[k]+"").split("|");
+							if(arr[k] == null || arr[k] == ""){
+								continue;
+							}
+							var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
+							"<a href='"+arr[0]+"' class='img-responsive' target='_blank'><img src='http://localhost/SJKJ/static"+arr[1]+"'  alt='"+arr[2]+"'></a><span><a href='"+arr[0]+"' >"+arr[2]+"</a></span>"+
+							"</div>";
+							htmlContent += cacheHtml;
+						}
+					}else{
+						/*显示页没有关联*/
+						var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
+						"<a href='#' class='img-responsive' target='_blank'></a>"+
+						"</div>";
+						htmlContent += cacheHtml;
+					}
+					$("#detailUrlList").append(htmlFrame+htmlContent+htmlFrameEnd);
+				}
+			}
+			currPageCategory--;//当前页减1
+		}else{
+			alert("已经最左了！");
+		}
 	});
 	$( "#categoryNext" ).on('click', function(e) {
 		e.preventDefault();
@@ -149,7 +190,7 @@ $(function (){
 								continue;
 							}
 							var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-							"<a href='"+arr[1]+"' class='img-responsive' target='_blank'><img src='http://localhost/SJKJ/static"+arr[2]+"'  alt='"+arr[3]+"'></a><span><a href='"+arr[1]+"' >"+arr[3]+"</a></span>"+
+							"<a href='"+arr[0]+"' class='img-responsive' target='_blank'><img src='http://localhost/SJKJ/static"+arr[1]+"'  alt='"+arr[2]+"'></a><span><a href='"+arr[0]+"' >"+arr[2]+"</a></span>"+
 							"</div>";
 							htmlContent += cacheHtml;
 						}
@@ -163,8 +204,9 @@ $(function (){
 					$("#detailUrlList").append(htmlFrame+htmlContent+htmlFrameEnd);
 				}
 			}
+			currPageCategory++;//当前页加1
 		}else{
-			
+			alert("已经最右了！");
 		}
 	});
 });
