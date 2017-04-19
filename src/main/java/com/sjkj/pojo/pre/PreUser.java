@@ -25,7 +25,7 @@ public class PreUser  extends BasePojo{
 	@Column(name="birthday")
 	private Date birthday;
 	@Column(name="privilege_level")
-	private Integer privilegeLevel;//0普通（默认），1单个模板，2自定义权限
+	private Integer privilegeLevel=0;//0普通（默认）
 	@Column(name="last_login_time")
 	private Date lastLoginTime;
 	@Column(name="login_times")

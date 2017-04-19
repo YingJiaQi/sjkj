@@ -353,6 +353,18 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 	public Map<String, Object> addUrlCategory(PreUserBrandCategory pubc) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		String brandCategoryName = pubc.getBrandCategoryName();
+		Object principal = SecurityUtils.getSubject().getPrincipal();
+		String jsonString = JSON.toJSONString(principal);
+		JSONObject parseObject = JSON.parseObject(jsonString);
+		String privilegeLevel = parseObject.get("privilegeLevel").toString();
+		//普通用户和初级用户只能用6个
+		int pl = Integer.parseInt(privilegeLevel);
+		if((pl == 0 || pl == 1) && pubc.getBrandCategoryOrder() >6){
+			result.put("success", "false");
+			result.put("msg", "普通用户和初级用户只能使用6个收藏分类");
+			return result;
+		}
+		
 		//判断收藏类目是否存在，若存在不添加
 		PreUserBrandCategory pp = preUserBrandCategoryDao.findBrandCategoryByCategoryName(brandCategoryName);
 		if(pp != null){
@@ -361,9 +373,6 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 			return result;
 		}
 		//排序
-		Object principal = SecurityUtils.getSubject().getPrincipal();
-		String jsonString = JSON.toJSONString(principal);
-		JSONObject parseObject = JSON.parseObject(jsonString);
 		String uid = parseObject.get("id").toString();
 		String userCode = parseObject.get("userCode").toString();
 		List<PreUserBrandCategory> categoryList = preUserBrandCategoryDao.getCategoryList(uid, userCode);
@@ -394,6 +403,18 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 	@Override
 	public Map<String, Object> updateUrlCategory(PreUserBrandCategory pubc) {
 		Map<String, Object> result = new HashMap<String, Object>();
+		Object principal = SecurityUtils.getSubject().getPrincipal();
+		String jsonString = JSON.toJSONString(principal);
+		JSONObject parseObject = JSON.parseObject(jsonString);
+		String privilegeLevel = parseObject.get("privilegeLevel").toString();
+		//普通用户和初级用户只能用6个
+		int pl = Integer.parseInt(privilegeLevel);
+		if((pl == 0 || pl == 1) && pubc.getBrandCategoryOrder() >6){
+			result.put("success", "false");
+			result.put("msg", "普通用户和初级用户只能使用6个收藏分类，序号超限");
+			return result;
+		}
+		
 		//判断是否改变了顺序(前台暂用IsDel存储原先的序号),旧序号与新序号比对
 		int oldOrder = pubc.getIsDel();
 		if(oldOrder == pubc.getBrandCategoryOrder()){
@@ -405,9 +426,6 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 			preUserBrandCategoryDao.updateByPrimaryKey(selectByPrimaryKey);
 		}else{
 			//排序
-			Object principal = SecurityUtils.getSubject().getPrincipal();
-			String jsonString = JSON.toJSONString(principal);
-			JSONObject parseObject = JSON.parseObject(jsonString);
 			String uid = parseObject.get("id").toString();
 			String userCode = parseObject.get("userCode").toString();
 			List<PreUserBrandCategory> categoryList = preUserBrandCategoryDao.getCategoryList(uid, userCode);
@@ -416,18 +434,17 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 					Integer brandCategoryOrder = ele.getBrandCategoryOrder();
 					Integer newOrder = pubc.getBrandCategoryOrder();
 					if(newOrder >= oldOrder){
-						//新序列大于等于旧序列
-						if(brandCategoryOrder >= newOrder && brandCategoryOrder <= oldOrder){
+						ele.setUpdateTime(new Date());
+						if(brandCategoryOrder == oldOrder){
+							//将该目标数据的次序改变为新设定的次序
+							ele.setBrandCategoryName(pubc.getBrandCategoryName());
+							ele.setBrandCategoryOrder(newOrder);
+						}else if(brandCategoryOrder >= oldOrder && brandCategoryOrder <= newOrder){
+							//新序列大于等于旧序列
 							//序列大于等于最新序列且序列小于等于旧序列的，都加1，向后推一位
-							ele.setBrandCategoryOrder(++brandCategoryOrder);
-							ele.setUpdateTime(new Date());
-							if(pubc.getId().equals(ele.getId())){
-								//更新类目名
-								ele.setBrandCategoryName(pubc.getBrandCategoryName());
-								ele.setBrandCategoryOrder(newOrder);
-							}
-							preUserBrandCategoryDao.updateByPrimaryKey(ele);
+							ele.setBrandCategoryOrder(--brandCategoryOrder);
 						}
+						preUserBrandCategoryDao.updateByPrimaryKey(ele);
 					}else{
 						//新序列小于等于旧序列
 						if(brandCategoryOrder >= newOrder){
@@ -437,6 +454,8 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 								//更新类目名
 								ele.setBrandCategoryName(pubc.getBrandCategoryName());
 								ele.setBrandCategoryOrder(newOrder);
+								preUserBrandCategoryDao.updateByPrimaryKey(ele);
+								break;
 							}
 							preUserBrandCategoryDao.updateByPrimaryKey(ele);
 						}

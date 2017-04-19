@@ -71,7 +71,7 @@ a {
 	color:white;
 }
 #updateCategoryLeft{
-	height:280px;
+	height:36%;
 	overflow:auto;
 	border:1px solid grey;
 	font-size:13px;
@@ -79,4 +79,12 @@ a {
 }
 #updateCategoryRight{
 	/* width:99.9%; */
+}
+#categoryPrev{
+	margin-top:3%;
+	margin-left:4%
+}
+#categoryNext{
+	margin-top:3%;
+	margin-right:4%
 }

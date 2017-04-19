@@ -220,8 +220,8 @@
 						<li>
 							<div style="border:2px solid grey;background-color: #303D4A;padding: 2px;text-align: center;">
 								<!--左右箭头开始-->
-								<div class="prev"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/arr_left.png" width="15" height="20"></div>
-								<div class="next"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/arr_right.png" width="15" height="20"></div>
+								<div class="prev " id="categoryPrev"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/arr_left.png" class="img-responsive" height="6px" width="10px"></div>
+								<div class="next " id="categoryNext"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/arr_right.png" class="img-responsive" height="6px" width="10px"></div>
 								<!--左右箭头结束-->
 								<span  class="btn customBtn" data-toggle="modal" data-target="#addUrlCategory" onmouseover="customBtnStyle(this);" onmouseout="customOut(this)">添加</span>
 								<!-- <a href="#" id="id-btn-dialog2" class="btn btn-info btn-sm customBtn">添加</a> -->
@@ -304,34 +304,23 @@
 			
 					</div>
 					<!--logo区结束-->
-					<div class="saveUrlStyleBottom visible-xs">
+					<!--收藏网址 大显示屏 左右箭头开始-->
+					<%-- <div class="saveUrlStyleBottom visible-xs">
 						<div class="prev"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/green_left.png"  class="img-responsive" height="15px" width="20px"></div>
 						<div class="next"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/green_right.png"  class="img-responsive"  height="15px" width="20px"></div>
-					</div>
-					
+					</div> --%>
+					<!--收藏网址 大显示屏 左右箭头 结束-->
 				</div>
 			</div>
 		</div>
 		<!--收藏网址左右箭头开始-->
 		<div class="saveUrlStyle hidden-xs">
-			<div class="prev"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/green_left.png"  class="img-responsive"></div><br>
+			<%-- <div class="prev"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/green_left.png"  class="img-responsive"></div><br>
 			<div style="visibility:hidden;height:2%;overflow:hidden">这是个隐藏的内容</div>
-			<div class="next"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/green_right.png"  class="img-responsive"></div>
+			<div class="next"><img src="${pageContext.request.contextPath }/static/images/Pre/brand/green_right.png"  class="img-responsive"></div> --%>
 		</div>
 		<br>
 		<!--收藏网址左右箭头结束-->
-		<!-- 添加收藏类目对话框 start -->
-		<div id="dialog-confirm" class="hide">
-			<div class="alert alert-info bigger-110">
-				These items will be permanently deleted and cannot be recovered.
-			</div>
-			<div class="space-6"></div>
-			<p class="bigger-110 bolder center grey">
-				<i class="icon-hand-right blue bigger-120"></i>
-				Are you sure?
-			</p>
-		</div><!-- #dialog-confirm -->
-		<!-- 添加收藏类目对话框 end -->
         <!-- content end -->
         <!-- Footer -->
         <footer class="footer slate_gray">
@@ -365,6 +354,32 @@
                 </div>
             </div>
         </footer>
+		<!-- 页面弹出提示框（Modal） -->
+		<div class="modal fade" id="showTipFrame" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <br>
+		                <!-- <h4 class="modal-title" id="showTipTitle"></h4> -->
+		            </div>
+		            <div class="modal-body">
+		            	<div class="container">
+		            		<div class="row">
+		            			<div class="col-xs-12 col-sm-12 col-md-12" id="showTipContent" style="text-align:center">
+		            			
+		            			</div>
+		            		</div>
+		            	</div>
+		            </div>
+		           <!--  <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		            </div> -->
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
+        
+        
         <!-- END Footer -->
         <!-- All JavaScript libraries -->
 		<script type="text/javascript">

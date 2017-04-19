@@ -72,9 +72,9 @@ public class PreUserManager {
 	 * @return
 	 */
 	@RequestMapping(value="/loginOut")
-	public ResponseEntity<?> loginOut(){
+	public String loginOut(){
 		SecurityUtils.getSubject().logout();
-		return new ResponseEntity<Object>("", HttpStatus.OK);
+		return "redirect:/";//退出，重定向到前台首页
 	}
 	/**
 	 * 获取该用户收藏的所有网址
