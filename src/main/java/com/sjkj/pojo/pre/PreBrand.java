@@ -14,6 +14,16 @@ public class PreBrand extends BasePojo{
 	private String brandImgUrl;
 	@Column(name="brand_url")
 	private String brandUrl;
+	@Column(name="owner_user_id")
+	private String ownerUserId;//所属用户的ID，表明这个图标是哪个用户上传的，该图标只能该用户使用
+	
+	
+	public String getOwnerUserId() {
+		return ownerUserId;
+	}
+	public void setOwnerUserId(String ownerUserId) {
+		this.ownerUserId = ownerUserId;
+	}
 	public String getBrandImgUrl() {
 		return brandImgUrl;
 	}

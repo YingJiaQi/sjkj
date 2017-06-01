@@ -378,8 +378,79 @@
 		        </div><!-- /.modal-content -->
 		    </div><!-- /.modal -->
 		</div>
-        
-        
+		<!-- 模态框 添加分类下的连接地址（Modal） -->
+		<div class="modal fade" id="addUrlLink" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <h2 class="modal-title" id="myModalLabel">添加链接</h2>
+		            </div>
+		            <div class="modal-body">
+		            	<div class="container">
+		            		<form id="saveBrandForm" enctype="multipart/form-data" method="post">
+		            		<div class="row">
+		            			<div class="col-xs-3 col-sm-3 col-md-3">
+		            				<label for="linkAddr" class="control-label"><small>链接地址</small></label>
+		            			</div>
+		            			<div class="col-xs-8 col-sm-8 col-md-8">
+		            				<input type="text" class="form-control" name="brandUrl" onblur="dynFindBrand(this);" id="linkAddr" placeholder="请输入链接地址">
+		            			</div>
+		            		</div>
+		            		<br>
+		            		<div class="row">
+		            			<div class="col-xs-3 col-sm-3 col-md-3">
+		            				<label for="linkName" class="control-label"><small>链接名</small></label>
+		            			</div>
+		            			<div class="col-xs-8 col-sm-8 col-md-8">
+		            				<input type="text" class="form-control" name="brandName" id="linkName" placeholder="请输入链接名">
+		            			</div>
+		            		</div>
+		            		<br>
+		            		<div class="row">
+		            			<div class="col-xs-1 col-sm-1 col-md-1 ">
+		            			
+		            			</div>
+		            			<div class="col-xs-5 col-sm-5 col-md-5 " id="linkThumbnail">
+		            			
+		            			</div>
+		            			<div class="col-xs-6 col-sm-6 col-md-6">
+		            				<p>自定义图标</p>
+									 <input id="uploadImg" type="file" class="form-control" onchange="fileChange(this);" name="thumbnail">
+									 <p style="font-size:10px;margin-top:6px">图片尺寸242*122,图片大小50kb之内</p>
+		            			</div>
+		            		</div>
+		            		</form>
+		            	</div>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		                <button type="button" class="btn btn-primary" onclick="saveBrand();">保存</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
+        <!-- 模态框 连接地址选择框（Modal） -->
+		<div class="modal fade"  id="chooseLinkBrand" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <h2 class="modal-title" id="myModalLabel">推荐使用图标 可自定义上传</h2>
+		            </div>
+		            <div class="modal-body" >
+		            	<div class="container">
+		            		<div class="row" id="chooseLinkBrandContent">
+		            		</div>
+		            	</div>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		                <button type="button" class="btn btn-primary" onclick="makeSureChoose();">确认选择</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
         <!-- END Footer -->
         <!-- All JavaScript libraries -->
 		<script type="text/javascript">

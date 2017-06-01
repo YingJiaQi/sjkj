@@ -1,6 +1,7 @@
 package com.sjkj.service.pre.preUser.impl;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.security.auth.Subject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
@@ -125,25 +127,26 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 		} catch (NoSuchAlgorithmException | IOException e) {
 			e.printStackTrace();
 		}
+		String userName = preUser.getUserName();
+		if(userName != null){
+			//解密
+			userName = Base64.getFromBase64(userName);
+		}
+		
 		//前台用户输入的是，userCode或userName或userEmail由前台JS判断
 		try {
-			Example example = new Example(PreUser.class);
-			if(StringUtils.isNoneBlank(preUser.getUserCode())){
-				SecurityUtils.getSubject().login(new UsernamePasswordToken("preUserCode"+preUser.getUserCode(),password));
-				example.createCriteria().andEqualTo("userCode", preUser.getUserCode());
-			}else if(StringUtils.isNoneBlank(preUser.getUserName())){
-				SecurityUtils.getSubject().login(new UsernamePasswordToken("preUserName"+preUser.getUserName(),password));
-				example.createCriteria().andEqualTo("userName", preUser.getUserName());
-			}else if(StringUtils.isNoneBlank(preUser.getUserEmail())){
-				SecurityUtils.getSubject().login(new UsernamePasswordToken("preUserEmail"+preUser.getUserEmail(),password));
-				example.createCriteria().andEqualTo("userEmail",preUser.getUserEmail());
-			}
+			SecurityUtils.getSubject().login(new UsernamePasswordToken(userName,password));
 			//用户登录信息修改
-			example.createCriteria().andEqualTo("isDel", 0);
-			List<PreUser> selectByExample = preUserDao.selectByExample(example);
-			if(selectByExample.size() >0){
-				
-			}
+			org.apache.shiro.subject.Subject subject = SecurityUtils.getSubject();
+			Object principal = subject.getPrincipal();
+			String jsonString = JSON.toJSONString(principal);
+			JSONObject parseObject = JSON.parseObject(jsonString);
+			String id = parseObject.get("id").toString();
+			PreUser sp = preUserDao.selectByPrimaryKey(id);
+			sp.setLastLoginTime(new Date());
+			sp.setLoginTimes(sp.getLoginTimes()+1);
+			preUserDao.updateByPrimaryKey(sp);
+			result.put("success", "true");
 		} catch (AuthenticationException e) {
 			result.put("success", "false");
 			result.put("msg","用户名或密码错误");
@@ -330,7 +333,7 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 					for(int j=0;j<publList.size();j++){
 						Example  pb= new Example(PreBrand.class);
 						pb.createCriteria().andEqualTo("id", publList.get(j).getBrandId());
-						pb.createCriteria().andEqualTo("brandName", publList.get(j).getBrandName());
+						//pb.createCriteria().andEqualTo("brandName", publList.get(j).getBrandName());
 						pb.createCriteria().andEqualTo("isDel", 0);
 						List<PreBrand> pbList = preBrandDao.selectByExample(pb);
 						pblistDetail.addAll(pbList);

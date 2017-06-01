@@ -57,12 +57,12 @@
 			}
 			var BASE64 = new Base64(); 
 			var dataVo = {
-				"username": BASE64.encode(username),
-				"password": BASE64.encode(password)
+				"userName": BASE64.encode(username),
+				"userPassword": BASE64.encode(password)
 			};
 			$.ajax({
 				type: "POST",
-				url: "${pageContext.request.contextPath }/login/initUser",
+				url: "${pageContext.request.contextPath }/pre/preUserLogin",
 				contentType: "application/json",
 				data: JSON.stringify(dataVo),
 				success: function(jsonResult) {
