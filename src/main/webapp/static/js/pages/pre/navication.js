@@ -393,6 +393,7 @@ function makeSureChoose(){
 	$("#linkThumbnail").append(cacheHtml);
 	$("#chooseLinkBrand").modal("hide");
 }
+var old_brand_url = null;
 function fileChange(target) {  
 	$("#linkThumbnail").html("");
 	var isIE = /msie/i.test(navigator.userAgent) && !window.opera; 
@@ -431,6 +432,7 @@ function fileChange(target) {
 		var cacheHtml =null;
 		if(url!= null){
 			cacheHtml = "<img class='img-responsive '  src='"+url+"'/>";
+			old_brand_url = url;
 		}
 		$("#linkThumbnail").append(cacheHtml);
    }  
@@ -453,9 +455,10 @@ function saveBrand(){
 	var brandId = null;
 	if(imgurl.indexOf("blob") >= 0){
 		//此时说明是自定义
-		var imgPath = $("#uploadImg").val();
+		//var imgPath = $("#uploadImg").val();
+		var imgPath = old_brand_url;
 		//file自定义上传的图片地址
-		data = {brandUrl:linkAddr,brandName:linkName,brandId:null,file:imgPath,brandCategoryName:categoryName,brandCategoryId:cateId};
+		data = {brandUrl:linkAddr,brandName:linkName,brandId:"",file:imgPath,brandCategoryName:categoryName,brandCategoryId:cateId};
 	}else{
 		brandId = $("#linkThumbnail img").attr("id");
 		//brandUrl收藏链接地址,brandName收藏链接名,brandId使用已存在的图标id，brandCategoryName所在分类名,brandCategoryId所在分类ID
