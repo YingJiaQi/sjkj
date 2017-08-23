@@ -204,7 +204,41 @@
         <!-- header slider -->
         <section style="height: 500px;">
             <!-- top news -->
-     		<h1 class="title__h1">待开发</h1>
+            <div class="container">
+            	<!-- 书籍分类、大图强推、（个人中心、搜索） -->
+     			<div class="row">
+     				<div class="col-xs-12 col-sm-6 col-md-4">
+     				<!-- 书籍分类 -->
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                    <!-- 大图强推-->
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                    	<!-- 个人中心  -->
+                    	<div class="row">
+                    	</div>
+                    	<!-- 搜索   -->
+                    	<div class="row">
+                    	</div>
+                    </div>
+     			</div>
+     			<!-- 新上架  -->
+     			<div class="row">
+     				
+     			</div>
+     			<!-- 畅销榜 -->
+     			<div class="row">
+     				
+     			</div>
+     			<!-- 搜索榜 -->
+     			<div class="row">
+     				
+     			</div>
+     			<!-- 推荐榜 -->
+     			<div class="row">
+     				
+     			</div>
+     		</div>
         </section>
         <!-- Footer -->
         <footer class="footer slate_gray">
