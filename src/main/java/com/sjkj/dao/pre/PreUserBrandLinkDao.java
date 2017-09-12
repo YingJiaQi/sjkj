@@ -11,4 +11,8 @@ public interface PreUserBrandLinkDao  extends Mapper<PreUserBrandLink>{
 
 	List<PreUserBrandLink> getUserBrandLinkList(@Param("uid")String uid, @Param("userCode")String userCode, @Param("bcName")String brandCategoryName, @Param("bcId")String id);
 
+	List<PreUserBrandLink> selectByUsercodeAndBrandid(@Param("userCode")String userCode, @Param("brandId")String brandId);
+
+	List<PreUserBrandLink> selectByUseridAndBrandid(@Param("userid")String userid, @Param("brandid")String brandid);
+
 }

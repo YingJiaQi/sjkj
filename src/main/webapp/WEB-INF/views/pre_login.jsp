@@ -22,8 +22,6 @@
 
 		<!-- fonts -->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
-
 		<!-- ace styles -->
 
 		<link rel="stylesheet" href="${pageContext.request.contextPath }/static/assets/css/ace.min.css" />

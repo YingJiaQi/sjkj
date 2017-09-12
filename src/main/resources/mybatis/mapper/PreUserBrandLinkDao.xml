@@ -7,6 +7,14 @@
 		select * from tbl_pre_user_brand_link where user_id = #{uid} and user_code = #{userCode} and is_deleted = 0 
 		and brand_category_name = #{bcName} and brand_category_id = #{bcId}
 	</select>
+	<select id="selectByUsercodeAndBrandid" resultType="PreUserBrandLink">
+		select * from tbl_pre_user_brand_link where user_code = #{userCode}  and is_deleted = 0 
+		and brand_id = #{brandId}
+	</select>
+	<select id="selectByUseridAndBrandid" resultType="PreUserBrandLink">
+		select * from tbl_pre_user_brand_link where user_id = #{userid}  and is_deleted = 0 
+		and brand_id = #{brandid}
+	</select>
 <!-- 	<delete id="deleteUsers" parameterType="java.util.List">
 		delete from tb_user where id in 
 		<foreach collection="ids" item="id" open="(" close=")" separator=",">#{id}</foreach>

@@ -16,8 +16,23 @@ public class PreBrand extends BasePojo{
 	private String brandUrl;
 	@Column(name="owner_user_id")
 	private String ownerUserId;//所属用户的ID，表明这个图标是哪个用户上传的，该图标只能该用户使用
+	@Column(name="is_share")
+	private Integer isShare;//是否共享，0不共享，1共享，共享时其它用户可以使用
+	@Column(name="citation_times")
+	private Integer citationTimes;//引用次数，大于1时，不可以删除
 	
-	
+	public Integer getIsShare() {
+		return isShare;
+	}
+	public void setIsShare(Integer isShare) {
+		this.isShare = isShare;
+	}
+	public Integer getCitationTimes() {
+		return citationTimes;
+	}
+	public void setCitationTimes(Integer citationTimes) {
+		this.citationTimes = citationTimes;
+	}
 	public String getOwnerUserId() {
 		return ownerUserId;
 	}

@@ -21,6 +21,7 @@ $(function (){
 					var htmlContent = "";
 					var htmlFrameEnd = "</div></dd>";
 					if(i == 0){
+						
 						htmlFrame = "<dd style='display:bolck;'><div class='row'>";
 						/*导航分类*/
 						$("#navCategoryList").append("<li><a class='navClassify' id='"+data.pubcList[i].id+"' cateName='"+data.pubcList[i].brandCategoryName+"' onmouseover='cateMouseOverStyle(this);' style='border:2px solid #F38844;border-right:none;background-color:#EEEEEE;display:block;text-align:center;font-weight:bold;color:#F38844'><div class='hidden-xs'>"+data.pubcList[i].brandCategoryName+"</div><div class='visible-xs' style='font-size:10px'>"+data.pubcList[i].brandCategoryName+"</div></a></li>")
@@ -40,21 +41,21 @@ $(function (){
 							}
 							/*默认显示页有关联*/
 							for(var j=0;j<data.publList[i].length;j++){
-								var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-								"<a href='"+data.publList[i][j].brandUrl+"' class='img-responsive' target='_blank'><img src='http://localhost/SJKJ/static"+data.publList[i][j].brandImgUrl+"'  alt='"+data.publList[i][j].brandName+"'></a><span><a href='"+data.publList[i][j].brandUrl+"' >"+data.publList[i][j].brandName+"</a></span>"+
+								var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6 brand_detail'  id='"+data.publList[i][j].id+"'>"+
+								"<a href='"+data.publList[i][j].brandUrl+"' class='img-responsive' target='_blank'><img height='122px' width='242px' src='"+data.publList[i][j].brandImgUrl+"'  alt='"+data.publList[i][j].brandName+"'></a><span><a href='"+data.publList[i][j].brandUrl+"' >"+data.publList[i][j].brandName+"</a></span>"+
 								"</div>";
 								htmlContent += cacheHtml;
 							}
 							/*最后的添加*/
 							var addHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-							"<a href='#' class='img-responsive'  onclick='addLink(&quot;"+categoryId+"&quot;);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
+							"<a href='#' class='img-responsive'  onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
 							"</div>";
 							htmlContent += addHtml;
 							$("#detailUrlList").append(htmlFrame+htmlContent+htmlFrameEnd);
 						}else{
 							/*默认显示页没有关联*/
 							var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-							"<a href='#' class='img-responsive' onclick='addLink(&quot;"+categoryId+"&quot;);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
+							"<a href='#' class='img-responsive' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
 							"</div>";
 							htmlContent += cacheHtml;
 							$("#detailUrlList").append(htmlFrame+htmlContent+htmlFrameEnd);
@@ -78,21 +79,21 @@ $(function (){
 							}
 							/*显示页有关联*/
 							for(var j=0;j<data.publList[i].length;j++){
-								var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-								"<a href='"+data.publList[i][j].brandUrl+"' class='img-responsive' target='_blank'><img src='http://localhost/SJKJ/static"+data.publList[i][j].brandImgUrl+"'  alt='"+data.publList[i][j].brandName+"'></a><span><a href='"+data.publList[i][j].brandUrl+"' >"+data.publList[i][j].brandName+"</a></span>"+
+								var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6 brand_detail'   id='"+data.publList[i][j].id+"'>"+
+								"<a href='"+data.publList[i][j].brandUrl+"' class='img-responsive' target='_blank'><img  height='122px' width='242px' src='"+data.publList[i][j].brandImgUrl+"'  alt='"+data.publList[i][j].brandName+"'></a><span><a href='"+data.publList[i][j].brandUrl+"' >"+data.publList[i][j].brandName+"</a></span>"+
 								"</div>";
 								htmlContent += cacheHtml;
 							}
 							/*最后的添加*/
 							var addHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-							"<a href='#' class='img-responsive' onclick='addLink(&quot;"+categoryId+"&quot;);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
+							"<a href='#' class='img-responsive' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
 							"</div>";
 							htmlContent += addHtml;
 							$("#detailUrlList").append(htmlFrame+htmlContent+htmlFrameEnd);
 						}else{
 							/*显示页没有关联*/
 							var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-							"<a href='#' onclick='addLink(&quot;"+categoryId+"&quot;);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
+							"<a href='#' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
 							"</div>";
 							htmlContent += cacheHtml;
 							$("#detailUrlList").append(htmlFrame+htmlContent+htmlFrameEnd);
@@ -106,7 +107,7 @@ $(function (){
 					var cache= "";
 					if(data.publList[i] != undefined && data.publList[i].length>0){
 						for(var j=0;j<data.publList[i].length;j++){
-							cache += data.publList[i][j].brandUrl+"|"+data.publList[i][j].brandImgUrl+"|"+data.publList[i][j].brandName+"&";
+							cache += data.publList[i][j].brandUrl+"|"+data.publList[i][j].brandImgUrl+"|"+data.publList[i][j].brandName+"|"+data.publList[i][j].id+"&";
 						}
 						categoryUrlLinkDetailArray[i] = cache;
 					}else{
@@ -118,6 +119,7 @@ $(function (){
 				}
 				//类目更新框填入收藏地址信息
 				$("#updateCategoryLeft").html(htmlCategoryUrl);
+				$(".navication_footer").css("position","relative");
 			} else {
 				if(data.msg == "请登录"){
 					$("#contentEntity").html("").html("<h1 style='position:absolute;top:48%;left:48%'>"+data.msg+"</h1>");
@@ -125,9 +127,6 @@ $(function (){
 					$("#showTipContent").html("<br><div class='alert alert-danger'>"+data.msg+"</div>");
 					$("#showTipFrame").modal("show");
 				}
-				var wh = $(window).height();
-				wh = wh-138-100;
-				$("footer").css("margin-top",wh);
 			}
 		}
 	});
@@ -156,20 +155,20 @@ $(function (){
 							if(arr[k] == null || arr[k] == ""){
 								continue;
 							}
-							var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-							"<a href='"+arr[0]+"' class='img-responsive' target='_blank'><img src='http://localhost/SJKJ/static"+arr[1]+"'  alt='"+arr[2]+"'></a><span><a href='"+arr[0]+"' >"+arr[2]+"</a></span>"+
+							var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6 brand_detail' id='"+arr[3]+"'>"+
+							"<a href='"+arr[0]+"' class='img-responsive' target='_blank'><img  height='122px' width='242px' src='"+arr[1]+"'  alt='"+arr[2]+"'></a><span><a href='"+arr[0]+"' >"+arr[2]+"</a></span>"+
 							"</div>";
 							htmlContent += cacheHtml;
 						}
 						/*最后的添加*/
 						var addHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-						"<a href='#' class='img-responsive' onclick='addLink(&quot;"+categoryUrlArrayId[i]+"&quot;);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
+						"<a href='#' class='img-responsive' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
 						"</div>";
 						htmlContent += addHtml;
 					}else{
 						/*显示页没有关联*/
 						var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-						"<a href='#' onclick='addLink(&quot;"+categoryUrlArrayId[i]+"&quot;);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
+						"<a href='#' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
 						"</div>";
 						htmlContent += cacheHtml;
 					}
@@ -210,20 +209,20 @@ $(function (){
 							if(arr[k] == null || arr[k] == ""){
 								continue;
 							}
-							var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-							"<a href='"+arr[0]+"' class='img-responsive' target='_blank'><img src='http://localhost/SJKJ/static"+arr[1]+"'  alt='"+arr[2]+"'></a><span><a href='"+arr[0]+"' >"+arr[2]+"</a></span>"+
+							var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6 brand_detail' id='"+arr[3]+"'>"+
+							"<a href='"+arr[0]+"' class='img-responsive' target='_blank'><img  height='122px' width='242px' src='"+arr[1]+"'  alt='"+arr[2]+"'></a><span><a href='"+arr[0]+"' >"+arr[2]+"</a></span>"+
 							"</div>";
 							htmlContent += cacheHtml;
 						}
 						/*最后的添加*/
 						var addHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-						"<a href='#' class='img-responsive' onclick='addLink(&quot;"+categoryUrlArrayId[i]+"&quot;);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png' class='img-responsive' alt='添加'></a>"+
+						"<a href='#' class='img-responsive' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png' class='img-responsive' alt='添加'></a>"+
 						"</div>";
 						htmlContent += addHtml;
 					}else{
 						/*显示页没有关联*/
 						var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-						"<a href='#' onclick='addLink(&quot;"+categoryUrlArrayId[i]+"&quot;);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png' class='img-responsive' alt='添加'></a>"+
+						"<a href='#' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png' class='img-responsive' alt='添加'></a>"+
 						"</div>";
 						htmlContent += cacheHtml;
 					}
@@ -236,6 +235,11 @@ $(function (){
 		}
 		
 	});
+	//控制网页logo大小
+	var body_height=document.documentElement.clientHeight;
+	$(".brand_detail").each(function(){
+		$(this).css("height",body_height*0.18);
+	})
 });
 function cateMouseOverStyle(obj){
 	$(".navClassify").css("border","1px solid grey");
@@ -332,8 +336,9 @@ function customOut(obj){
 	$(obj).css("color","white");
 }
 //添加连接
-function addLink(id){
-	//alert(id)
+var addButtonObj = null;//用于存储当前类目中的添加button的对象，在添加网页收藏时使用，为了不刷新页面，更好的用户体验
+function addLink(obj){
+	addButtonObj = $(obj);
 	$("#addUrlLink").modal("show");
 }
 function dynFindBrand(obj){
@@ -359,7 +364,7 @@ function dynFindBrand(obj){
 					$("#chooseLinkBrandContent").html("");
 					$("#chooseLinkBrand").modal("show");
 					for(var i=0;i<data.plist.length;i++){
-						var cacheHtml = "<img onclick='clickChooseBrand(this);' class='img-responsive ' id='"+data.plist[i].id+"' title='"+data.plist[i].brandName+"' style='cursor:pointer' src='http://localhost/SJKJ/static"+data.plist[i].brandImgUrl+"'/>";
+						var cacheHtml = "<img onclick='clickChooseBrand(this);' class='img-responsive ' id='"+data.plist[i].id+"' title='"+data.plist[i].brandName+"' style='cursor:pointer' src='"+data.plist[i].brandImgUrl+"'/>";
 						$("#chooseLinkBrandContent").append(cacheHtml);
 					}
 					if(data.plist.length<2){
@@ -384,18 +389,19 @@ function clickChooseBrand(obj){
 }
 //将选择的推荐图标生成缩略图
 function makeSureChoose(){
-	$("#linkThumbnail").html("");
+	$(".linkThumbnail").html("");
 	var src = $(".dynChooseBrand").attr("src");
 	var cacheHtml =null;
 	if(src!= null){
 		cacheHtml = "<img class='img-responsive ' id='"+$(".dynChooseBrand").attr("id")+"' title='"+$(".dynChooseBrand").attr("title")+"'  src='"+src+"'/>";
 	}
-	$("#linkThumbnail").append(cacheHtml);
+	$(".linkThumbnail").append(cacheHtml);
 	$("#chooseLinkBrand").modal("hide");
 }
 var old_brand_url = null;
+var temp_thumbnail_pic_url = null
 function fileChange(target) {  
-	$("#linkThumbnail").html("");
+	$(".linkThumbnail").html("");
 	var isIE = /msie/i.test(navigator.userAgent) && !window.opera; 
     var fileSize = 0;           
     if (isIE && !target.files) {       
@@ -407,14 +413,14 @@ function fileChange(target) {
      fileSize = target.files[0].size;       
      }     
      var size = fileSize / 1024;    
-     if(size>50){    
-      alert("附件不能大于50kb");  
+     if(size>200){    
+      alert("附件不能大于200kb");  
       target.value="";  
       return  
      }  
      var name=target.value;  
      var fileName = name.substring(name.lastIndexOf(".")+1).toLocaleUpperCase();  
-     if(fileName !="PNG" && fileName !="JPEG" && fileName !="GIF"){
+     if(fileName !="PNG" && fileName !="JPEG" && fileName !="GIF" && fileName !="JPG" ){
          alert("请选择PNG、JPEG、GIF格式文件上传！");
          target.value="";
          return
@@ -434,48 +440,177 @@ function fileChange(target) {
 			cacheHtml = "<img class='img-responsive '  src='"+url+"'/>";
 			old_brand_url = url;
 		}
-		$("#linkThumbnail").append(cacheHtml);
+		temp_thumbnail_pic_url = url;//该代码主要是在新增网页收藏时使用，用于存储图片的一个缩略图，在添加完成后，不用刷新页面，就可在页面中动态的显示。只是临时，再刷新页面时，就会从数据库获取到真正的地址
+		$(".linkThumbnail").append(cacheHtml);
    }  
 //保存链接及图标
 function saveBrand(){
-	 var data = null;
-	var linkAddr =  $("#linkAddr").val();
-	var linkName =  $("#linkName").val();
+	var formData = new FormData($( "#saveBrandForm" )[0]);  
+	var data = null;
 	//所处分类信息，分类名和分类ID
-	var cateId = null;
+	var cateId = null;//存在用户于brand关联表中，用于初始化时，读取譔记录，显示导航
 	var categoryName = null;
 	$(".navClassify").each(function(){
-		if($(this).css("border-right").indexOf("none")>=0){
+		var arr = new Array();
+		arr = $(this).css("color").split(",");
+		if(parseInt(arr[1])>0){
 			categoryName = $(this).attr("cateName");
 			cateId = $(this).attr("id");
 		}
 	 });
+    //用于生成PreUserBrandLink的uuid
+    function S4() {
+        return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    }
+    function guid() {
+        return (S4()+S4()+""+S4()+""+S4()+""+S4()+""+S4()+S4()+S4());
+    }
+    var userbrandLinkId = guid();
 	//判断是否有选择上传文件
-	var imgurl = $("#linkThumbnail img").attr("src");
-	var brandId = null;
+	var imgurl = $(".linkThumbnail img").attr("src");
+	var brandId = "";
 	if(imgurl.indexOf("blob") >= 0){
 		//此时说明是自定义
-		//var imgPath = $("#uploadImg").val();
-		var imgPath = old_brand_url;
-		//file自定义上传的图片地址
-		data = {brandUrl:linkAddr,brandName:linkName,brandId:"",file:imgPath,brandCategoryName:categoryName,brandCategoryId:cateId};
+		//data = {brandId:"",brandCategoryName:categoryName,brandCategoryId:cateId};
 	}else{
-		brandId = $("#linkThumbnail img").attr("id");
+		brandId = $(".linkThumbnail img").attr("id");
 		//brandUrl收藏链接地址,brandName收藏链接名,brandId使用已存在的图标id，brandCategoryName所在分类名,brandCategoryId所在分类ID
-		data = {brandUrl:linkAddr,brandName:linkName,brandId:brandId,brandCategoryName:categoryName,brandCategoryId:cateId};
+		//data = {brandId:brandId,brandCategoryName:categoryName,brandCategoryId:cateId};
 	}
 	$.ajax({
 		type: 'post',
-		url: "../navication/saveBrand",
-		data: JSON.stringify(data),
-		dataType: 'json',
-		contentType: "application/json; charset=utf-8",
+		url: "../navication/saveBrand?brandId="+brandId+"&brandCategoryName="+categoryName+"&brandCategoryId="+cateId+"&userbrandLinkId="+userbrandLinkId,
+		data: formData,
+		async: false,  
+        cache: false,  
+        contentType: false,  
+        processData: false,
 		success: function(data) {
 			if(data.success == "true") {
 				$("#addUrlLink").modal("hide");
-				window.location.reload();//刷新当前页面.
+				//不刷新添加收藏.
+				var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6 brand_detail'   id='"+userbrandLinkId+"'>"+
+								"<a  class='img-responsive' href='"+$("#linkAddr").val()+"' target='_blank'><img  height='122px' width='242px'  src='"+temp_thumbnail_pic_url+"'  alt='"+$("#linkName").val()+"'></a><span><a href='"+$("#linkAddr").val()+"' >"+$("#linkName").val()+"</a></span>"+
+								"</div>";
+				addButtonObj.parent().before(cacheHtml);
 			} else {
+				alert("系统暂时无响应")
 			}
+			$("#linkAddr").val("");
+			$("#linkName").val("");
+		}
+	});
+}
+function delBrand(){
+	$(".brand_detail").each(function(){
+		var brand_id = $(this).attr("id")+"";
+		$(this).append("<div class='operation' style='position:absolute;top:-12%;left:70%;z-index:88;'><a href='#' brandId='"+brand_id+"' " +
+				"onclick='deleteBrand(this)'><b style='font-size:1em;color:red;background-color:white;opacity:0.6'>删</b></a>&nbsp;" +
+				"<a href='#' brandId='"+brand_id+"' onclick='updateBrand(this)'><b style='font-size:1em;color:blue;" +
+				"background-color:white;opacity:0.6'>改</b></a></div>");
+	});
+	$("#addUrlLink").modal("hide");
+	$(".cancelEdit").remove();
+	$("#navCategoryBox").append("<button class='btn btn-success cancelEdit' onclick='cancelEdit();' style='position:fix;margin-top:1em;margin-left:2em'>取消编辑</button>")
+}
+function deleteBrand(obj){
+	var brand_id = $(obj).attr("brandId")+"";
+	var dataVo = {"brandId":brand_id}
+	$.ajax({
+		url:'../navication/deleteBrand',
+		type:'post',
+		data:JSON.stringify(dataVo),
+		contentType: "application/json; charset=utf-8",
+		success:function(data){
+			if(data.success == "true"){
+				//动态去除页面上的网页收藏
+				$(".brand_detail").each(function(){
+					var brandId = $(this).attr("id")+"";
+					if(brand_id == brandId){
+						$(this).remove();
+					}
+				});
+			}else{
+				alert("系统暂时无响应");
+			}
+		}
+		
+	});
+}
+//更新收藏
+function updateBrand(obj){
+	var object_brandId = $(obj).attr("brandId")+"";
+	var title = null;
+	var url = null;
+	var img_addr = null;
+	$(".brand_detail").each(function(){
+		var content_brandId = $(this).attr("id")+"";
+		if(object_brandId == content_brandId){
+			//找到目标
+			url  = $(this).children("a:first").attr("href");
+			title = $(this).children("span").children("a").text();
+			img_addr = $(this).children("a").children("img").attr("src");
+		}
+	});
+	//alert(title+"|"+url+"|"+img_addr)
+	$("#up_linkAddr").val(url);
+	$("#up_linkName").val(title);
+	$("#id").val(object_brandId);
+	$(".linkThumbnail").html("");
+	var cacheHtml =null;
+	if(img_addr != null){
+		cacheHtml = "<img class='img-responsive ' id='"+object_brandId+"' title='"+title+"'  src='"+img_addr+"'/>";
+	}
+	$(".linkThumbnail").append(cacheHtml);
+	$("#updateModal").modal("show");
+}
+function cancelEdit(){
+	$(".cancelEdit").remove();
+	$(".operation").remove();
+}
+//更新链接及图标
+function updateBrand_bu(){
+	var formData = new FormData($("#updateBrandForm")[0]);  
+	//判断是否有选择上传文件
+	var isDefined = "0";//是不是重新上传了图片0，否1，是
+	var imgurl = $(".linkThumbnail img").attr("src");
+	if(imgurl.indexOf("blob") >= 0){
+		//此时说明是自定义
+		isDefined =1;
+	}
+	$.ajax({
+		type: 'post',
+		url: "../navication/updateBrand?isDefined="+isDefined,
+		data: formData,
+		async: false,  
+        cache: false,  
+        contentType: false,  
+        processData: false,
+		success: function(data) {
+			if(data.success == "true") {
+				$("#updateModal").modal("hide");
+				//不刷新更新内容.、
+				$(".brand_detail").each(function(){
+					var content_brandId = $(this).attr("id")+"";
+					if(data.id == content_brandId){
+						//找到目标
+						var _href = $("#up_linkAddr").val();
+						var linkname = $("#up_linkName").val();
+						var id = $("#id").val();
+						$(this).children("a:first").attr("href",_href);
+						$(this).children("span").children("a").text(linkname);
+						if(data.imgurl != "0"){
+							$(this).children("a").children("img").attr("src","/brandPics"+data.imgurl);
+						}
+						$(this).attr("id",id);
+					}
+				});
+			} else {
+				alert("系统暂时无响应")
+			}
+			$("#up_linkAddr").val("");
+			$("#up_linkName").val("");
+			$("#id").val("");
 		}
 	});
 }

@@ -17,7 +17,7 @@
         <!-- custom CSS -->
         <link href="${pageContext.request.contextPath }/static/css/Pre/main.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath }/static/css/Pre/index.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/static/bootstrap/font-awesome.css" type="text/css">
         <!-- END custom CSS -->
         <!--<![endif]-->
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -108,7 +108,7 @@
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
-                                    <a href="${pageContext.request.contextPath }/pre/user/pre_node">生活点滴1</a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_note">生活点滴1</a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>

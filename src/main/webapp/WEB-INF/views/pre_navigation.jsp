@@ -17,7 +17,7 @@
         <!-- custom CSS -->
         <link href="${pageContext.request.contextPath }/static/css/Pre/main.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath }/static/css/Pre/navigation.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/static/bootstrap/font-awesome.css">
         <!-- END custom CSS -->
         <!--<![endif]-->
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -108,7 +108,7 @@
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
-                                    <a href="${pageContext.request.contextPath }/pre/user/pre_node">生活点滴</a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_note">生活点滴</a>
                                 </li>
                                 <li  class="active">
                                     <span class="wsmenu-click"></span>
@@ -210,9 +210,11 @@
             </div>
         </header>
         <!-- END header -->
+   <!-------------------------------------------------------- CONTENT --------------------------------------------------------->
         <!-- content top -->
         <div class="container" id="contentEntity">
 			<div class="row">
+			<shiro:user> 
 				<div class="col-md-2 col-sm-3 col-xs-4" id="navCategoryBox">
 					<!--头部导航开始-->
 					<ul class="nav nav-stacked" id="navCategoryList">
@@ -296,6 +298,7 @@
 					</ul>
 					<!--头部导航结束-->
 				</div>
+			</shiro:user>
 				<div class="col-md-10 col-sm-9 col-xs-8">
 					<!--logo区开始-->
 					<div id="metro_box" class="a_link">
@@ -322,14 +325,14 @@
 		<br>
 		<!--收藏网址左右箭头结束-->
         <!-- content end -->
-        <!-- Footer -->
-        <footer class="footer slate_gray">
+         <!-- Footer -->
+        <!--<footer class="footer slate_gray">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <p class="text-center" style="color: white;">Copyright &copy; 2017.佳奇网络</p>
                     </div>
-                    <!--<div class="col-sm-6">
+                    <div class="col-sm-6">
                         <div class="social navbar-right">
                             <p class="social__text">We are in social networks</p>
                             <ul class="social__list">
@@ -350,10 +353,10 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>-->
+                    </div>
                 </div>
             </div>
-        </footer>
+        </footer> -->
 		<!-- 页面弹出提示框（Modal） -->
 		<div class="modal fade" id="showTipFrame" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		    <div class="modal-dialog">
@@ -389,6 +392,7 @@
 		            <div class="modal-body">
 		            	<div class="container">
 		            		<form id="saveBrandForm" enctype="multipart/form-data" method="post">
+		            		<input type="hidden" name="isUpdate" value="0"/>
 		            		<div class="row">
 		            			<div class="col-xs-3 col-sm-3 col-md-3">
 		            				<label for="linkAddr" class="control-label"><small>链接地址</small></label>
@@ -411,12 +415,12 @@
 		            			<div class="col-xs-1 col-sm-1 col-md-1 ">
 		            			
 		            			</div>
-		            			<div class="col-xs-5 col-sm-5 col-md-5 " id="linkThumbnail">
+		            			<div class="col-xs-5 col-sm-5 col-md-5 linkThumbnail" >
 		            			
 		            			</div>
 		            			<div class="col-xs-6 col-sm-6 col-md-6">
 		            				<p>自定义图标</p>
-									 <input id="uploadImg" type="file" class="form-control" onchange="fileChange(this);" name="thumbnail">
+									 <input id="uploadImg" type="file" class="form-control" onchange="fileChange(this);" name="file">
 									 <p style="font-size:10px;margin-top:6px">图片尺寸242*122,图片大小50kb之内</p>
 		            			</div>
 		            		</div>
@@ -427,6 +431,7 @@
 		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 		                <button type="button" class="btn btn-primary" onclick="saveBrand();">保存</button>
 		            </div>
+		            <h2>&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-danger"  onclick="delBrand();">删除--修改</button></h2>
 		        </div><!-- /.modal-content -->
 		    </div><!-- /.modal -->
 		</div>
@@ -451,13 +456,64 @@
 		        </div><!-- /.modal-content -->
 		    </div><!-- /.modal -->
 		</div>
+		
+		<!-- 模态框 更新分类下的连接地址（Modal） -->
+		<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <h2 class="modal-title" id="myModalLabel">更新收藏链接</h2>
+		            </div>
+		            <div class="modal-body">
+		            	<div class="container">
+		            		<form id="updateBrandForm" enctype="multipart/form-data" method="post">
+		            		<input type="hidden" id="id" name="id" value=""/>
+		            		<div class="row">
+		            			<div class="col-xs-3 col-sm-3 col-md-3">
+		            				<label for="linkAddr" class="control-label"><small>链接地址</small></label>
+		            			</div>
+		            			<div class="col-xs-8 col-sm-8 col-md-8">
+		            				<input type="text" class="form-control" name="brandUrl" onblur="dynFindBrand(this);" id="up_linkAddr" placeholder="请输入链接地址">
+		            			</div>
+		            		</div>
+		            		<br>
+		            		<div class="row">
+		            			<div class="col-xs-3 col-sm-3 col-md-3">
+		            				<label for="linkName" class="control-label"><small>链接名</small></label>
+		            			</div>
+		            			<div class="col-xs-8 col-sm-8 col-md-8">
+		            				<input type="text" class="form-control" name="brandName" id="up_linkName" placeholder="请输入链接名">
+		            			</div>
+		            		</div>
+		            		<br>
+		            		<div class="row">
+		            			<div class="col-xs-1 col-sm-1 col-md-1 ">
+		            			
+		            			</div>
+		            			<div class="col-xs-5 col-sm-5 col-md-5 linkThumbnail">
+		            			
+		            			</div>
+		            			<div class="col-xs-6 col-sm-6 col-md-6">
+		            				<p>自定义图标</p>
+									 <input id="uploadImg" type="file" class="form-control" onchange="fileChange(this);" name="file">
+									 <p style="font-size:10px;margin-top:6px">图片尺寸242*122,图片大小50kb之内</p>
+		            			</div>
+		            		</div>
+		            		</form>
+		            	</div>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		                <button type="button" class="btn btn-primary" onclick="updateBrand_bu();">保存</button>
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
+		
         <!-- END Footer -->
         <!-- All JavaScript libraries -->
-		<script type="text/javascript">
-			window.jQuery || document.write("<script src='${pageContext.request.contextPath }/static/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-		</script>
-
-		<!-- <![endif]-->
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
 		<!--[if IE]>
 			<script type="text/javascript">
@@ -468,5 +524,14 @@
 		<!-- Custom JavaScript -->
         <script src="${pageContext.request.contextPath }/static/js/pages/pre/main.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/pages/pre/navication.js"></script>
-    </body>
-</html>
+<!--------------------------------------------------------- FOOTER  --------------------------------------------------------->
+<footer class="footer slate_gray navication_footer" style="position: absolute;clear:both;width: 100%;bottom: 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="text-center" style="color: white;">Copyright &copy; 2017.佳奇网络</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer end-->

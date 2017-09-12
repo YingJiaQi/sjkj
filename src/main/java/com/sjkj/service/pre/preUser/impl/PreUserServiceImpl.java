@@ -41,6 +41,7 @@ import com.sjkj.pojo.pre.PreUserBrandLink;
 import com.sjkj.service.BaseService;
 import com.sjkj.service.pre.preUser.PreUserService;
 import com.sjkj.utils.Base64;
+import com.sjkj.utils.PropsUtil;
 import com.sjkj.utils.times.DateUtil;
 import com.sjkj.vo.PageBean;
 @Service
@@ -333,10 +334,15 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 					for(int j=0;j<publList.size();j++){
 						Example  pb= new Example(PreBrand.class);
 						pb.createCriteria().andEqualTo("id", publList.get(j).getBrandId());
-						//pb.createCriteria().andEqualTo("brandName", publList.get(j).getBrandName());
 						pb.createCriteria().andEqualTo("isDel", 0);
 						List<PreBrand> pbList = preBrandDao.selectByExample(pb);
-						pblistDetail.addAll(pbList);
+						List<PreBrand> new_pbList = new ArrayList<PreBrand>();
+						for(int k=0;k<pbList.size();k++){
+							PreBrand preBrand = pbList.get(k);
+							preBrand.setBrandImgUrl(PropsUtil.get("temp_brandPic_path")+preBrand.getBrandImgUrl());
+							new_pbList.add(preBrand);
+						}
+						pblistDetail.addAll(new_pbList);
 					}
 					categoryLinkList.put(i+"", pblistDetail);
 				}else{
