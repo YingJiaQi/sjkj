@@ -97,4 +97,11 @@ public class PreUserManager {
 	public ResponseEntity<?> updateUrlCategory(@RequestBody PreUserBrandCategory pubc){
 		return new ResponseEntity<Object>(preUserService.updateUrlCategory(pubc),HttpStatus.OK);
 	}
+	/**
+	 * 获取前台登录用户信息
+	 */
+	@RequestMapping(value="/user/getUserInfo", method = RequestMethod.POST)
+	public ResponseEntity<?> getUserInfo(){
+		return new ResponseEntity<Object>(preUserService.getUserInfo(),HttpStatus.OK);
+	}
 }

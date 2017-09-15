@@ -16,8 +16,10 @@ public interface PreNoteService {
 Map<String, String> addNoteContent(String _newNoteContent, String userCode, String cate_name, String note_title, String newFileAddr);
 /**
  * 获取该用户保存的所有笔记。记录 内容
+ * @param currPage  当前页
+ * @param pageSize  每页大小
  * @return
  */
-Map<String, Object> getNoteContentList();
+Map<String, Object> getNoteContentList(String pageSize, String currPage);
 
 }

@@ -476,5 +476,25 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 		result.put("msg", "更新成功");
 		return result;
 	}
+	@Override
+	public Map<String, Object> getUserInfo() {
+		Map<String, Object> result = new HashMap<String, Object>();
+		Object principal = SecurityUtils.getSubject().getPrincipal();
+		String jsonString = JSON.toJSONString(principal);
+		JSONObject parseObject = JSON.parseObject(jsonString);
+		String userCode = parseObject.get("userCode").toString();
+		String uid = parseObject.get("id").toString();
+		Example example = new Example(PreUser.class);
+		example.createCriteria().andEqualTo("userCode", userCode);
+		example.createCriteria().andEqualTo("id", uid);
+		List<PreUser> selectByExample = preUserDao.selectByExample(example);
+		PreUser user = null;
+		if(selectByExample.size()>0){
+			user = (PreUser)selectByExample.get(0);
+		}
+		result.put("success", "true");
+		result.put("data", user);
+		return result;
+	}
 
 }

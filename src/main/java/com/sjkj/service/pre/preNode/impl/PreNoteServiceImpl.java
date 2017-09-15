@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.github.abel533.entity.Example;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.sjkj.dao.pre.PreNoteContentDao;
 import com.sjkj.pojo.pre.PreNoteContent;
 import com.sjkj.service.pre.preNode.PreNoteService;
@@ -43,7 +45,7 @@ public class PreNoteServiceImpl implements PreNoteService {
 		return result;
 	}
 	@Override
-	public Map<String, Object> getNoteContentList() {
+	public Map<String, Object> getNoteContentList(String pageSize, String currPage) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		//获取登录用户信息
 		Object principal = SecurityUtils.getSubject().getPrincipal();
@@ -52,13 +54,19 @@ public class PreNoteServiceImpl implements PreNoteService {
 		if(jsonString.contains("null") || jsonString.indexOf("null")>0){
 			result.put("success", "false");
 		}else{
+			//分页
+			int curr = Integer.parseInt(currPage);
+			int psize = Integer.parseInt(pageSize);
+			PageHelper.startPage(curr, psize);
 			Example example = new Example(PreNoteContent.class);
 			example.createCriteria().andEqualTo("isDel", 0);
 			example.createCriteria().andEqualTo("userCode", user.get("userCode"));
 			example.setOrderByClause("createTime DESC");
 			List<PreNoteContent> selectByExample = preNoteContentDao.selectByExample(example);
+			PageInfo<PreNoteContent> pageInfo = new PageInfo<PreNoteContent>(selectByExample);
 			result.put("success", "true");
-			result.put("data", selectByExample);
+			result.put("total", pageInfo.getTotal());
+			result.put("data", pageInfo.getList());
 		}
 		return result;
 	}

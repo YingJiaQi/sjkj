@@ -108,11 +108,11 @@
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
-                                    <a href="${pageContext.request.contextPath }/pre/user/pre_note">生活点滴</a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_note">记录</a>
                                 </li>
                                 <li  class="active">
                                     <span class="wsmenu-click"></span>
-                                    <a href="${pageContext.request.contextPath }/pre/user/pre_navigation"><b style="color:green">导航</b></a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_navigation"><b>导航</b></a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>

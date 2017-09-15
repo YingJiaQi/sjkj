@@ -50,5 +50,9 @@ public interface PreUserService {
 	 * 更新收藏分类
 	 */
 	Map<String, Object> updateUrlCategory(PreUserBrandCategory pubc);
+	/**
+	 * 获取前台登录用户信息
+	 */
+	Map<String, Object> getUserInfo();
 
 }

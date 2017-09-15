@@ -42,9 +42,19 @@ function writeNodeClose(){
 }
 //保存记录
 function writeNodeSave(){
+	if($("#firstname").val() == ""){
+		alert("分类不能为空");
+		return;
+	}
+	if($("#secname").val() == ""){
+		alert("标题不能为空");
+		return;
+	}
 	if(ue.hasContents()){ //此处以非空为例
 		ue.sync();       //同步内容
 		document.getElementById("ueditForm").submit();  //提交Form
+	}else{
+		alert("内容不能为空");
 	}
 }
 function writeNodeSkin(){

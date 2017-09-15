@@ -1,20 +1,21 @@
-﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %> 
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="java.io.*,java.util.* " %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html>
 <html lang="zxx">
     <head>
-        <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta content="" name="description">
         <meta content="" name="keywords">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="HandheldFriendly" content="true">
         <meta content="telephone=no" name="format-detection">
-        <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-		<link href="${pageContext.request.contextPath}/static/bootstrap/font-awesome.css" rel="stylesheet">
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/png" href="favicon.png" />
         <!--[if (gt IE 9)|!(IE)]><!-->
         <!-- custom CSS -->
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link href="${pageContext.request.contextPath }/static/css/Pre/main.css" rel="stylesheet" type="text/css" />
         <!-- END custom CSS -->
         <!--<![endif]-->
@@ -24,7 +25,7 @@
             <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <title></title>
+        <title>杰讯信息</title>
     </head>
     <body>
         <!-- Header -->
@@ -64,12 +65,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-6 col-sm-7"  style="padding:6%;color:white">
-                                <shiro:guest>  
+                            <div class="col-xs-6 col-sm-7" style="padding:6%;color:white">
+								<shiro:guest>  
                                 	<a href="${pageContext.request.contextPath }/pre/user/pre_login" class="btn btn-lg btn-info">登录</a>
 								</shiro:guest>
 								<shiro:user>  
-								    欢迎, <shiro:principal property="userName"/>, <a href="${pageContext.request.contextPath}/pre/loginOut" onclick="loginOut();">退出</a>  
+								    欢迎,<a href="#"><b><shiro:principal property="userName"/></b></a> , <a href="${pageContext.request.contextPath}/pre/loginOut" onclick="loginOut();">退出</a>  
 	                               	<a href="${pageContext.request.contextPath }/pre/PreCustomPage" class="btn-link"  target="_blank" >自定义页面</a>
 								</shiro:user>
                             </div>
@@ -99,11 +100,12 @@
                                         </button>
                                     </form>
                                 </li>
-                              <li>
+
+                                <li class="active">
                                     <span class="wsmenu-click"></span>
-                                    <a href="${pageContext.request.contextPath }">主页</a>
+                                    <a href="#">主页</a>
                                 </li>
-                                <li  class="active">
+                                <li>
                                     <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }/pre/user/pre_note">记录</a>
                                 </li>
@@ -115,15 +117,23 @@
                                     <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }/pre/user/pre_stackRoom">书库</a>
                                 </li>
-                               <!-- <li>
+                                <li>
+                                    <span class="wsmenu-click"></span>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_userCenter"><b>个人中心</b></a>
+                                </li>
+                                <!--<li>
+                                    <span class="wsmenu-click"></span>
+                                    <a href="category.html">家</a>
+                                </li>
+                                <li>
                                     <span class="wsmenu-click"></span>
                                     <a href="category.html">People</a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
                                     <a href="category.html">Main</a>
-                                </li>
-                                <li>
+                                </li>-->
+                                <!--<li>
                                     <span class="wsmenu-click"></span>
                                     <a href="">Other
         							<span class="arrow"></span>
@@ -147,17 +157,15 @@
                                     </ul>
                                 </li>-->
                                 <li class="navbar-right hidden-xs">
-                                    <form action="http://www.baidu.com/baidu" target="_blank" class="navbar-form" role="search">
-                                        <input name=tn type=hidden value=baidu>
+                                    <form class="navbar-form" role="search">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name=word placeholder="请输入关键字">
+                                            <input type="text" class="form-control" placeholder="Search">
                                         </div>
-                                        <button type="submit" class="btn btn-search" style="padding-top:12px">
-                                            <img src="http://img.baidu.com/search/img/baidulogo_clarity_80_29.gif" alt="Baidu"  border="0">
+                                        <button type="submit" class="btn btn-search">
+                                            <i class="icon-search"></i>
+                                            <br/>Search
                                         </button>
                                     </form>
-                                    <!-- 百度搜索框提示 -->  
-			        				<!-- <script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script> -->
                                 </li>
                                 <li>
                                     <div class="visible-xs col-sm-offset-5 col-sm-4">
@@ -202,3 +210,137 @@
                 </div>
             </div>
         </header>
+        <!-- END header -->
+        <!-- header slider -->
+        <!-- END header slider -->
+       <div class="container">
+			<div class="row">
+				<div class="col-md-3">
+					<div class="caption">
+						<ul class="list-unstyled classification">
+							<li><h2 class="btn btn-default active"><a href="#" onclick="aboutUsFunction('1');">个人信息</a></h2></li>
+							<li><h2 class="btn btn-default"><a href="#" onclick="aboutUsFunction('2');">信息修改</a></h2></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-9"  style="padding-right:0px;">
+					<!-- <div class="caption">
+						<div class="row" style="height:3px;background-color:#1a54b1;margin-top:10px;margin-left:1px">
+						</div>
+						<div style="height:32px;background-color:#dce4f3;padding:0px;">
+							<span class="btn pull-left" id="moduleTitle"></span>
+						</div>
+					</div> -->
+					<div class="row" id="showDataPanal" style="padding:20px">
+						<table class="table text-center" >
+						  <thead>
+						  </thead>
+						  <tbody>
+						    <tr >
+						      <td style="border:none"><label for="account" class="control-label">账号</label></td>
+						      <td style="border:none"><input type="text" class="form-control" id="account" readonly></td>
+						    </tr>
+						    <tr>
+						      <td style="border:none"> <label for="sex" class="control-label">性别</label></td>
+						      <td style="border:none"> <input type="text" class="form-control" id="sex" readonly></td>
+						    </tr>
+						    <tr>
+						      <td style="border:none"><label for="phonenum" class="control-label">手机号</label></td>
+						      <td style="border:none"> <input type="text" class="form-control" id="phonenum" readonly></td>
+						    </tr>
+						    <tr>
+						      <td style="border:none"><label for="email" class="control-label">邮箱</label></td>
+						      <td style="border:none"> <input type="text" class="form-control" id="email" readonly></td>
+						    </tr>
+						    <tr>
+						      <td style="border:none"><label for="birthday" class="control-label">生日</label></td>
+						      <td style="border:none"> <input type="text" class="form-control" id="birthday" readonly></td>
+						    </tr>
+						    <tr>
+						      <td style="border:none"><label for="privilege" class="control-label">会员等级</label></td>
+						      <td style="border:none"> <input type="text" class="form-control" id="privilege" readonly></td>
+						    </tr>
+						    <tr>
+						      <td style="border:none"><label for="lastLoginTime" class="control-label">最后登录时间</label></td>
+						      <td style="border:none"> <input type="text" class="form-control" id="lastLoginTime" readonly></td>
+						    </tr>
+						    <tr>
+						      <td style="border:none"><label for="LoginTimes" class="control-label">登录次数</label></td>
+						      <td style="border:none"> <input type="text" class="form-control" id="LoginTimes" readonly></td>
+						    </tr>
+						    <tr>
+						      <td style="border:none"><label for="registerTime" class="control-label">注册时间</label></td>
+						      <td style="border:none"> <input type="text" class="form-control" id="registerTime" readonly></td>
+						    </tr>
+						  </tbody>
+						</table>
+					</div>
+			</div>
+		</div>
+       </div>
+       
+        <section class="wrap wrap_gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 projects">
+                        <div class="projects__title">
+                            <h2 class="block-title__h2">广告位</h2>
+                        </div>
+                        <!-- banner -->
+                        <div class="banner">
+                            <img src="${pageContext.request.contextPath }/static/images/Pre/content/banner.jpg" height="221" width="850" alt="image" class="banner__img">
+                            <div class="banner__box">
+                                <p class="banner__text first-text">Advertising</p>
+                                <p class="banner__text second-text">Here</p>
+                                <a href="#" class="banner__link">Get Now</a>
+                            </div>
+                        </div>
+                        <!-- END banner -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer class="footer slate_gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="text-center" style="color: white;">Copyright &copy; 2017.佳奇网络</p>
+                    </div>
+                    <!--<div class="col-sm-6">
+                        <div class="social navbar-right">
+                            <p class="social__text">We are in social networks</p>
+                            <ul class="social__list">
+                                <li class="social__item">
+                                    <a class="facebook" href="#">
+                                        <i class="icon-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="social__item">
+                                    <a class="twitter" href="#">
+                                        <i class="icon-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="social__item">
+                                    <a class="gplus" href="#">
+                                        <i class="icon-gplus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </footer>
+        <!-- END Footer -->
+        <!-- All JavaScript libraries -->
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<!--[if IE]>
+			<script type="text/javascript">
+				 window.jQuery || document.write("<script src='${pageContext.request.contextPath }/static/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+			</script>
+		<![endif]-->
+		<script src="${pageContext.request.contextPath }/static/bootstrap/bootstrap.js"></script>
+		<script src="${pageContext.request.contextPath }/static/js/pages/pre/pre_userCenter.js"></script>
+    </body>
+</html>

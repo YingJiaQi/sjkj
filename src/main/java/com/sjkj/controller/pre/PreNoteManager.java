@@ -110,10 +110,12 @@ public class PreNoteManager {
 		}
 		preNoteService.addNoteContent(_newNoteContent,user.get("userCode")+"",cate_name,note_title,newFileAddr);
 		//添加记录，并返回
-		return "pre_note";
+		return "pre_write_node";
 	}
 	@RequestMapping(value="/getNoteContentList")
-	public ResponseEntity<?> getNoteContentList(){
-		return new ResponseEntity<Object>(preNoteService.getNoteContentList(),HttpStatus.OK);
+	public ResponseEntity<?> getNoteContentList(HttpServletRequest request, HttpServletResponse response){
+		String pageSize = (String)request.getParameter("pageSize");
+		String currPage = (String)request.getParameter("currPage");
+		return new ResponseEntity<Object>(preNoteService.getNoteContentList(pageSize,currPage),HttpStatus.OK);
 	}
 }

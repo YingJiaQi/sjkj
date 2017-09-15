@@ -71,7 +71,7 @@
                                 	<a href="${pageContext.request.contextPath }/pre/user/pre_login" class="btn btn-lg btn-info">登录</a>
 								</shiro:guest>
 								<shiro:user>  
-								    欢迎, <shiro:principal property="userName"/>, <a href="${pageContext.request.contextPath}/pre/loginOut" onclick="loginOut();">退出</a>  
+								    欢迎,<a href="${pageContext.request.contextPath }/pre/user/pre_userCenter" target="_self"><b><shiro:principal property="userName"/></b></a> , <a href="${pageContext.request.contextPath}/pre/loginOut" onclick="loginOut();">退出</a>  
 	                               	<a href="${pageContext.request.contextPath }/pre/PreCustomPage" class="btn-link"  target="_blank" >自定义页面</a>
 								</shiro:user>
                             </div>
@@ -104,11 +104,11 @@
 
                                 <li class="active">
                                     <span class="wsmenu-click"></span>
-                                    <a href="#">主页</a>
+                                    <a href="#"><b>主页</b></a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
-                                    <a href="${pageContext.request.contextPath }/pre/user/pre_note">生活点滴1</a>
+                                    <a href="${pageContext.request.contextPath }/pre/user/pre_note">记录</a>
                                 </li>
                                 <li>
                                     <span class="wsmenu-click"></span>
