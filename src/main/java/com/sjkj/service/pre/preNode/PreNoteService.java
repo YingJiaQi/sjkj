@@ -2,6 +2,8 @@ package com.sjkj.service.pre.preNode;
 
 import java.util.Map;
 
+import org.springframework.util.MultiValueMap;
+
 public interface PreNoteService {
 /**
  * @param userCode 
@@ -21,5 +23,10 @@ Map<String, String> addNoteContent(String _newNoteContent, String userCode, Stri
  * @return
  */
 Map<String, Object> getNoteContentList(String pageSize, String currPage);
+/**
+ * 获取笔记类目list集合
+ * @return
+ */
+Map<String, Object> getUserNoteCategory();
 
 }

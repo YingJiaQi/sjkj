@@ -36,6 +36,20 @@ $(function() {
 		}
 		$("#firstname").val(chooseCate);
 	});
+	//动态加载用户之前定义的笔记类目
+	$.ajax({
+		type: 'post',
+		url: "../getUserNoteCategory",
+		success: function(data) {
+			if(data.success == "true") {
+				for(var i=0;i<data.cateList.length;i++){
+					$("#note_cate_list").append("<button type='button' class='btn btn-default cateName'>"+data.cateList[i]+"</button>");
+				}
+			} else {
+				alert("类目加载失败");
+			}
+		}
+	});
 }); 
 function writeNodeClose(){
 	window.close();

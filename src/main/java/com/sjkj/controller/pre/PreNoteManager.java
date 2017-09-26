@@ -118,4 +118,9 @@ public class PreNoteManager {
 		String currPage = (String)request.getParameter("currPage");
 		return new ResponseEntity<Object>(preNoteService.getNoteContentList(pageSize,currPage),HttpStatus.OK);
 	}
+	@RequestMapping(value="/getUserNoteCategory", method= RequestMethod.POST)
+	public ResponseEntity<?> getUserNoteCategory(){
+		return new ResponseEntity<Object>(preNoteService.getUserNoteCategory(),HttpStatus.OK);
+	}
+
 }

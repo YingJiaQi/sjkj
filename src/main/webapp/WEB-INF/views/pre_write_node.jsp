@@ -77,8 +77,8 @@
 		            </div>
 		            <div class="modal-body">
 		            	<div class="container">
-		            		<div class="row">
-		            			<p>
+		            		<div class="row" >
+		            			<p id="note_cate_list">
 		            				<button type="button" class="btn btn-default cateName">科技</button>
 		            				<button type="button" class="btn btn-default cateName">日记</button>
 		            				<button type="button" class="btn btn-default cateName">java</button>
