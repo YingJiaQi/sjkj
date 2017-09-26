@@ -288,7 +288,8 @@
 								            </div>
 								            <div class="modal-footer">
 								                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								                <button type="button" class="btn btn-primary" onclick="updateCategory();">更新</button>
+								                <button type="button" class="btn btn-primary" onclick="updateCategory(1);">更新</button>
+								                <button type="button" class="btn btn-primary" onclick="updateCategory(2);">删除</button>
 								            </div>
 								        </div><!-- /.modal-content -->
 								    </div><!-- /.modal -->

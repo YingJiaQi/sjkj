@@ -94,8 +94,8 @@ public class PreUserManager {
 	 * 更新收藏分类
 	 */
 	@RequestMapping(value="/user/updateUrlCategory", method = RequestMethod.POST)
-	public ResponseEntity<?> updateUrlCategory(@RequestBody PreUserBrandCategory pubc){
-		return new ResponseEntity<Object>(preUserService.updateUrlCategory(pubc),HttpStatus.OK);
+	public ResponseEntity<?> updateUrlCategory(@RequestBody PreUserBrandCategory pubc,String cmd){
+		return new ResponseEntity<Object>(preUserService.updateUrlCategory(pubc,cmd),HttpStatus.OK);
 	}
 	/**
 	 * 获取前台登录用户信息

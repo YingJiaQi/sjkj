@@ -410,11 +410,37 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 		return result;
 	}
 	@Override
-	public Map<String, Object> updateUrlCategory(PreUserBrandCategory pubc) {
+	public Map<String, Object> updateUrlCategory(PreUserBrandCategory pubc,String cmd) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		Object principal = SecurityUtils.getSubject().getPrincipal();
 		String jsonString = JSON.toJSONString(principal);
 		JSONObject parseObject = JSON.parseObject(jsonString);
+		//判断是删除不是更新操作
+		if(Integer.parseInt(cmd) == 2){
+			//此时为删除，逻辑删除，一定期限后定时任务，物理删除
+			PreUserBrandCategory selectByPrimaryKey = preUserBrandCategoryDao.selectById(pubc.getId());
+			selectByPrimaryKey.setIsDel(1);
+			selectByPrimaryKey.setUpdateTime(new Date());
+			preUserBrandCategoryDao.updateByPrimaryKey(selectByPrimaryKey);
+			//重新排序，大于该序号的类目都减1
+			Example record = new Example(PreUserBrandCategory.class);
+			record.createCriteria().andEqualTo("isDel", 0);
+			List<PreUserBrandCategory> plist = preUserBrandCategoryDao.selectByExample(record);
+			if(plist.size() >0){
+				for(int k=0;k<plist.size();k++){
+					PreUserBrandCategory pbc = plist.get(k);
+					if(pbc.getBrandCategoryOrder() > pubc.getIsDel()){
+						pbc.setBrandCategoryOrder(pbc.getBrandCategoryOrder()-1);
+						pbc.setUpdateTime(new Date());
+						preUserBrandCategoryDao.updateByPrimaryKey(pbc);
+					}
+				}
+			}
+			result.put("success", "true");
+			result.put("msg", "删除成功");
+			return result;
+		}
+		
 		String privilegeLevel = parseObject.get("privilegeLevel").toString();
 		//普通用户和初级用户只能用6个
 		int pl = Integer.parseInt(privilegeLevel);

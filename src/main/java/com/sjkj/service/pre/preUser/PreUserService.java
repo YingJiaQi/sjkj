@@ -48,8 +48,9 @@ public interface PreUserService {
 	Map<String, Object> addUrlCategory(PreUserBrandCategory pubc);
 	/**
 	 * 更新收藏分类
+	 * @param cmd 
 	 */
-	Map<String, Object> updateUrlCategory(PreUserBrandCategory pubc);
+	Map<String, Object> updateUrlCategory(PreUserBrandCategory pubc, String cmd);
 	/**
 	 * 获取前台登录用户信息
 	 */

@@ -304,17 +304,23 @@ function updateCategoryName(obj){
 	$("#updateCategoryRight").append("<input type='hidden' name='hiddenOrder' value='"+$(obj).attr("orders")+"'/>");
 }
 //更新收藏类目
-function updateCategory(){
+function updateCategory(obj){
 	var newCategoryName = $("input[name='newCategoryName']").val();
 	var newOrder = $("input[name='newOrder']").val();
 	var id = $("input[name='ids']").val();
 	var oldOrder = $("input[name='hiddenOrder']").val();
+	if(oldOrder==null || oldOrder =="null" || oldOrder == ""){
+		alert("请先选择一个类目");
+		return;
+	}
 	//暂时用PreUserBrandCategory中的isDel字段来存原来的序号
 	$('#updateUrlCategory').modal('hide');
+	//obj  1为更新2为删除
+	 
 	var data = {brandCategoryName:newCategoryName,brandCategoryOrder:newOrder,id:id,isDel:oldOrder};
 	$.ajax({
 		type: 'post',
-		url: "../user/updateUrlCategory",
+		url: "../user/updateUrlCategory?cmd="+obj,
 		data: JSON.stringify(data),
 		dataType: 'json',
 		contentType: "application/json; charset=utf-8",
