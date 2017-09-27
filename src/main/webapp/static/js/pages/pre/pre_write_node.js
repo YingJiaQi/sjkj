@@ -1,5 +1,19 @@
 $(function() {
 	$("#firstname").val("");
+	//动态加载用户之前定义的笔记类目
+	$.ajax({
+		type: 'post',
+		url: "../pre/noteManage/getUserNoteCategory",
+		success: function(data) {
+			if(data.success == "true") {
+				for(var i=0;i<data.cateList.length;i++){
+					$("#note_cate_list").append("<button type='button' class='btn btn-default cateName' onclick='changeColor(this);'>"+data.cateList[i]+"</button>");
+				}
+			} else {
+				alert("类目加载失败");
+			}
+		}
+	});
 	//dom随页面流动
 	$(window).scroll(function() {
 		var top = $(window).scrollTop()+200;
@@ -10,16 +24,7 @@ $(function() {
 		//弹出分类选择框
 		$("#showCate").modal("show");
 	});
-	//分类名添加颜色
-	$(".cateName").click(function(){
-		if($(this).attr('class').indexOf("default")>0){
-			$(this).removeClass("btn-default");
-			$(this).addClass("btn-success");
-		}else{
-			$(this).removeClass("btn-success");
-			$(this).addClass("btn-default");
-		}
-	});
+	
 	//弹出框点确认
 	$(".showCateSure").click(function(){
 		//获取选中的分类
@@ -36,20 +41,7 @@ $(function() {
 		}
 		$("#firstname").val(chooseCate);
 	});
-	//动态加载用户之前定义的笔记类目
-	$.ajax({
-		type: 'post',
-		url: "../getUserNoteCategory",
-		success: function(data) {
-			if(data.success == "true") {
-				for(var i=0;i<data.cateList.length;i++){
-					$("#note_cate_list").append("<button type='button' class='btn btn-default cateName'>"+data.cateList[i]+"</button>");
-				}
-			} else {
-				alert("类目加载失败");
-			}
-		}
-	});
+	
 }); 
 function writeNodeClose(){
 	window.close();
@@ -73,4 +65,14 @@ function writeNodeSave(){
 }
 function writeNodeSkin(){
 	alert("换肤")
+}
+function changeColor(obj){
+	//分类名添加颜色
+	if($(obj).attr('class').indexOf("default")>0){
+		$(obj).removeClass("btn-default");
+		$(obj).addClass("btn-success");
+	}else{
+		$(obj).removeClass("btn-success");
+		$(obj).addClass("btn-default");
+	}
 }

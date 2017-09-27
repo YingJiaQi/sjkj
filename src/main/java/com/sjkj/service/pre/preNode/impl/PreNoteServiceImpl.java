@@ -131,7 +131,7 @@ public class PreNoteServiceImpl implements PreNoteService {
 		}
 		return result;
 	}
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public Map<String, Object> getUserNoteCategory() {
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -163,7 +163,7 @@ public class PreNoteServiceImpl implements PreNoteService {
 		}
 		result.put("success", "true");
 		result.put("cateList", list);
-		return null;
+		return result;
 	}
 
 }

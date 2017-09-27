@@ -79,14 +79,6 @@
 		            	<div class="container">
 		            		<div class="row" >
 		            			<p id="note_cate_list">
-		            				<button type="button" class="btn btn-default cateName">科技</button>
-		            				<button type="button" class="btn btn-default cateName">日记</button>
-		            				<button type="button" class="btn btn-default cateName">java</button>
-		            				<button type="button" class="btn btn-default cateName">品质</button>
-		            				<button type="button" class="btn btn-default cateName">电脑</button>
-		            				<button type="button" class="btn btn-default cateName">杂志</button>
-		            				<button type="button" class="btn btn-default cateName">小说</button>
-		            				<button type="button" class="btn btn-default cateName">励志</button>
 		            			</p>
 		            		</div>
 		            		<div class="row" style="height:2em">

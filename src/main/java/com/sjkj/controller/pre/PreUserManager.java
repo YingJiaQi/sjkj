@@ -1,7 +1,12 @@
 package com.sjkj.controller.pre;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,7 +52,14 @@ public class PreUserManager {
 	 * @return
 	 */
 	@RequestMapping(value="/preUserLogin", method=RequestMethod.POST)
-	public ResponseEntity<?> preUserLogin(@RequestBody  PreUser preUser){
+	public ResponseEntity<?> preUserLogin(@RequestBody  PreUser preUser,String verify,HttpServletRequest request){
+		String  verifyCode = request.getSession().getAttribute("_code")+"";
+		if(!StringUtils.equals(verify, verifyCode)){
+			Map<String, String> result = new HashMap<String, String>();
+			result.put("success", "false");
+			result.put("msg","验证码错误");
+			return new ResponseEntity<Object>(result,HttpStatus.OK);
+		}
 		return new ResponseEntity<Object>(preUserService.preUserLogin(preUser),HttpStatus.OK);
 	}
 	/**
