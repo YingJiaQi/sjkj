@@ -44,12 +44,10 @@
                                 <div class="weather">
                                     <div class="weather__temperature">
                                         <span class="icon-sun"></span>
-                                        <em class="active">+8 C</em>
-                                        <em>+2 C</em>
-                                        <em>+3 C</em>
+                                        <em class="active" id="weidu">+8 C</em>
                                     </div>
                                     <div class="weather__city">
-                                        <em>London</em>
+                                        <em  id="showCity">London</em>
                                         <div class="weather__city__list">
                                             <ul>
                                                 <li class="active">
