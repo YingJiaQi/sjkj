@@ -34,45 +34,25 @@
             <div class="header__top">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <div class="wrap-logo">
                                 <a href="index.html" class="logo"></a>
                             </div>
                         </div>
-                        <div class="col-sm-offset-2 col-md-offset-5 col-sm-6 col-md-4 hidden-xs">
-                            <div class="col-xs-4 col-sm-5">
-                                <div class="weather">
-                                    <div class="weather__temperature">
-                                        <span class="icon-sun"></span>
-                                        <em class="active" id="weidu">+8 C</em>
-                                    </div>
-                                    <div class="weather__city">
-                                        <em  id="showCity">London</em>
-                                        <div class="weather__city__list">
-                                            <ul>
-                                                <li class="active">
-                                                    <a href="#">London</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Moscow</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Kiev</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-7" style="padding:6%;color:white">
+                        <div class="col-sm-6">
+                        	音乐
+                        </div>
+                        <div class=" col-sm-2 col-md-2 hidden-xs" style="padding:1.5%;color:white">
 								<shiro:guest>  
-                                	<a href="${pageContext.request.contextPath }/pre/user/pre_login" class="btn btn-lg btn-info">登录</a>
+                                	<a href="${pageContext.request.contextPath }/pre/user/pre_login" class="btn btn-info">登录</a>
 								</shiro:guest>
 								<shiro:user>  
 								    欢迎,<a href="${pageContext.request.contextPath }/pre/user/pre_userCenter" target="_self"><b><shiro:principal property="userName"/></b></a> , <a href="${pageContext.request.contextPath}/pre/loginOut" onclick="loginOut();">退出</a>  
 	                               	<a href="${pageContext.request.contextPath }/pre/PreCustomPage" class="btn-link"  target="_blank" >自定义页面</a>
 								</shiro:user>
-                            </div>
+                        </div>
+                         <div class="col-sm-2">
+                        	<iframe name="weather_inc"  onmouseover="showAllWeather();" src="http://i.tianqi.com/index.php?c=code&id=7" height="86" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
                         </div>
                     </div>
                 </div>
@@ -660,6 +640,28 @@
                 </div>
             </div>
         </section>
+        <!-- 页面弹出提示框（Modal） -->
+		<div class="modal fade" id="showWeatherDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                <br>
+		                <!-- <h4 class="modal-title" id="showTipTitle"></h4> -->
+		            </div>
+		            <div class="modal-body">
+		            	<div class="container">
+		            		<iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=82" width="250" height="440" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+		            	</div>
+		            </div>
+		           <div class="modal-footer">
+		                <!-- <button type="button" class="btn btn-default showCateSure" data-dismiss="modal">确定</button> -->
+		            </div>
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
+        
+        
         <!-- Footer -->
         <footer class="footer slate_gray">
             <div class="container">
