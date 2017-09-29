@@ -48,14 +48,14 @@ $(function (){
 							}
 							/*最后的添加*/
 							var addHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-							"<a href='#' class='img-responsive'  onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
+							"<a href='#' class='img-responsive'  onclick='addLink(this);'><img src='../../../SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
 							"</div>";
 							htmlContent += addHtml;
 							$("#detailUrlList").append(htmlFrame+htmlContent+htmlFrameEnd);
 						}else{
 							/*默认显示页没有关联*/
 							var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-							"<a href='#' class='img-responsive' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
+							"<a href='#' class='img-responsive' onclick='addLink(this);'><img src='../../../SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
 							"</div>";
 							htmlContent += cacheHtml;
 							$("#detailUrlList").append(htmlFrame+htmlContent+htmlFrameEnd);
@@ -86,14 +86,14 @@ $(function (){
 							}
 							/*最后的添加*/
 							var addHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-							"<a href='#' class='img-responsive' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
+							"<a href='#' class='img-responsive' onclick='addLink(this);'><img src='../../../SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
 							"</div>";
 							htmlContent += addHtml;
 							$("#detailUrlList").append(htmlFrame+htmlContent+htmlFrameEnd);
 						}else{
 							/*显示页没有关联*/
 							var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-							"<a href='#' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
+							"<a href='#' onclick='addLink(this);'><img src='../../../SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
 							"</div>";
 							htmlContent += cacheHtml;
 							$("#detailUrlList").append(htmlFrame+htmlContent+htmlFrameEnd);
@@ -162,13 +162,13 @@ $(function (){
 						}
 						/*最后的添加*/
 						var addHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-						"<a href='#' class='img-responsive' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
+						"<a href='#' class='img-responsive' onclick='addLink(this);'><img src='../../../SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
 						"</div>";
 						htmlContent += addHtml;
 					}else{
 						/*显示页没有关联*/
 						var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-						"<a href='#' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
+						"<a href='#' onclick='addLink(this);'><img src='../../../SJKJ/static/images/Pre/brand/add.png'  alt='添加'></a>"+
 						"</div>";
 						htmlContent += cacheHtml;
 					}
@@ -216,13 +216,13 @@ $(function (){
 						}
 						/*最后的添加*/
 						var addHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-						"<a href='#' class='img-responsive' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png' class='img-responsive' alt='添加'></a>"+
+						"<a href='#' class='img-responsive' onclick='addLink(this);'><img src='../../../SJKJ/static/images/Pre/brand/add.png' class='img-responsive' alt='添加'></a>"+
 						"</div>";
 						htmlContent += addHtml;
 					}else{
 						/*显示页没有关联*/
 						var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6'>"+
-						"<a href='#' onclick='addLink(this);'><img src='http://localhost/SJKJ/static/images/Pre/brand/add.png' class='img-responsive' alt='添加'></a>"+
+						"<a href='#' onclick='addLink(this);'><img src='../../../SJKJ/static/images/Pre/brand/add.png' class='img-responsive' alt='添加'></a>"+
 						"</div>";
 						htmlContent += cacheHtml;
 					}

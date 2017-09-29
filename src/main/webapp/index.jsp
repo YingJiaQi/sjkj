@@ -31,28 +31,30 @@
     <body>
         <!-- Header -->
         <header id="header" class="header">
-            <div class="header__top">
-                <div class="container">
+            <div class="header__top" style="background-color:white">
+                <div class="container" >
                     <div class="row">
                         <div class="col-sm-2">
-                            <div class="wrap-logo">
-                                <a href="index.html" class="logo"></a>
+                            <div class="wrap-logo" >
+                                <a href="index.jsp" class="logo"><img class="img-responsive" alt="" src="${pageContext.request.contextPath }/static/images/Pre/common/logo.png"> </a>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                        	音乐
-                        </div>
-                        <div class=" col-sm-2 col-md-2 hidden-xs" style="padding:1.5%;color:white">
-								<shiro:guest>  
-                                	<a href="${pageContext.request.contextPath }/pre/user/pre_login" class="btn btn-info">登录</a>
-								</shiro:guest>
-								<shiro:user>  
-								    欢迎,<a href="${pageContext.request.contextPath }/pre/user/pre_userCenter" target="_self"><b><shiro:principal property="userName"/></b></a> , <a href="${pageContext.request.contextPath}/pre/loginOut" onclick="loginOut();">退出</a>  
-	                               	<a href="${pageContext.request.contextPath }/pre/PreCustomPage" class="btn-link"  target="_blank" >自定义页面</a>
-								</shiro:user>
+                        <div class="col-sm-5">
+                        	<!-- 音乐 -->
                         </div>
                          <div class="col-sm-2">
-                        	<iframe name="weather_inc"  onmouseover="showAllWeather();" src="http://i.tianqi.com/index.php?c=code&id=7" height="86" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+                        	<!-- <iframe name="weather_inc"  onmouseover="showAllWeather();" src="http://i.tianqi.com/index.php?c=code&id=7" height="86" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe> -->
+                       		<iframe allowtransparency="true" frameborder="0" width="180" height="36" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=3&z=2&t=0&v=0&d=3&bd=0&k=&f=&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=180&h=36&align=center"></iframe>
+                        </div>
+                        <div class=" col-sm-3  hidden-xs" style="padding-top:1%;">
+								<shiro:guest>  
+                                	<a href="${pageContext.request.contextPath }/pre/user/pre_login" style="margin:6% 1% 8% 9%" class="btn btn-info">登录</a>
+								</shiro:guest>
+								<shiro:user>
+									<a href="${pageContext.request.contextPath }/pre/user/pre_userCenter" target="_self"><img class="img-thumbnail img-responsive" style="margin-bottom:3%" alt="" src="${pageContext.request.contextPath }/static/images/Pre/common/defaultPic.jpg" width="70px" height="70px"> </a> 
+								    欢迎,<a href="${pageContext.request.contextPath }/pre/user/pre_userCenter" target="_self"><b><shiro:principal property="userName"/></b></a> , <a href="${pageContext.request.contextPath}/pre/loginOut" onclick="loginOut();">退出</a>  
+	                               	<%-- <a href="${pageContext.request.contextPath }/pre/PreCustomPage" class="btn-link"  target="_blank" >自定义页面</a> --%>
+								</shiro:user>
                         </div>
                     </div>
                 </div>
