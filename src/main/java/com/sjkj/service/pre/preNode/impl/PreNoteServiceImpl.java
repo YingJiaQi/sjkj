@@ -119,11 +119,7 @@ public class PreNoteServiceImpl implements PreNoteService {
 			int curr = Integer.parseInt(currPage);
 			int psize = Integer.parseInt(pageSize);
 			PageHelper.startPage(curr, psize);
-			Example example = new Example(PreNoteContent.class);
-			example.createCriteria().andEqualTo("isDel", 0);
-			example.createCriteria().andEqualTo("userCode", user.get("userCode"));
-			example.setOrderByClause("createTime DESC");
-			List<PreNoteContent> selectByExample = preNoteContentDao.selectByExample(example);
+			List<PreNoteContent> selectByExample = preNoteContentDao.getNoteList(user.get("userCode")+"");
 			PageInfo<PreNoteContent> pageInfo = new PageInfo<PreNoteContent>(selectByExample);
 			result.put("success", "true");
 			result.put("total", pageInfo.getTotal());

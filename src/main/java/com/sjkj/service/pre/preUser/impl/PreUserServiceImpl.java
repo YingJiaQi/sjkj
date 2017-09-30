@@ -84,6 +84,7 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 		if(selectByExample.size() >0){
 			result.put("msg", "用户名已存在");
 			result.put("success", "false");
+			return result;
 		}
 		//userCode组成   时间+7位用户注册序号前位补0
 		SimpleDateFormat sdf = new SimpleDateFormat(DateUtil.YMD9);

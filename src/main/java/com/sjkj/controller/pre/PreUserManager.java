@@ -116,4 +116,26 @@ public class PreUserManager {
 	public ResponseEntity<?> getUserInfo(){
 		return new ResponseEntity<Object>(preUserService.getUserInfo(),HttpStatus.OK);
 	}
+	/**
+	 * 前台新用户注册
+	 */
+	@RequestMapping(value="/user/regester", method = RequestMethod.POST)
+	public ResponseEntity<?> regester(@RequestBody Map<String,Object> param,HttpServletRequest request){
+		String reg_verify = param.get("reg_verify")+"";
+		String  verifyCode = request.getSession().getAttribute("_code")+"";
+		if(!StringUtils.equals(verifyCode, reg_verify)){
+			Map<String, String> result = new HashMap<String, String>();
+			result.put("success", "false");
+			result.put("msg","验证码错误");
+			return new ResponseEntity<Object>(result,HttpStatus.OK);
+		}
+		PreUser preUser = new PreUser();
+		String reg_email = param.get("reg_email")+"";
+		String reg_username = param.get("reg_username")+"";
+		String reg_password = param.get("reg_password")+"";
+		preUser.setUserEmail(reg_email);
+		preUser.setUserName(reg_username);
+		preUser.setUserPassword(reg_password);
+		return new ResponseEntity<Object>(preUserService.addPreUser(preUser),HttpStatus.OK);
+	}
 }

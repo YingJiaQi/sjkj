@@ -89,7 +89,7 @@
 													<label class="block clearfix">
 															<div class="row">
 																<div class="col-xs-6">
-																	<input id="verify" type="text"  width="25%" placeholder="验证码" onkeypress="nextEvent('btn_Login',event);" />
+																	<input id="verify" type="text"  width="10%" placeholder="验证码" onkeypress="nextEvent('btn_Login',event);" />
 																</div>
 																<div class="col-xs-6">
 									                       			<a href="javascript:changeImg();"><img id="img_code" class="img-rounded img-responsive" src="${pageContext.request.contextPath }/common/getGifCode" /></a>
@@ -203,41 +203,41 @@
 											</h4>
 
 											<div class="space-6"></div>
-											<p> 开始输入您的信息: </p>
+											<p> 输入您的信息: </p>
 
-											<form>
+											<form id="new_user_register">
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="email" class="form-control" placeholder="Email" />
+															<input name="reg_email" type="email" class="form-control not" placeholder="Email" />
 															<i class="icon-envelope"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="用户名" />
+															<input name="reg_username" type="text" class="form-control" placeholder="用户名" />
 															<i class="icon-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="密码" />
+															<input type="password" name="reg_password" class="form-control" placeholder="密码" />
 															<i class="icon-lock"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="重复密码" />
+															<input type="password" name="reg_repassword" class="form-control" placeholder="重复密码" />
 															<i class="icon-retweet"></i>
 														</span>
 													</label>
 													<label class="block clearfix">
 															<div class="row">
 																<div class="col-xs-6">
-																	<input id="verify" type="text"  width="25%" placeholder="验证码" onkeypress="nextEvent('btn_Login',event);" />
+																	<input id="reg_verify" type="text" name="reg_verify"  width="25%" placeholder="验证码" onkeypress="nextEvent('btn_regester',event);" />
 																</div>
 																<div class="col-xs-6">
 									                       			<a href="javascript:changeImg2();"><img id="img_code2" class="img-rounded img-responsive" src="${pageContext.request.contextPath }/common/getGifCode" /></a>
@@ -245,7 +245,7 @@
 															</div>
 													</label>
 													<label class="block">
-														<input type="checkbox" class="ace" />
+														<input type="checkbox" id="if_accept" class="ace" />
 														<span class="lbl">
 															阅读并接受
 															<a href="#">用户注册协议</a>
@@ -260,7 +260,7 @@
 															重置
 														</button>
 
-														<button type="button" class="width-65 pull-right btn btn-sm btn-success">
+														<button id="reg_button" onclick="register();" type="button" class="width-65 pull-right btn btn-sm btn-success">
 															注册
 															<i class="icon-arrow-right icon-on-right"></i>
 														</button>
@@ -295,7 +295,7 @@
 		 window.jQuery || document.write("<script src='${pageContext.request.contextPath }/static/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 		</script>
 		<![endif]-->
-
+		<script src="${pageContext.request.contextPath }/static/js/utils.js"></script>
 		<script type="text/javascript">
 			if("ontouchend" in document) document.write("<script src='${pageContext.request.contextPath }/static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
@@ -335,6 +335,8 @@
 				if(code==13 || code==9){
 				 	if (strName == "btn_Login"){
 				 		login();
+					}else if(strName == "btn_regester"){
+						register();
 					}else{
 						document.getElementById(strName).focus();
 					}
@@ -414,6 +416,69 @@
 			   exp.setTime(exp.getTime() - 1);
 			   var cval = getCookie(name);
 			   if (cval != null) document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+			  }
+			  //新用户注册
+			  function register(){
+				  var _email = $("input[name='reg_email']").val();
+				  if(_email == ""){
+					  alert("邮箱不能为空");
+					  $("input[name='reg_email']").focus();
+					  return;
+				  }
+				  var _username = $("input[name='reg_username']").val();
+				  if(_username == ""){
+					  alert("用户名不能为空");
+					  $("input[name='reg_username']").focus();
+					  return;
+				  }
+				  var _password = $("input[name='reg_password']").val();
+				  if(_password == ""){
+					  alert("密码不能为空");
+					  $("input[name='reg_password']").focus();
+					  return;
+				  }
+				  var _repassword = $("input[name='reg_repassword']").val();
+				  if(_repassword == ""){
+					  alert("重复密码不能为空");
+					  $("input[name='reg_repassword']").focus();
+					  return;
+				  }
+				  var _verify = $("input[name='reg_verify']").val();
+				  if(_verify == ""){
+					  alert("验证码不能为空");
+					  $("input[name='reg_verify']").focus();
+					  return;
+				  }
+				  if(_password != _repassword){
+					  alert("两次密码不相同");
+					  return;
+				  }
+				  if(!$('#if_accept').is(":checked")){
+					  alert("必需同意条款才可以注册");
+					  return;
+				  }
+				  var BASE64 = new Base64(); 
+					var dataVo = {
+						"reg_email": BASE64.encode(_email),
+						"reg_username": BASE64.encode(_username),
+						"reg_verify": _verify,
+						"reg_password": BASE64.encode(_password)
+					};
+				  $.ajax({  
+	                    type : 'post',  
+	                    url : "${pageContext.request.contextPath }/pre/user/regester",  
+	                    data : JSON.stringify(dataVo),  
+	                    dataType : 'json',  
+	                    contentType : "application/json; charset=utf-8",  
+	                    success : function(data) {  
+	                        if (data.success == "true") {  
+	                        	alert("注册成功，稍等跳入主页");
+	                        	setTimeout(function(){location.href = "${pageContext.request.contextPath}/";},1000) 
+	                        } else {  
+	                        	alert(data.msg)
+	                        }  
+	                    }  
+	                });
 			  }
 		</script>
 </body>

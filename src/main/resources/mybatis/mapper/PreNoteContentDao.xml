@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace： 名称空间 可以随意命名 -->
+<mapper namespace="com.sjkj.dao.pre.PreNoteContentDao">
+	
+	<select id="getNoteList" resultType="PreNoteContent">
+		select * from tbl_pre_user_note_content where user_code = #{userCode} and  is_deleted = 0 
+		order by create_time desc
+	</select>
+</mapper>
