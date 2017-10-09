@@ -86,6 +86,16 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 			result.put("success", "false");
 			return result;
 		}
+		//查询用户名是否存在
+		Example examples = new Example(PreUser.class);
+		examples.createCriteria().andEqualTo("userEmail", preUser.getUserEmail());
+		examples.createCriteria().andEqualTo("isDel", 0);
+		List<PreUser> selectByExamples = preUserDao.selectByExample(example);
+		if(selectByExamples.size() >0){
+			result.put("msg", "邮箱已存在");
+			result.put("success", "false");
+			return result;
+		}
 		//userCode组成   时间+7位用户注册序号前位补0
 		SimpleDateFormat sdf = new SimpleDateFormat(DateUtil.YMD9);
 		String format = sdf.format(new Date());

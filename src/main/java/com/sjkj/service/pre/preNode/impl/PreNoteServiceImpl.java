@@ -60,8 +60,8 @@ public class PreNoteServiceImpl implements PreNoteService {
 		if(plist.size()>0){
 			preUserNoteCategory = plist.get(0);
 		}
-		int flag = 0;//标识
 		for(int n=0;n<split.length;n++){
+			int flag = 0;//标识
 			String updateCate = split[n];
 			String[] df = ProjectConstant.NOTE_CATE.split(",");
 			for(int k=0;k<df.length;k++){
@@ -70,7 +70,7 @@ public class PreNoteServiceImpl implements PreNoteService {
 					flag =1;//已存在不用存储,此时是前台提交的与静态的常量比较
 				}
 			}
-			if(StringUtils.isNoneBlank(preUserNoteCategory.getId())){
+			if(preUserNoteCategory != null && StringUtils.isNoneBlank(preUserNoteCategory.getId())){
 				String[] split2 = preUserNoteCategory.getNoteCate().split(",");
 				for(int m=0;m<split2.length;m++){
 					if(StringUtils.equals(split2[m], updateCate)){

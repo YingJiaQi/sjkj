@@ -61,7 +61,7 @@ public class PreNoteManager {
 		String[] split = noteContent.split("<img");
 		for(int i=0;i<split.length;i++){
 			Map<String, String> map = new HashMap<String, String>();
-			if(split[i].contains("http") && split[i].contains("title")){
+			if(split[i].contains("title")){
 				//包含图片
 				String path = split[i].substring(6, split[i].indexOf("title")-2);
 				String substrings = split[i].substring(split[i].indexOf("title")+7);
