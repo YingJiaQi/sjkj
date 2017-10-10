@@ -1168,4 +1168,9 @@
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
 				</div><!-- /.main-content -->
+				
+				<script src="../static/assets/js/ace-extra.min.js"></script>
+		<script type="text/javascript" src="../static/js/pages/bs_index.js"></script>
+		<script type="text/javascript" src="../static/js/pages/Common.js"></script>
+		
 <jsp:include page="../../common/bs_footer.jsp"/>

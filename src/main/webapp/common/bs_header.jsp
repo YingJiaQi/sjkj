@@ -9,19 +9,11 @@
 		<!-- basic styles -->
 		<link href="../static/assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../static/assets/css/font-awesome.min.css" />
-
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="../static/assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
-
-		<!-- page specific plugin styles -->
-
-		<!-- fonts -->
-
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
-
-		<!-- ace styles -->
-
+		<link rel="stylesheet" href="../static/assets/css/ui.jqgrid.css" />
 		<link rel="stylesheet" href="../static/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="../static/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="../static/assets/css/ace-skins.min.css" />
@@ -29,20 +21,7 @@
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="../static/assets/css/ace-ie.min.css" />
 		<![endif]-->
-
-		<!-- inline styles related to this page -->
-
-		<!-- ace settings handler -->
-
-		<script src="../static/assets/js/ace-extra.min.js"></script>
-		<script type="text/javascript" src="../static/js/pages/bs_index.js"></script>
-		<script type="text/javascript" src="../static/js/pages/Common.js"></script>
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-		<!--[if lt IE 9]>
-		<script src="../static/assets/js/html5shiv.js"></script>
-		<script src="../static/assets/js/respond.min.js"></script>
-		<![endif]-->
 	</head>
 
 	<body>
@@ -358,8 +337,8 @@
 						</div>
 					</div><!-- #sidebar-shortcuts -->
 
-					<ul class="nav nav-list">
-						<li   class="active">
+					<ul class="nav nav-list" id="menu_list">
+						<!-- <li>
 							<a href="bs_index">
 								<i class="icon-dashboard"></i>
 								<span class="menu-text"> 控制台 </span>
@@ -452,15 +431,8 @@
 							</a>
 
 							<ul class="submenu">
-
 								<li>
-									<a href="bs_book_categoryManage">
-										<i class="icon-double-angle-right"></i>
-										类目管理
-									</a>
-								</li>
-								<li>
-									<a href="bs_book_bookMaintenance">
+									<a href="bs_book_Maintain">
 										<i class="icon-double-angle-right"></i>
 										书籍维护
 									</a>
@@ -485,7 +457,23 @@
 								<span class="menu-text"> 相册 </span>
 							</a>
 						</li>
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-desktop"></i>
+								<span class="menu-text"> 系统管理 </span>
 
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="bs_dataDicManager">
+										<i class="icon-double-angle-right"></i>
+										数据字典配置
+									</a>
+								</li>
+							</ul>
+						</li> -->
 						
 					</ul><!-- /.nav-list -->
 

@@ -156,7 +156,7 @@
                                         </li>
                                     </ul>
                                 </li>-->
-                                <li class="navbar-right hidden-xs">
+                              <!--   <li class="navbar-right hidden-xs">
                                     <form class="navbar-form" role="search">
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Search">
@@ -166,7 +166,7 @@
                                             <br/>Search
                                         </button>
                                     </form>
-                                </li>
+                                </li> -->
                                 <li>
                                     <div class="visible-xs col-sm-offset-5 col-sm-4">
                                         <div class="col-sm-5">

@@ -94,11 +94,67 @@
 
 		<script src="../static/assets/js/ace-elements.min.js"></script>
 		<script src="../static/assets/js/ace.min.js"></script>
-
+		<!--[if lt IE 9]>
+		<script src="../static/assets/js/html5shiv.js"></script>
+		<script src="../static/assets/js/respond.min.js"></script>
+		<![endif]-->
 		<!-- inline scripts related to this page -->
 
 		<script type="text/javascript">
 			jQuery(function($) {
+				//动态加载菜单
+				$.ajax({
+					type: 'post',
+					url: "../user/getMenu",
+					success: function(data) {
+						if(data != null || data != "") {
+							//先找到父结点
+							for(var i=0;i<data.length;i++){
+								var parhtml = "";
+								if(data[i].pid ==0){
+									if(data[i].page == undefined) {
+										//此时是有子节点的父节点
+										parhtml += '<li> <a href="#" class="dropdown-toggle"><i class="'+data[i].icon+'"></i>';
+										parhtml += '<span class="menu-text"> '+data[i].menuName+' </span><b class="arrow icon-angle-down"></b></a>';
+										parhtml += '<ul class="submenu" id="par_' + data[i].id + '" >';
+										parhtml += '</ul></li>';
+									}else{
+										//此时是没有子节点的父节点
+										parhtml += '<li id="par_' + data[i].id + '" onclick="openTabs(this)" ifPar="1"> <a href="'+data[i].page+'"> <i class="'+data[i].icon+'"></i>';
+										parhtml += '<span class="menu-text"> '+data[i].menuName+' </span></a></li>';
+									}
+									$("#menu_list").append(parhtml);
+								}
+							}
+							//追加子节点到父节点
+							for(var i=0;i<data.length;i++){
+								var childhtml = "";
+								if(data[i].pid !=0){
+									childhtml += '<li onclick="openTabs(this)" ifPar="0"> <a href="'+data[i].page+'"> <i class="icon-double-angle-right"></i>';
+									childhtml += data[i].menuName+'</a></li>';
+									//子节点追加
+									$("#par_" + data[i].pid).append(childhtml);
+								}
+							}
+						} else {
+							alert("失败")
+						}
+					}
+				});
+				function openTabs(obj){
+					$("li").remove("active");
+					$("li").remove("open");
+					//ifPar为0时是有父节点的子节点，ifPar为1时,是没有子节点的父节点
+					if($(this).attr("ifPar") ==0){
+						$(obj).addClass("active");
+						$(obj).parent().parent().addClass("active");
+						$(obj).parent().parent().addClass("open");
+					}else{
+						$(obj).addClass("active");
+					}
+				}
+				
+				
 				$('.easy-pie-chart.percentage').each(function(){
 					var $box = $(this).closest('.infobox');
 					var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
@@ -292,7 +348,7 @@
 			
 			})
 		</script>
-				<div style="display:none"><script src='../static/assets/js/stat.js'></script></div>
+		<div style="display:none"><script src='../static/assets/js/stat.js'></script></div>
 		
 </body>
 </html>

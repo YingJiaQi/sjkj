@@ -127,17 +127,15 @@
                                     </ul>
                                 </li>-->
                                 <li class="navbar-right hidden-xs">
-                                    <form action="http://www.baidu.com/baidu" target="_blank" class="navbar-form" role="search">
-                                        <input name=tn type=hidden value=baidu>
+                                    <form class="navbar-form" role="search">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name=word placeholder="请输入关键字">
+                                            <input type="text" class="form-control" placeholder="Search">
                                         </div>
-                                        <button type="submit" class="btn btn-search" style="padding-top:12px">
-                                            <img src="http://img.baidu.com/search/img/baidulogo_clarity_80_29.gif" alt="Baidu"  border="0">
+                                        <button type="submit" class="btn btn-search">
+                                            <i class="icon-search"></i>
+                                            <br/>站内搜索
                                         </button>
                                     </form>
-                                    <!-- 百度搜索框提示 -->  
-			        				<!-- <script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script> -->
                                 </li>
                                 <li>
                                     <div class="visible-xs col-sm-offset-5 col-sm-4">

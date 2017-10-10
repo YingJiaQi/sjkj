@@ -32,6 +32,8 @@ public class SystemComponents implements Serializable {
 	private String componentUrl;
 	@Column(name="parent_component")
 	private String parentComponent;
+	@Column(name="icon")
+	private String icon;//菜单所用图标
 	@Column(name="is_deleted")
 	private int isDeleted;
 	@Column(name="create_time")
@@ -39,6 +41,15 @@ public class SystemComponents implements Serializable {
 	@Column(name="update_time")
 	private Date updateTime;
 	
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+	public void setComponentPriority(int componentPriority) {
+		this.componentPriority = componentPriority;
+	}
 	public String getId() {
 		return id;
 	}

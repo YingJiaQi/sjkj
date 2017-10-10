@@ -48,7 +48,7 @@
                         </div>
                         <div class=" col-sm-3  hidden-xs" style="padding-top:1%;">
 								<shiro:guest>  
-                                	<a href="${pageContext.request.contextPath }/pre/user/pre_login" style="margin:6% 1% 8% 9%" class="btn btn-info">登录</a>
+                                	<a href="${pageContext.request.contextPath }/pre/user/pre_login" style="margin:6% 1% 8% 9%;opacity:0.8;" class="btn btn-info">登录</a>
 								</shiro:guest>
 								<shiro:user>
 									<a href="${pageContext.request.contextPath }/pre/user/pre_userCenter" target="_self"><img class="img-thumbnail img-responsive" style="margin-bottom:3%" alt="" src="${pageContext.request.contextPath }/static/images/Pre/common/defaultPic.jpg" width="70px" height="70px"> </a> 
@@ -140,7 +140,7 @@
                                         </div>
                                         <button type="submit" class="btn btn-search">
                                             <i class="icon-search"></i>
-                                            <br/>Search
+                                            <br/>站内搜索
                                         </button>
                                     </form>
                                 </li>

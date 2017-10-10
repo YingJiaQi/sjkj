@@ -1,4 +1,4 @@
-package com.sjkj.pojo.pre;
+package com.sjkj.pojo.common;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
@@ -10,7 +10,7 @@ import com.sjkj.pojo.BasePojo;
  *
  */
 @Table(name="tbl_c_books_comments")
-public class PreBookComments extends BasePojo{
+public class BookComments extends BasePojo{
 	@Column(name="book_id")
 	private String bookId;//评论书籍id（索引）
 	@Column(name="book_name")

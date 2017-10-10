@@ -133,13 +133,9 @@ public class UserServiceImpl implements UserService {
 				
 				Authority author = authorityDao.selectByPrimaryKey(authorityId);
 				//权限名
-				String moduleName = author.getName();
+				String moduleId = author.getComponentsId();
 				//根据权限名获取模块对象
-				Example example = new Example(SystemComponents.class);
-				example.createCriteria().andEqualTo("componentName", moduleName);
-				List<SystemComponents> selectByExample = systemComponentsDao.selectByExample(example);
-				//有权限则一定可以查到数据，查不到，说明数据错误
-				SystemComponents systemComponents = selectByExample.get(0);
+				SystemComponents systemComponents = systemComponentsDao.selectByPrimaryKey(moduleId);
 				scList.add(systemComponents);
 			}
 		}
@@ -150,15 +146,16 @@ public class UserServiceImpl implements UserService {
 			Map<String, Object> m = new HashMap<String, Object>();
 			m.put("id", c.getComponentCode());
 			if (StringUtils.isBlank(c.getParentComponent())) {
-				m.put("pId", 0);
+				m.put("pid", 0);
 			} else {
-				m.put("pId", c.getParentComponent());
+				m.put("pid", c.getParentComponent());
 			}
-			m.put("componentCode", c.getComponentCode());
-			m.put("name", c.getComponentName());
+			m.put("menuCode", c.getComponentCode());
+			m.put("menuName", c.getComponentName());
 			if (StringUtils.isNoneBlank(c.getComponentUrl())) {
 				m.put("page", c.getComponentUrl());
 			}
+			m.put("icon", c.getIcon());
 			menu.add(m);
 		}
 		return menu;

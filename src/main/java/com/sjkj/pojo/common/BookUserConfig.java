@@ -1,4 +1,4 @@
-package com.sjkj.pojo.pre;
+package com.sjkj.pojo.common;
 
 import java.math.BigDecimal;
 
@@ -7,12 +7,12 @@ import javax.persistence.Table;
 
 import com.sjkj.pojo.BasePojo;
 /**
- * 书籍与用户配置表
+ * 用户看书习惯配置表
  * @author YJQ
  *
  */
 @Table(name="tbl_c_books_user_config")
-public class PreBookUserConfig extends BasePojo{
+public class BookUserConfig extends BasePojo{
 	@Column(name="page_color")
 	private String pageColor;//页面颜色
 	@Column(name="font_size")
