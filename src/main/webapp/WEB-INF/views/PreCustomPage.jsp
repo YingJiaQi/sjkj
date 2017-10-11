@@ -9,7 +9,7 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 
 <!-- Bootstrap --> 
-<link href="${pageContext.request.contextPath }/static/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
+<link href="../static/assets/css/font-awesome.min.css" rel="stylesheet">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --> <!-- WARNING: Respond.js doesn't work if you view the page via file:// --> 
 <!--[if lt IE 9]>
      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -17,7 +17,7 @@
    <![endif]--> 
 <link href="${pageContext.request.contextPath }/static/css/Pre/PreCustomPage.css" rel="stylesheet"> 
 <script type="text/javascript" id="jqueryUrl" src="${pageContext.request.contextPath }/static/js/jquery-1.11.3.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" id="customJs" src="${pageContext.request.contextPath }/static/js/pages/pre/PreCustomPage.js"></script>
 <script type="text/javascript"  src="${pageContext.request.contextPath }/static/js/pages/pre/customPlug.js"></script>
 <script type="text/javascript"  src="${pageContext.request.contextPath }/static/js/webPagination.js"></script>

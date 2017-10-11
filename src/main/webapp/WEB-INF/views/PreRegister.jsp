@@ -16,11 +16,11 @@
      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
    <![endif]-->
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/jquery-1.11.3.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/static/js/bootstrap/css/bootstrap.min.css">
+<link href="${pageContext.request.contextPath }/static/assets/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/Pre/index.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/Pre/PreRegister.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/static/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/pages/pre/PreRegister.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/base64.js"></script>
 </head>

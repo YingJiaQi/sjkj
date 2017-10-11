@@ -9,11 +9,18 @@
 		<!-- basic styles -->
 		<link href="../static/assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="../static/assets/css/font-awesome.min.css" />
+
 		<!--[if IE 7]>
-		  <link rel="stylesheet" href="../static/assets/css/font-awesome-ie7.min.css" />
+		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+		<!-- page specific plugin styles -->
+		<link rel="stylesheet" href="../static/assets/css/jquery-ui-1.10.3.full.min.css" />
+		<link rel="stylesheet" href="../static/assets/css/datepicker.css" />
 		<link rel="stylesheet" href="../static/assets/css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="../static/assets\css\cyrillic.css" />
+		<link rel="stylesheet" href="../static/assets/css/colorbox.css" />
+		<!-- ace styles -->
+
 		<link rel="stylesheet" href="../static/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="../static/assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="../static/assets/css/ace-skins.min.css" />
@@ -21,7 +28,19 @@
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="../static/assets/css/ace-ie.min.css" />
 		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+
+		<script src="../static/assets/js/ace-extra.min.js"></script>
+
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="../static/assets/js/html5shiv.js"></script>
+		<script src="../static/assets/js/respond.min.js"></script>
+		<![endif]-->
 	</head>
 
 	<body>
@@ -35,12 +54,13 @@
 					<a href="#" class="navbar-brand">
 						<small>
 							<i class="icon-leaf"></i>
-							后台管理系统
+							日志分析展示系统
 						</small>
 					</a><!-- /.brand -->
 				</div><!-- /.navbar-header -->
 
 				<div class="navbar-header pull-right" role="navigation">
+					
 					<ul class="nav ace-nav">
 						<li class="grey">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -193,7 +213,7 @@
 
 								<li>
 									<a href="#">
-										<img src="../static/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+										<img src="assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Alex:</span>
@@ -210,7 +230,7 @@
 
 								<li>
 									<a href="#">
-										<img src="../static/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+										<img src="assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Susan:</span>
@@ -227,7 +247,7 @@
 
 								<li>
 									<a href="#">
-										<img src="../static/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+										<img src="assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
 										<span class="msg-body">
 											<span class="msg-title">
 												<span class="blue">Bob:</span>
@@ -253,7 +273,7 @@
 
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="../static/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临,</small>
 									Jason
@@ -271,7 +291,7 @@
 								</li>
 
 								<li>
-									<a href="#" >
+									<a href="#">
 										<i class="icon-user"></i>
 										个人资料
 									</a>
@@ -280,7 +300,7 @@
 								<li class="divider"></li>
 
 								<li>
-									<a href="#" onclick="loginOut();">
+									<a href="#">
 										<i class="icon-off"></i>
 										退出
 									</a>
@@ -338,143 +358,7 @@
 					</div><!-- #sidebar-shortcuts -->
 
 					<ul class="nav nav-list" id="menu_list">
-						<!-- <li>
-							<a href="bs_index">
-								<i class="icon-dashboard"></i>
-								<span class="menu-text"> 控制台 </span>
-							</a>
-						</li>
-						<li>
-							<a href="#" class="dropdown-toggle">
-								<i class="icon-key"></i>
-								<span class="menu-text"> 权限管理 </span>
-
-								<b class="arrow icon-angle-down"></b>
-							</a>
-
-							<ul class="submenu">
-								<li >
-									<a href="bs_administrate">
-										<i class="icon-double-angle-right"></i>
-										管理员
-									</a>
-								</li>
-
-								<li>
-									<a href="bs_authority">
-										<i class="icon-double-angle-right"></i>
-										权限分配
-									</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="bs_userManager">
-								<i class="icon-user"></i>
-								<span class="menu-text"> 用户管理 </span>
-							</a>
-						</li>
-						<li>
-							<a href="#" class="dropdown-toggle">
-								<i class="icon-desktop"></i>
-								<span class="menu-text"> 内容管理 </span>
-
-								<b class="arrow icon-angle-down"></b>
-							</a>
-
-							<ul class="submenu">
-
-								<li>
-									<a href="bs_articalManager">
-										<i class="icon-double-angle-right"></i>
-										文章管理
-									</a>
-								</li>
-								<li>
-									<a href="bs_commodityManager">
-										<i class="icon-double-angle-right"></i>
-										商品管理
-									</a>
-								</li>
-								<li >
-									<a href="bs_specificationParamManager">
-										<i class="icon-double-angle-right"></i>
-										规格参数
-									</a>
-								</li>
-								<li>
-									<a href="bs_videoManager">
-										<i class="icon-double-angle-right"></i>
-										视频管理
-									</a>
-								</li>
-								<li>
-									<a href="bs_advManager">
-										<i class="icon-double-angle-right"></i>
-										广告管理
-									</a>
-								</li>
-								<li >
-									<a href="bs_contentAssociated">
-										<i class="icon-double-angle-right"></i>
-										内容关联
-									</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="#" class="dropdown-toggle">
-								<i class="icon-desktop"></i>
-								<span class="menu-text">书籍管理</span>
-
-								<b class="arrow icon-angle-down"></b>
-							</a>
-
-							<ul class="submenu">
-								<li>
-									<a href="bs_book_Maintain">
-										<i class="icon-double-angle-right"></i>
-										书籍维护
-									</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="bs_calendar">
-								<i class="icon-calendar"></i>
-
-								<span class="menu-text">
-									日历
-									<span class="badge badge-transparent tooltip-error" title="2&nbsp;Important&nbsp;Events">
-										<i class="icon-warning-sign red bigger-130"></i>
-									</span>
-								</span>
-							</a>
-						</li>
-						<li >
-							<a href="bs_image">
-								<i class="icon-picture"></i>
-								<span class="menu-text"> 相册 </span>
-							</a>
-						</li>
-						<li>
-							<a href="#" class="dropdown-toggle">
-								<i class="icon-desktop"></i>
-								<span class="menu-text"> 系统管理 </span>
-
-								<b class="arrow icon-angle-down"></b>
-							</a>
-
-							<ul class="submenu">
-								<li>
-									<a href="bs_dataDicManager">
-										<i class="icon-double-angle-right"></i>
-										数据字典配置
-									</a>
-								</li>
-							</ul>
-						</li> -->
-						
+						<!-- 菜单list内容 -->
 					</ul><!-- /.nav-list -->
 
 					<div class="sidebar-collapse" id="sidebar-collapse">

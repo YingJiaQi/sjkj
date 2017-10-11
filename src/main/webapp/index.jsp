@@ -17,7 +17,7 @@
         <!-- custom CSS -->
         <link href="${pageContext.request.contextPath }/static/css/Pre/main.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath }/static/css/Pre/index.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="${pageContext.request.contextPath }/static/bootstrap/font-awesome.css" type="text/css">
+        <link href="../static/assets/css/font-awesome.min.css" rel="stylesheet">
         <!-- END custom CSS -->
         <!--<![endif]-->
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

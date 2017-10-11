@@ -1,56 +1,42 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-<jsp:include page="../../common/bs_header.jsp"/>
-<div class="main-content">
-	<div class="breadcrumbs" id="breadcrumbs">
+<!--------------------------------- top	start ------------------------------------------------------------------------------------>
+	<!-- <div class="breadcrumbs" id="breadcrumbs">
 		<script type="text/javascript">
 			try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
 		</script>
-
 		<ul class="breadcrumb">
 			<li>
-				<i class="icon-home home-icon"></i>
-				<a href="#">首页</a>
+				<i class="icon-home home-icon"></i><a href="#">首页</a>
 			</li>
-			<li class="active">控制台</li>
-		</ul><!-- .breadcrumb -->
-	</div>
-
+			<li class="active">书籍管理</li>
+		</ul>
+	</div> -->
+<!--------------------------------- top	end ------------------------------------------------------------------------------------>
 	<div class="page-content">
 		<div class="page-header">
 			<h1>
+			内容管理
+			<small>
+				<i class="icon-double-angle-right"></i>
 				书籍管理
-			</h1>
+			</small>
+		</h1>
 		</div><!-- /.page-header -->
 
-		<div class="row">
 		<!--------------------------------- body start------------------------------------>
-			<div class="row">
-				<div class="col-xs-12">
-					<table id="grid-table"></table>
-					<div id="grid-pager"></div>
-					<script type="text/javascript">
-						var $path_base = "/";//this will be used in gritter alerts containing images
-					</script>
-				</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<table id="grid-table"></table>
+				<div id="grid-pager"></div>
+				<script type="text/javascript">
+					var $path_base = "/";//this will be used in gritter alerts containing images
+				</script>
 			</div>
 		<!--------------------------------- body end-------------------------------------->
 		</div><!-- /.row -->
 	</div><!-- /.page-content -->
-</div><!-- /.main-content -->
 <!--------------------------------- 引入js start-------------------------------------->
 <!--[if !IE]> -->
-<script type="text/javascript">
-	window.jQuery || document.write("<script src='../static/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-</script>
-<!-- <![endif]-->
-<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='../static/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
-<script type="text/javascript">
-	if("ontouchend" in document) document.write("<script src='../static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-</script>
 <script src="../static/assets/js/bootstrap.min.js"></script>
 <script src="../static/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
 <script src="../static/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
@@ -357,4 +343,3 @@
 	
 	});
 </script>
-<jsp:include page="../../common/bs_footer.jsp"/>

@@ -12,7 +12,7 @@
         <meta name="HandheldFriendly" content="true">
         <meta content="telephone=no" name="format-detection">
         <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-		<link href="${pageContext.request.contextPath}/static/bootstrap/font-awesome.css" rel="stylesheet">
+		<link href="${pageContext.request.contextPath }/static/assets/css/font-awesome.min.css" rel="stylesheet">
         <!--[if (gt IE 9)|!(IE)]><!-->
         <!-- custom CSS -->
         <link href="${pageContext.request.contextPath }/static/css/Pre/main.css" rel="stylesheet" type="text/css" />
@@ -294,7 +294,7 @@
 
 <!--------------------------------------------------------- JS ------------------------------------------------------------->
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath }/static/bootstrap/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/extendPagination.js"></script><!-- 分页插件 -->
 <script src="${pageContext.request.contextPath }/static/js/pages/pre/pre_note.js"></script><!-- 日记JS -->
 <!--------------------------------------------------------- FOOTER  --------------------------------------------------------->

@@ -340,7 +340,7 @@
 				 window.jQuery || document.write("<script src='${pageContext.request.contextPath }/static/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 			</script>
 		<![endif]-->
-		<script src="${pageContext.request.contextPath }/static/bootstrap/bootstrap.js"></script>
+		<script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
 		<script src="${pageContext.request.contextPath }/static/js/pages/pre/pre_userCenter.js"></script>
     </body>
 </html>

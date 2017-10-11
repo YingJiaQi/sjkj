@@ -1,6 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-<jsp:include page="../../common/bs_header.jsp"/>
-<div class="main-content">
+
 <!--------------------------------- top	start ------------------------------------------------------------------------------------>
 	<div class="breadcrumbs" id="breadcrumbs">
 		<script type="text/javascript">
@@ -39,22 +38,7 @@
 		</div>
 	<!--------------------------------- body end-------------------------------------->
 	</div>
-</div>
 <!--------------------------------- 引入js start-------------------------------------->
-<!--[if !IE]> -->
-<script type="text/javascript">
-	window.jQuery || document.write("<script src='../static/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-</script>
-<!-- <![endif]-->
-<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='../static/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
-<script type="text/javascript">
-	if("ontouchend" in document) document.write("<script src='../static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-</script>
-<script src="../static/assets/js/bootstrap.min.js"></script>
 <script src="../static/assets/js/date-time/bootstrap-datepicker.min.js"></script>
 <script src="../static/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
 <script src="../static/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
@@ -315,4 +299,3 @@
 </script>
 
 <!--------------------------------- content	end ------------------------------------------------------------------------------------>
-<jsp:include page="../../common/bs_footer.jsp"/>

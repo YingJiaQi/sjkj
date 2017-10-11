@@ -5,6 +5,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -139,7 +141,27 @@ public class UserServiceImpl implements UserService {
 				scList.add(systemComponents);
 			}
 		}
-		
+		//排序
+		Collections.sort(scList, new Comparator<SystemComponents>(){  
+			  
+            /*  
+             * int compare(SystemComponents o1, SystemComponents o2) 返回一个基本类型的整型，  
+             * 返回负数表示：o1 小于o2，  
+             * 返回0 表示：o1和o2相等，  
+             * 返回正数表示：o1大于o2。  
+             */  
+            public int compare(SystemComponents o1, SystemComponents o2) {  
+              
+                //按照component_priority升序排列  
+                if(o1.getComponentPriority() > o2.getComponentPriority()){  
+                    return 1;  
+                }  
+                if(o1.getComponentPriority() == o2.getComponentPriority()){  
+                    return 0;  
+                }  
+                return -1;  
+            }  
+        });   
 		// 循环封装数据
 		List<Map<String, Object>> menu = new ArrayList<Map<String, Object>>();
 		for (SystemComponents c : scList) {

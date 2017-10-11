@@ -12,7 +12,7 @@
         <meta name="HandheldFriendly" content="true">
         <meta content="telephone=no" name="format-detection">
         <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap/bootstrap.css" type="text/css" >
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/static/assets/css/bootstrap.css" type="text/css" >
         <!--[if (gt IE 9)|!(IE)]><!-->
         <!-- custom CSS -->
         <!-- END custom CSS -->
@@ -119,7 +119,7 @@
 	<![endif]-->
     <!-- 自定义JS -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/pages/pre/pre_write_node.js"></script>
-    <script src="${pageContext.request.contextPath }/static/bootstrap/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
 </body>
 
 </html>
