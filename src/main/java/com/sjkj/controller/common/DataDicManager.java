@@ -29,10 +29,10 @@ public class DataDicManager {
 		return new ResponseEntity<Object>(dataDicService.getDataDicList(pageBean), HttpStatus.OK);
 	}
 	/**
-	 * 添加数据字典数据
+	 * 添加or更新数据字典数据
 	 */
-	@RequestMapping(value = "/addDataDic", method = RequestMethod.POST)
-	public ResponseEntity<?> addDataDic(DataDic DataDic) {
-		return new ResponseEntity<Object>(dataDicService.addDataDic(DataDic), HttpStatus.OK);
+	@RequestMapping(value = "/operateDataDic", method = RequestMethod.POST)
+	public ResponseEntity<?> addDataDic(DataDic dataDic) {
+		return new ResponseEntity<Object>(dataDicService.operateDataDic(dataDic), HttpStatus.OK);
 	}
 }

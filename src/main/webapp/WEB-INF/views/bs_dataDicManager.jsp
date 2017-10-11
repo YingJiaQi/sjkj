@@ -1,28 +1,15 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 
-<!--------------------------------- top	start ------------------------------------------------------------------------------------>
-	<div class="breadcrumbs" id="breadcrumbs">
-		<script type="text/javascript">
-			try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-		</script>
-		<ul class="breadcrumb">
-			<li>
-				<i class="icon-home home-icon"></i><a href="#">首页</a>
-			</li>
-			<li class="active">系统管理</li>
-		</ul>
-	</div>
-<!--------------------------------- top	end ------------------------------------------------------------------------------------>
 <!--------------------------------- content	start ------------------------------------------------------------------------------------>
 	<div class="page-content">
 	<!--------------------------------- top start--------------------------------------->
 		<div class="page-header">
 			<h1>
-				数据字典
-				<!-- <small>
+				系统管理
+				<small>
 					<i class="icon-double-angle-right"></i>
-					 查看
-				</small> -->
+					 数据字典
+				</small>
 			</h1>
 		</div>
 	<!--------------------------------- top end--------------------------------------->
@@ -67,11 +54,12 @@
 					}
 				},
 				{name:'id',index:'id', hidden:true},
-				{name:'docCode',index:'docCode', width:120, editable:true},
-				{name:'docName',index:'docName',width:120, editable:true,editoptions:{size:"20",maxlength:"50"}},
-				{name:'belongCode',index:'belongCode', width:80, editable: true},
-				{name:'belongName',index:'belongName', width:100, editable: true},
-				{name:'createTime',index:'createTime', width:100, editable:false, sorttype:"date"},
+				{name:'docCode',index:'docCode',search:true,searchoptions: {sopt:['eq','ne','bw','in','ni','ew','en','cn','nc']}, width:120, editable:true},
+				{name:'docName',index:'docName',search:true,searchoptions: {sopt:['eq','ne','bw','in','ni','ew','en','cn','nc']},width:120, editable:true,editoptions:{size:"20",maxlength:"50"}},
+				{name:'belongCode',index:'belongCode',search:true, searchoptions: {sopt:['eq','ne','bw','in','ni','ew','en','cn','nc']},width:80, editable: true},
+				{name:'belongName',index:'belongName',search:true,searchoptions: {sopt:['eq','ne','bw','in','ni','ew','en','cn','nc']}, width:100, editable: true},
+				{name:'createTime',index:'createTime',search:true,searchoptions: {sopt:['eq','ne','bw','in','ni','ew','en','cn','nc']},formatter:'date',
+					formatoptions:{srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s'},align:'center',sortable:true,width:120},
 			], 
 			viewrecords : true,
 			rowNum:10,
@@ -95,8 +83,9 @@
 				}, 0);
 			},
 	
-			editurl: "../data/dic/addDataDic",//nothing is saved
+			editurl: "../data/dic/operateDataDic",//nothing is saved
 			autowidth: true
+			
 		});
 		//navButtons
 		jQuery(grid_selector).jqGrid('navGrid',pager_selector,

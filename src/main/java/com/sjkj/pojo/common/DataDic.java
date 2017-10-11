@@ -3,6 +3,8 @@ package com.sjkj.pojo.common;
 import javax.persistence.Column;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Transient;
+
 import com.sjkj.pojo.BasePojo;
 /**
  * 数据字典
@@ -19,6 +21,7 @@ public class DataDic extends BasePojo{
 	private String belongCode;//字典码（孩子）
 	@Column(name="belong_name")
 	private String belongName;//数据名称
+	
 	public String getBelongName() {
 		return belongName;
 	}

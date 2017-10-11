@@ -16,6 +16,6 @@ public interface DataDicService {
 	/**
 	 * 添加数据字典数据
 	 */
-	Map<String, Object> addDataDic(DataDic dataDic);
+	Map<String, Object> operateDataDic(DataDic dataDic);
 
 }

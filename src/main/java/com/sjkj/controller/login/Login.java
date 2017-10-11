@@ -9,9 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
-import com.sjkj.pojo.User;
-import com.sjkj.pojo.pre.PreUser;
 import com.sjkj.service.user.UserService;
 import com.sjkj.utils.Base64;
 

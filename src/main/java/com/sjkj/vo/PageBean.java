@@ -1,62 +1,11 @@
 package com.sjkj.vo;
 
-import com.alibaba.fastjson.annotation.JSONField;
-
-
 public class PageBean {
 	
 	private Integer page;
 	private Integer rows;
-	private String startTime;
-	private String endTime;
-	private Integer isDeleted=0;
 	private String id;
-	
-	private String key;
-	private String key2;
-	private String key3;
-	private Integer key4;
-	
-	public String getKey() {
-		return key;
-	}
-	public void setKey(String key) {
-		this.key = key;
-	}
-	public String getKey2() {
-		return key2;
-	}
-	public void setKey2(String key2) {
-		this.key2 = key2;
-	}
-	public String getKey3() {
-		return key3;
-	}
-	public void setKey3(String key3) {
-		this.key3 = key3;
-	}
-	
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	public String getStartTime() {
-		return startTime;
-	}
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	public String getEndTime() {
-		return endTime;
-	}
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	
+	private String filters;//搜索的参数与规则
 	public Integer getPage() {
 		return page;
 	}
@@ -69,17 +18,17 @@ public class PageBean {
 	public void setRows(Integer rows) {
 		this.rows = rows;
 	}
-	public Integer getIsDeleted() {
-		return isDeleted;
+	public String getId() {
+		return id;
 	}
-	public void setIsDeleted(Integer isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public Integer getKey4() {
-		return key4;
+	public String getFilters() {
+		return filters;
 	}
-	public void setKey4(Integer key4) {
-		this.key4 = key4;
+	public void setFilters(String filters) {
+		this.filters = filters;
 	}
 	
 }
