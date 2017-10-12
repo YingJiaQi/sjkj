@@ -67,7 +67,7 @@
 					}
 				},
 				{name:'id',index:'id', hidden:true},
-				{name:'bookName',index:'bookName', width:120, editable: false},
+				{name:'bookName',index:'bookName', width:120, editable:true},
 				{name:'bookAuthor',index:'bookAuthor',width:80, editable:true,editoptions:{size:"20",maxlength:"50"}},
 				{name:'belongCategory',index:'belongCategory', width:50, editable: true,edittype:"select",editoptions:{dataUrl:"从数据字典里获取数据"},formatter: reverseGender},
 				{name:'sore',index:'sore', width:30, editable: true},
@@ -105,7 +105,7 @@
 				}, 0);
 			},
 	
-			editurl: "../preUser/operatePreUser",//nothing is saved
+			editurl: "../back/bookMaintain/operateBook",//nothing is saved
 			/*caption: "jqGrid with inline editing",*/
 			autowidth: true
 	
