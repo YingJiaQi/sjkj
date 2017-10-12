@@ -10,6 +10,8 @@ import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONArray;
@@ -45,47 +47,49 @@ public class DataDicServiceImpl implements DataDicService {
 			}
 		}
 		PageHelper.startPage(pageBean.getPage(), pageBean.getRows());
-		Example example = new Example(DataDic.class);
-		example.createCriteria().andEqualTo("isDel", 0);
+		StringBuffer sb = new StringBuffer(" 1 ");
 		for(int j=0;j<mlist.size();j++){
 			Map<String, String> map = mlist.get(j);
+			String field = map.get("field");
+			if(StringUtils.equals("docCode", field)){
+				field = "doc_code";
+			}else if(StringUtils.equals("docName", field)){
+				field = "doc_name";
+			}else if(StringUtils.equals("belongCode", field)){
+				field = "belong_code";
+			}else if(StringUtils.equals("belongName", field)){
+				field = "belong_name";
+			}else if(StringUtils.equals("createTime", field)){
+				field = "create_time";
+			}
+			String data = '"'+map.get("data")+'"';
 			if(StringUtils.equals("eq", map.get("op"))){//等于
-				example.createCriteria().andEqualTo(map.get("field"), map.get("data"));
+				sb.append(" and ").append(field).append("=").append(data);
 			}
 			if(StringUtils.equals("ne", map.get("op"))){//不等于
-				example.createCriteria().andNotEqualTo(map.get("field"), map.get("data"));
+				sb.append(" and ").append(field).append("!=").append(data);
 			}
 			if(StringUtils.equals("bw", map.get("op"))){//开始于，暂时用途大于
-				example.createCriteria().andGreaterThan(map.get("field"), map.get("data"));
+				sb.append(" and ").append(field).append(">").append(data);
 			}
 			if(StringUtils.equals("in", map.get("op"))){//在参数内,多个参数用逗号相隔
-				List list = new ArrayList();
-				String[] split = map.get("data").split(",");
-				for(int k=0;k<split.length;k++){
-					list.add(split[k]);
-				}
-				example.createCriteria().andIn(map.get("field"), list);
+				sb.append(" and ").append(field).append(" in(").append(map.get("data")).append(")");
 			}
 			if(StringUtils.equals("ni", map.get("op"))){//不在参数内,多个参数用逗号相隔
-				List list = new ArrayList();
-				String[] split = map.get("data").split(",");
-				for(int k=0;k<split.length;k++){
-					list.add(split[k]);
-				}
-				example.createCriteria().andNotIn(map.get("field"), list);
+				sb.append(" and ").append(field).append(" not in(").append(map.get("data")).append(")");
 			}
 			if(StringUtils.equals("ew", map.get("op"))){//对束于，用作小于
-				example.createCriteria().andLessThan(map.get("field"), map.get("data"));
+				sb.append(" and ").append(field).append("<").append(data);
 			}
 			if(StringUtils.equals("cn", map.get("op"))){//包含
-				example.createCriteria().andLike(map.get("field"), "%"+map.get("data")+"%");
+				sb.append(" and ").append(field).append(" like ").append("%"+data+"%");
 			}
 			if(StringUtils.equals("nc", map.get("op"))){//不包含
-				example.createCriteria().andNotLike(map.get("field"), "%"+map.get("data")+"%");
+				sb.append(" and ").append(field).append(" not like ").append("%"+data+"%");
 			}
 		}
-		List<DataDic> selectByExample = dataDicDao.selectByExample(example);
-		PageInfo<DataDic> po = new PageInfo<DataDic>(selectByExample);
+		List<DataDic> dlist = dataDicDao.getDataByCondition(sb.toString());
+		PageInfo<DataDic> po = new PageInfo<DataDic>(dlist);
 		result.put("records", po.getTotal());
 		result.put("page", pageBean.getPage());
 		result.put("total", po.getTotal()/pageBean.getRows());//总页数
