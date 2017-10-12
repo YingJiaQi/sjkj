@@ -54,7 +54,8 @@
 				{name:'userEmail',index:'userEmail', width:120, editable: true,editoptions:{size:"20",maxlength:"50"}},
 				{name:'birthday',index:'birthday',width:140, editable:true, sorttype:"date",unformat: pickDate},
 				{name:'privilegeLevel',index:'privilegeLevel',width:80, editable:true, sorttype:"int"},
-				{name:'lastLoginTime',index:'lastLoginTime',width:130, editable:false, sorttype:"date"},
+				{name:'lastLoginTime',index:'lastLoginTime',width:130, editable:false, formatter:'date',
+					formatoptions:{srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s'},align:'center',},
 				{name:'loginTimes',index:'loginTimes', width:70, editable: false,sorttype:"int"},
 			], 
 	
@@ -80,7 +81,7 @@
 				}, 0);
 			},
 	
-			editurl: "../preUser/operatePreUser",//nothing is saved
+			editurl: "../pre/operatePreUser",//nothing is saved
 			/*caption: "jqGrid with inline editing",*/
 			autowidth: true
 	

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace： 名称空间 可以随意命名 -->
+<mapper namespace="com.sjkj.dao.pre.PreUserDao">
+	
+	<select id="getDataByCondition" resultType="PreUser"  parameterType="java.lang.String">
+		select * from tbl_pre_user where is_deleted = 0
+		<if test="condition != null and condition != ''">
+			and 1= ${condition}
+		</if>
+	</select>
+</mapper>

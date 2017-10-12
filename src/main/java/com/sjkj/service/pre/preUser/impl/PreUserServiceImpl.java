@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -26,6 +27,7 @@ import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.abel533.entity.Example;
 import com.github.pagehelper.PageHelper;
@@ -192,10 +194,76 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 	@Override
 	public Map<String, Object> getUserList(PageBean pageBean) {
 		Map<String, Object> result = new HashMap<String, Object>();
+		String filters = pageBean.getFilters();
+		List<Map<String,String>> mlist = new ArrayList<Map<String,String>>();//存储查询规则
+		if(StringUtils.isNoneBlank(filters)){
+			JSONObject jo = JSONObject.parseObject(filters);
+			JSONArray ja = jo.getJSONArray("rules");
+			Iterator<Object> iterator = ja.iterator();
+			while(iterator.hasNext()){
+				Map<String,String> map = new HashMap<String,String>();
+				JSONObject parseObject = JSONObject.parseObject(iterator.next()+"");
+				map.put("field", parseObject.get("field")+"");
+				map.put("op", parseObject.get("op")+"");
+				map.put("data", parseObject.get("data")+"");
+				mlist.add(map);
+			}
+		}
 		PageHelper.startPage(pageBean.getPage(), pageBean.getRows());
-		Example example = new Example(PreUser.class);
-		example.createCriteria().andEqualTo("isDel", 0);
-		List<PreUser> uList = preUserDao.selectByExample(example);
+		StringBuffer sb = new StringBuffer(" 1 ");
+		for(int j=0;j<mlist.size();j++){
+			Map<String, String> map = mlist.get(j);
+			String field = map.get("field");
+			if(StringUtils.equals("userCode", field)){
+				field = "user_code";
+			}else if(StringUtils.equals("userPassword", field)){
+				field = "user_password";
+			}else if(StringUtils.equals("userName", field)){
+				field = "user_name";
+			}else if(StringUtils.equals("userGender", field)){
+				field = "user_gender";
+			}else if(StringUtils.equals("userMobile", field)){
+				field = "user_mobile";
+			}else if(StringUtils.equals("userEmail", field)){
+				field = "user_email";
+			}else if(StringUtils.equals("birthday", field)){
+				field = "birthday";
+			}else if(StringUtils.equals("privilegeLevel", field)){
+				field = "privilege_level";
+			}else if(StringUtils.equals("lastLoginTime", field)){
+				field = "last_login_time";
+			}else if(StringUtils.equals("loginTimes", field)){
+				field = "login_times";
+			}else if(StringUtils.equals("createTime", field)){
+				field = "create_time";
+			}
+			String data = '"'+map.get("data")+'"';
+			if(StringUtils.equals("eq", map.get("op"))){//等于
+				sb.append(" and ").append(field).append("=").append(data);
+			}
+			if(StringUtils.equals("ne", map.get("op"))){//不等于
+				sb.append(" and ").append(field).append("!=").append(data);
+			}
+			if(StringUtils.equals("bw", map.get("op"))){//开始于，暂时用途大于
+				sb.append(" and ").append(field).append(">").append(data);
+			}
+			if(StringUtils.equals("in", map.get("op"))){//在参数内,多个参数用逗号相隔
+				sb.append(" and ").append(field).append(" in(").append(map.get("data")).append(")");
+			}
+			if(StringUtils.equals("ni", map.get("op"))){//不在参数内,多个参数用逗号相隔
+				sb.append(" and ").append(field).append(" not in(").append(map.get("data")).append(")");
+			}
+			if(StringUtils.equals("ew", map.get("op"))){//对束于，用作小于
+				sb.append(" and ").append(field).append("<").append(data);
+			}
+			if(StringUtils.equals("cn", map.get("op"))){//包含
+				sb.append(" and ").append(field).append(" like ").append("%"+data+"%");
+			}
+			if(StringUtils.equals("nc", map.get("op"))){//不包含
+				sb.append(" and ").append(field).append(" not like ").append("%"+data+"%");
+			}
+		}
+		List<PreUser> uList = preUserDao.getDataByCondition(sb.toString());
 		PageInfo<PreUser> po = new PageInfo<PreUser>(uList);
 		result.put("records", po.getTotal());
 		result.put("page", pageBean.getPage());

@@ -34,7 +34,7 @@ public interface PreUserService {
 	Map<String, Object> getUserList(PageBean pageBean);
 	/**
 	 * 操作用户数据
-	 * @param user
+	 * @param request
 	 * @return
 	 */
 	Map<String, String> operatePreUser(HttpServletRequest request);

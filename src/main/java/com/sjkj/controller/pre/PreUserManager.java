@@ -71,7 +71,7 @@ public class PreUserManager {
 		return new ResponseEntity<Object>(preUserService.getUserList(pageBean), HttpStatus.OK);
 	}
 	/**
-	 * 操作用户数据
+	 * 后台操作前台注册用户数据
 	 * @param user
 	 * @return
 	 */
