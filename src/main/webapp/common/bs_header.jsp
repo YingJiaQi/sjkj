@@ -54,7 +54,7 @@
 					<a href="#" class="navbar-brand">
 						<small>
 							<i class="icon-leaf"></i>
-							日志分析展示系统
+							佳奇网络
 						</small>
 					</a><!-- /.brand -->
 				</div><!-- /.navbar-header -->

@@ -1,19 +1,33 @@
 package com.sjkj.service.back.impl;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.sjkj.pojo.User;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.sjkj.dao.back.BookMaintainDao;
 import com.sjkj.pojo.common.BookDetail;
+import com.sjkj.pojo.common.DataDic;
 import com.sjkj.service.back.BookMaintainService;
-import com.sjkj.utils.times.DateUtil;
-
+import com.sjkj.vo.PageBean;
+@Service
 public class BookMaintainServiceImpl implements BookMaintainService {
-
+	@Autowired
+	private BookMaintainDao bookMaintainDao;
 	@Override
 	public Map<String, Object> operateBook(HttpServletRequest param) {
 		Map<String, Object> result = new HashMap<String,Object>();
@@ -25,42 +39,170 @@ public class BookMaintainServiceImpl implements BookMaintainService {
 			result = deleteBookById(bd);
 			return result;
 		}
-		String bookName = param.getParameter("bookName");
-		String bookAuthor = param.getParameter("bookAuthor");
-		String belongCategory = param.getParameter("belongCategory");
-		String sore = param.getParameter("sore");
-		String readTimes = param.getParameter("readTimes");
-		String agreeTimes = param.getParameter("agreeTimes");
-		String againstTimes = param.getParameter("againstTimes");
-		String collectTimes = param.getParameter("collectTimes");
-		String buyTimes = param.getParameter("buyTimes");
-		String bookSizes = param.getParameter("bookSizes");
-		String price = param.getParameter("price");
-		String isDone = param.getParameter("isDone");
-		String isShare = param.getParameter("isShare");
-		String createTime = param.getParameter("createTime");
-		try {
-			////;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		} catch (Exception e) {
-			e.printStackTrace();
+		bd.setBookName(param.getParameter("bookName"));
+		bd.setBookAuthor(param.getParameter("bookAuthor"));
+		bd.setBelongCategory(param.getParameter("belongCategory"));
+		if(StringUtils.isNoneBlank(param.getParameter("sore"))){
+			bd.setSore(new BigDecimal(param.getParameter("sore")));
+		}
+		if(StringUtils.isNoneBlank(param.getParameter("readTimes"))){
+			bd.setReadTimes(Integer.parseInt(param.getParameter("readTimes")));
+		}
+		if(StringUtils.isNoneBlank(param.getParameter("agreeTimes"))){
+			bd.setAgreeTimes(Integer.parseInt(param.getParameter("agreeTimes")));
+		}
+		if(StringUtils.isNoneBlank(param.getParameter("againstTimes"))){
+			bd.setAgainstTimes(Integer.parseInt(param.getParameter("againstTimes")));
+		}
+		if(StringUtils.isNoneBlank(param.getParameter("collectTimes"))){
+			bd.setCollectTimes(Integer.parseInt(param.getParameter("collectTimes")));
+		}
+		if(StringUtils.isNoneBlank(param.getParameter("buyTimes"))){
+			bd.setBuyTimes(Integer.parseInt(param.getParameter("buyTimes")));
+		}
+		if(StringUtils.isNoneBlank(param.getParameter("bookSizes"))){
+			bd.setBookSizes(new BigDecimal(param.getParameter("bookSizes")));
+		}
+		if(StringUtils.isNoneBlank(param.getParameter("price"))){
+			bd.setPrice(new BigDecimal(param.getParameter("price")));
+		}
+		if(StringUtils.isNoneBlank(param.getParameter("isDone"))){
+			bd.setIsDone(Integer.parseInt(param.getParameter("isDone")));
+		}
+		if(StringUtils.isNoneBlank(param.getParameter("isShare"))){
+			if(StringUtils.equals(param.getParameter("isShare"), "yes")){
+				bd.setIsShare(1);
+			}else{
+				bd.setIsShare(0);
+			}
 		}
 		if(StringUtils.equals(oper, "edit")){
 			bd.setId(id);
-			result = updateUser(bd);
+			result = updateBook(bd);
 		}
 		if(StringUtils.equals(oper, "add")){
-			result = addUser(bd);
+			result = addBook(bd);
 		}
 		return result;
 	}
+	//删除记录
 	public Map<String, Object> deleteBookById(BookDetail bd) {
-		return null;
+		Map<String, Object> map = new HashMap<String, Object>();
+		BookDetail selectByPrimaryKey = bookMaintainDao.selectByPrimaryKey(bd.getId());
+		selectByPrimaryKey.setIsDel(1);
+		selectByPrimaryKey.setUpdateTime(new Date());
+		bookMaintainDao.updateByPrimaryKey(selectByPrimaryKey);
+		map.put("msg", "删除记录成功");
+		map.put("success", "true");
+		return map;
 	}
-	public Map<String, Object> updateUser(BookDetail bd) {
-		return null;
+	//更新数据
+	public Map<String, Object> updateBook(BookDetail bd) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		BookDetail selectByPrimaryKey = bookMaintainDao.selectByPrimaryKey(bd.getId());
+		bd.setCreateTime(selectByPrimaryKey.getCreateTime());
+		bd.setUpdateTime(new Date());
+		bd.setIsDel(selectByPrimaryKey.getIsDel());
+		bookMaintainDao.updateByPrimaryKey(selectByPrimaryKey);
+		map.put("msg", "更新记录成功");
+		map.put("success", "true");
+		return map;
 	}
-	public Map<String, Object> addUser(BookDetail bd) {
-		return null;
+	//添加数据
+	public Map<String, Object> addBook(BookDetail bd) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		bd.setCreateTime(new Date());
+		bd.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		bd.setIsDel(0);
+		bd.setUpdateTime(new Date());
+		bookMaintainDao.insert(bd);
+		map.put("msg", "添加记录成功");
+		map.put("success", "true");
+		return map;
+	}
+	@Override
+	public Map<String, Object> getBookList(PageBean pageBean) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		String filters = pageBean.getFilters();
+		List<Map<String,String>> mlist = new ArrayList<Map<String,String>>();//存储查询规则
+		if(StringUtils.isNoneBlank(filters)){
+			JSONObject jo = JSONObject.parseObject(filters);
+			JSONArray ja = jo.getJSONArray("rules");
+			Iterator<Object> iterator = ja.iterator();
+			while(iterator.hasNext()){
+				Map<String,String> map = new HashMap<String,String>();
+				JSONObject parseObject = JSONObject.parseObject(iterator.next()+"");
+				map.put("field", parseObject.get("field")+"");
+				map.put("op", parseObject.get("op")+"");
+				map.put("data", parseObject.get("data")+"");
+				mlist.add(map);
+			}
+		}
+		PageHelper.startPage(pageBean.getPage(), pageBean.getRows());
+		StringBuffer sb = new StringBuffer(" 1 ");
+		for(int j=0;j<mlist.size();j++){
+			Map<String, String> map = mlist.get(j);
+			String field = map.get("field");
+			if(StringUtils.equals("bookName", field)){
+				field = "book_name";
+			}else if(StringUtils.equals("bookAuthor", field)){
+				field = "book_author";
+			}else if(StringUtils.equals("belongCategory", field)){
+				field = "belong_category";
+			}else if(StringUtils.equals("sore", field)){
+				field = "sore";
+			}else if(StringUtils.equals("readTimes", field)){
+				field = "read_times";
+			}else if(StringUtils.equals("agreeTimes", field)){
+				field = "agree_times";
+			}else if(StringUtils.equals("againstTimes", field)){
+				field = "against_times";
+			}else if(StringUtils.equals("collectTimes", field)){
+				field = "collect_times";
+			}else if(StringUtils.equals("buyTimes", field)){
+				field = "buy_times";
+			}else if(StringUtils.equals("bookSizes", field)){
+				field = "book_sizes";
+			}else if(StringUtils.equals("price", field)){
+				field = "price";
+			}else if(StringUtils.equals("isDone", field)){
+				field = "is_done";
+			}else if(StringUtils.equals("isShare", field)){
+				field = "is_share";
+			}
+			String data = '"'+map.get("data")+'"';
+			if(StringUtils.equals("eq", map.get("op"))){//等于
+				sb.append(" and ").append(field).append("=").append(data);
+			}
+			if(StringUtils.equals("ne", map.get("op"))){//不等于
+				sb.append(" and ").append(field).append("!=").append(data);
+			}
+			if(StringUtils.equals("bw", map.get("op"))){//开始于，暂时用途大于
+				sb.append(" and ").append(field).append(">").append(data);
+			}
+			if(StringUtils.equals("in", map.get("op"))){//在参数内,多个参数用逗号相隔
+				sb.append(" and ").append(field).append(" in(").append(map.get("data")).append(")");
+			}
+			if(StringUtils.equals("ni", map.get("op"))){//不在参数内,多个参数用逗号相隔
+				sb.append(" and ").append(field).append(" not in(").append(map.get("data")).append(")");
+			}
+			if(StringUtils.equals("ew", map.get("op"))){//对束于，用作小于
+				sb.append(" and ").append(field).append("<").append(data);
+			}
+			if(StringUtils.equals("cn", map.get("op"))){//包含
+				sb.append(" and ").append(field).append(" like ").append("%"+data+"%");
+			}
+			if(StringUtils.equals("nc", map.get("op"))){//不包含
+				sb.append(" and ").append(field).append(" not like ").append("%"+data+"%");
+			}
+		}
+		List<BookDetail> dlist = bookMaintainDao.getBookByCondition(sb.toString());
+		PageInfo<BookDetail> po = new PageInfo<BookDetail>(dlist);
+		result.put("records", po.getTotal());
+		result.put("page", pageBean.getPage());
+		result.put("total", po.getTotal()/pageBean.getRows());//总页数
+		result.put("rows", po.getList());
+		return result;
 	}
 
 }
