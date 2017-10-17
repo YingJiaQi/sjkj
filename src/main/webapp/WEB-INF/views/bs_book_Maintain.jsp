@@ -51,7 +51,7 @@
 			//direction: "rtl",
 			
 			//data: grid_data,
-			url:'../back/bookMaintain/',
+			url:'../back/bookMaintain/getBookList',
 			datatype: "json",
 			height: wh,
 			mtype: 'POST',
@@ -69,7 +69,7 @@
 				{name:'id',index:'id', hidden:true},
 				{name:'bookName',index:'bookName', width:120, editable:true},
 				{name:'bookAuthor',index:'bookAuthor',width:80, editable:true,editoptions:{size:"20",maxlength:"50"}},
-				{name:'belongCategory',index:'belongCategory', width:50, editable: true,edittype:"select",editoptions:{value:getBookCategoryList()}},
+				{name:'belongCategory',index:'belongCategory', width:50, editable: true,edittype:"select",editoptions:{value:"1:已完结;0:待完结"}},
 				{name:'sore',index:'sore', width:30, editable: true},
 				{name:'readTimes',index:'readTimes', width:30, editable: true, sorttype:"int"},
 				{name:'agreeTimes',index:'agreeTimes',width:30, editable:true, sorttype:"int"},
@@ -150,7 +150,7 @@
 		}
 		//显示书籍封面
 		function showPicture(cellvalue, options, rowObject){
-			 return "<div><img src='" +cellvalue  + "' height='50' width='50' /><div style='position:absolute;left:1.2em;top:1.2em;font-size:1.5'>上传</div></div>";
+			 return "<div><img src='" +cellvalue  + "' height='50' width='50' /><div style='position:absolute;font-size:1.5'>上传</div></div>";
 		}
 		//navButtons
 		jQuery(grid_selector).jqGrid('navGrid',pager_selector,
