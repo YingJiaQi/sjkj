@@ -1,5 +1,6 @@
 package com.sjkj.controller.common;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.sjkj.bussinessUtils.DataDicUtils;
 import com.sjkj.pojo.common.DataDic;
 import com.sjkj.service.common.DataDicService;
 import com.sjkj.vo.PageBean;
+import com.sjkj.vo.ProjectConstant;
 /**
  * 数据字典管理
  * @author YJQ
@@ -34,5 +37,14 @@ public class DataDicManager {
 	@RequestMapping(value = "/operateDataDic", method = RequestMethod.POST)
 	public ResponseEntity<?> addDataDic(DataDic dataDic) {
 		return new ResponseEntity<Object>(dataDicService.operateDataDic(dataDic), HttpStatus.OK);
+	}
+	/**
+	 * @DESC  根据   字典类型编码   查找所有的字典码及数据 JSONObject(BelongCode,BelongName)
+	 * @author YJQ
+	 * @return
+	 */
+	@RequestMapping(value = "/getMapByDocCode")
+	public ResponseEntity<?> getMapByDocCode() {
+		return new ResponseEntity<Object>(DataDicUtils.getMapByDocCode(ProjectConstant.DATA_DOC_BOOK_CODE), HttpStatus.OK);
 	}
 }

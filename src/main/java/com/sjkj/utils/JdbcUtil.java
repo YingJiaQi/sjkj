@@ -1,6 +1,7 @@
 package com.sjkj.utils;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -11,12 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -30,12 +28,16 @@ public class JdbcUtil {
 	private static final Logger logger = LoggerFactory.getLogger(JdbcUtil.class);
 	public static Connection getConnectionFromPool(){
 		try {
-			ApplicationContext context=new ClassPathXmlApplicationContext("spring/applicationContext.xml");
+			/*ApplicationContext context=new ClassPathXmlApplicationContext("spring/applicationContext.xml");
 			DataSource dataSource = (DataSource) context.getBean("dataSource");
-			Connection conn = dataSource.getConnection();
+			Connection conn = dataSource.getConnection();*/
+			Class.forName(PropsUtil.get("jdbc.driverClassName"));//加载驱动
+			Connection conn = DriverManager.getConnection(PropsUtil.get("jdbc.url"),PropsUtil.get("jdbc.username"),PropsUtil.get("jdbc.password"));//获取链接
 			return conn;
 		} catch (SQLException e) {
 			logger.error("获取连接失败异常 ：" + e.getMessage());
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

@@ -51,11 +51,11 @@
 			//direction: "rtl",
 			
 			//data: grid_data,
-			url:'../preUser/getUserList',
+			url:'../back/bookMaintain/',
 			datatype: "json",
 			height: wh,
 			mtype: 'POST',
-			colNames:['操作', '','书名','作者','所属类目', '得分', '阅读次数','点赞次数','反对次数','收藏次数','购买次数','书籍大小','所需积分','是否完结','是否共享','创建日期'],
+			colNames:['操作', '','书名','作者','所属类目', '得分', '阅读次数','点赞次数','反对次数','收藏次数','购买次数','书籍大小','所需积分','图片封面','是否完结','是否共享','创建日期'],
 			colModel:[
 				{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
 					formatter:'actions', 
@@ -69,7 +69,7 @@
 				{name:'id',index:'id', hidden:true},
 				{name:'bookName',index:'bookName', width:120, editable:true},
 				{name:'bookAuthor',index:'bookAuthor',width:80, editable:true,editoptions:{size:"20",maxlength:"50"}},
-				{name:'belongCategory',index:'belongCategory', width:50, editable: true,edittype:"select",editoptions:{dataUrl:"从数据字典里获取数据"},formatter: reverseGender},
+				{name:'belongCategory',index:'belongCategory', width:50, editable: true,edittype:"select",editoptions:{value:getBookCategoryList()}},
 				{name:'sore',index:'sore', width:30, editable: true},
 				{name:'readTimes',index:'readTimes', width:30, editable: true, sorttype:"int"},
 				{name:'agreeTimes',index:'agreeTimes',width:30, editable:true, sorttype:"int"},
@@ -78,6 +78,7 @@
 				{name:'buyTimes',index:'buyTimes', width:30, editable:true,sorttype:"int"},
 				{name:'bookSizes',index:'bookSizes', width:30, editable:false},
 				{name:'price',index:'price', width:30, editable:true,sorttype:"int"},
+				{name:'picUrl',index:'picUrl',formatter:showPicture, width:40, editable:true, edittype:'file',editoptions:{enctype:"multipart/form-data"}},
 				{name:'isDone',index:'isDone', width:30, editable:true,edittype:"select",editoptions:{value:"1:已完结;0:待完结"}},
 				{name:'isShare',index:'isShare', width:30, editable:true,edittype:"checkbox",editoptions: {value:"Yes:No"},unformat: aceSwitch,formatter:reverseActive},
 				{name:'createTime',index:'createTime', width:100, editable:false, sorttype:"date"},
@@ -139,7 +140,18 @@
 				return "YES";
 			}
 		}
-	
+		function getBookCategoryList(){
+			$.ajax({
+				url: "../data/dic/getMapByDocCode",
+				success: function(data) {
+					return data;
+				}
+			})
+		}
+		//显示书籍封面
+		function showPicture(cellvalue, options, rowObject){
+			 return "<div><img src='" +cellvalue  + "' height='50' width='50' /><div style='position:absolute;left:1.2em;top:1.2em;font-size:1.5'>上传</div></div>";
+		}
 		//navButtons
 		jQuery(grid_selector).jqGrid('navGrid',pager_selector,
 			{ 	//navbar options

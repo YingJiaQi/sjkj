@@ -6,12 +6,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 
-import com.sjkj.pojo.User;
 import com.sjkj.pojo.common.BookDetail;
 import com.sjkj.service.back.BookMaintainService;
-import com.sjkj.utils.times.DateUtil;
-
+@Service
 public class BookMaintainServiceImpl implements BookMaintainService {
 
 	@Override
