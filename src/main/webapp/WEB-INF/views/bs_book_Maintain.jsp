@@ -228,6 +228,27 @@
 					var form = $(e[0]);
 					form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
 				}
+			},
+			{
+			    jqModal:true,
+			    closeAfterEdit: true,
+			    recreateForm:true,
+			    onInitializeForm : function(formid){
+			        $(formid).attr('method','POST');
+			        $(formid).attr('action','');
+			        $(formid).attr('enctype','multipart/form-data');
+			    },
+			    afterSubmit : function(response, postdata){
+			         $.ajaxFileUpload({
+				          url: '../file/upload', 
+				          secureuri:false,
+				          fileElementId:'file',
+				          dataType: 'json',
+				          success: function (data, status) {
+				           alert("Upload Complete.");
+				          }
+			         });
+			   	}
 			}
 		)
 	
