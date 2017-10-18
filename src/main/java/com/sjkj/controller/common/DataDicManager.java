@@ -47,4 +47,11 @@ public class DataDicManager {
 	public ResponseEntity<?> getMapByDocCode() {
 		return new ResponseEntity<Object>(DataDicUtils.getMapByDocCode(ProjectConstant.DATA_DOC_BOOK_CODE), HttpStatus.OK);
 	}
+	/**
+	 * 根据字典类型编码 获取该类型节点的所有父字典码  如果此时添加的是父节点 则此选项不选就好 
+	 */
+	@RequestMapping(value = "/getParentBelongCodeBydocCode")
+	public ResponseEntity<?> getParentBelongCodeBydocCode(String docCode) {
+		return new ResponseEntity<Object>(DataDicUtils.getParentBelongCodeBydocCode(docCode), HttpStatus.OK);
+	}
 }

@@ -44,7 +44,7 @@
 			datatype: "json",
 			height: wh,
 			mtype: 'POST',
-			colNames:['操作', '','字典类型编号','字典类型名称','字典码', '数据名称', '创建日期'],
+			colNames:['操作', '','字典类型编号','字典类型名称','字典码', '数据名称','父字典码', '创建日期'],
 			colModel:[
 				{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
 					formatter:'actions', 
@@ -58,6 +58,7 @@
 				{name:'docName',index:'docName',search:true,searchoptions: {sopt:['eq','ne','bw','in','ni','ew','en','cn','nc']},width:120, editable:true,editoptions:{size:"20",maxlength:"50"}},
 				{name:'belongCode',index:'belongCode',search:true, searchoptions: {sopt:['eq','ne','bw','in','ni','ew','en','cn','nc']},width:80, editable: true},
 				{name:'belongName',index:'belongName',search:true,searchoptions: {sopt:['eq','ne','bw','in','ni','ew','en','cn','nc']}, width:100, editable: true},
+				{name:'parentBelongCode',index:'parentBelongCode', width:50, editable: true},
 				{name:'createTime',index:'createTime',search:true,searchoptions: {sopt:['eq','ne','bw','in','ni','ew','en','cn','nc']},formatter:'date',
 					formatoptions:{srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s'},align:'center',sortable:true,width:120},
 			], 

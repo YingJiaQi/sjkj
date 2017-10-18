@@ -36,8 +36,8 @@
 		</div><!-- /.row -->
 	</div><!-- /.page-content -->
 <!--------------------------------- 引入js start-------------------------------------->
-<!--[if !IE]> -->
-<script src="../static/assets/js/bootstrap.min.js"></script>
+<!--------------------------------- 引入js start-------------------------------------->
+<script src="../static/assets/js/date-time/bootstrap-datepicker.min.js"></script>
 <script src="../static/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
 <script src="../static/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
 <!--------------------------------- 引入js end-------------------------------------->
@@ -55,21 +55,19 @@
 			datatype: "json",
 			height: wh,
 			mtype: 'POST',
-			colNames:['操作', '','书名','作者','所属类目', '得分', '阅读次数','点赞次数','反对次数','收藏次数','购买次数','书籍大小','所需积分','图片封面','是否完结','是否共享','创建日期'],
+			colNames:['操作', '','书名','作者','所属类目', '得分', '阅读次数','点赞次数','反对次数','收藏次数','购买次数','书籍大小','所需积分','图片封面','书籍地址','是否完结','是否共享','创建日期'],
 			colModel:[
 				{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
 					formatter:'actions', 
 					formatoptions:{ 
 						keys:true,
-						
 						delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
-						//editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
 					}
 				},
 				{name:'id',index:'id', hidden:true},
 				{name:'bookName',index:'bookName', width:120, editable:true},
 				{name:'bookAuthor',index:'bookAuthor',width:80, editable:true,editoptions:{size:"20",maxlength:"50"}},
-				{name:'belongCategory',index:'belongCategory', width:50, editable: true,edittype:"select",editoptions:{value:"1:已完结;0:待完结"}},
+				{name:'belongCategory',index:'belongCategory', width:50, editable: true,edittype: 'select', editoptions: { dataUrl: '../data/dic/getMapByDocCode'}},
 				{name:'sore',index:'sore', width:30, editable: true},
 				{name:'readTimes',index:'readTimes', width:30, editable: true, sorttype:"int"},
 				{name:'agreeTimes',index:'agreeTimes',width:30, editable:true, sorttype:"int"},
@@ -79,11 +77,11 @@
 				{name:'bookSizes',index:'bookSizes', width:30, editable:false},
 				{name:'price',index:'price', width:30, editable:true,sorttype:"int"},
 				{name:'picUrl',index:'picUrl',formatter:showPicture, width:40, editable:true, edittype:'file',editoptions:{enctype:"multipart/form-data"}},
+				{name:'bookUrl',index:'bookUrl',width:40, editable:true, edittype:'file',editoptions:{enctype:"multipart/form-data"}},
 				{name:'isDone',index:'isDone', width:30, editable:true,edittype:"select",editoptions:{value:"1:已完结;0:待完结"}},
 				{name:'isShare',index:'isShare', width:30, editable:true,edittype:"checkbox",editoptions: {value:"Yes:No"},unformat: aceSwitch,formatter:reverseActive},
 				{name:'createTime',index:'createTime', width:100, editable:false, sorttype:"date"},
-			], 
-	
+				], 
 			viewrecords : true,
 			rowNum:10,
 			rowList:[10,20,30],
@@ -107,23 +105,35 @@
 			},
 	
 			editurl: "../back/bookMaintain/operateBook",//nothing is saved
-			/*caption: "jqGrid with inline editing",*/
 			autowidth: true
-	
+			
 		});
-	
+		//显示书籍封面
+		function showPicture(cellvalue, options, rowObject){
+			 return "<img src='" +cellvalue  + "' height='50' width='50' />";
+		}
 		//switch element when editing inline
 		function aceSwitch( cellvalue, options, cell ) {
 			setTimeout(function(){
-				$(cell).find('input[type=checkbox]').wrap('<label class="inline" />').addClass('ace ace-switch ace-switch-5')
+				$(cell) .find('input[type=checkbox]')
+						.wrap('<label class="inline" />')
+					.addClass('ace ace-switch ace-switch-5')
 					.after('<span class="lbl"></span>');
-				}, 0);
+			}, 0);
+		}
+		function sexSwitch(cellvalue, options, cell){
+			setTimeout(function(){
+				$(cell) .find('input[type=checkbox]')
+						.wrap('<label class="inline" />')
+					.addClass('ace ace-switch ace-switch-5')
+					.after('<span class="lbl">12</span>');
+			}, 0);
 		}
 		//enable datepicker
 		function pickDate( cellvalue, options, cell ) {
 			setTimeout(function(){
 				$(cell) .find('input[type=text]')
-						.datepicker({format:'yyyy-mm-dd' , autoclose:true}); 
+						.datepicker({format:'yyyy-mm-dd ' , autoclose:true}); 
 			}, 0);
 		}
 		function reverseGender(cellvalue, options, cell){
@@ -139,18 +149,6 @@
 			}else{
 				return "YES";
 			}
-		}
-		function getBookCategoryList(){
-			$.ajax({
-				url: "../data/dic/getMapByDocCode",
-				success: function(data) {
-					return data;
-				}
-			})
-		}
-		//显示书籍封面
-		function showPicture(cellvalue, options, rowObject){
-			 return "<div><img src='" +cellvalue  + "' height='50' width='50' /><div style='position:absolute;font-size:1.5'>上传</div></div>";
 		}
 		//navButtons
 		jQuery(grid_selector).jqGrid('navGrid',pager_selector,
@@ -349,9 +347,7 @@
 			$('.navtable .ui-pg-button').tooltip({container:'body'});
 			$(table).find('.ui-pg-div').tooltip({container:'body'});
 		}
-	
-		//var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
-	
-	
 	});
 </script>
+
+<!--------------------------------- content	end ------------------------------------------------------------------------------------>
