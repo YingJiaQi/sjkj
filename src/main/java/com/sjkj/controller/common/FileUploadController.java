@@ -1,6 +1,7 @@
 package com.sjkj.controller.common;
 
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sjkj.utils.PropsUtil;
+import com.sjkj.utils.times.DateUtil;
 
 @Controller
 @RequestMapping("/file")
@@ -22,7 +24,12 @@ public class FileUploadController {
     public ResponseEntity<?> upload(@RequestParam(value ="file",required = false) MultipartFile file, HttpServletRequest request) {  
 		Map<String,Object> result = new HashMap<String,Object>();
 		String fileName = file.getOriginalFilename();  
+		String fileType = request.getParameter("fileType");//文件类型，是书籍封面图片(pic)，还是书籍(book)
+		String id = request.getParameter("fileId");//操作记录的id
 		String path = PropsUtil.get("book_save_path");
+		path += id+"/"+fileType;//路径拼接   系统路径+记录id+文件类型
+		String[] split = fileName.split("\\.");
+		fileName = id+DateUtil.convertToString(new Date(), DateUtil.YMD3)+"."+split[1];//拼接文件名  记录ID+上传时间+文件格式
         File targetFile = new File(path, fileName);  
         if(!targetFile.exists()){  
             targetFile.mkdirs();  

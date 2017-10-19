@@ -35,14 +35,84 @@
 		<!--------------------------------- body end-------------------------------------->
 		</div><!-- /.row -->
 	</div><!-- /.page-content -->
+	<!-- 模态框 添加分类下的连接地址（Modal） -->
+		<div class="modal fade" id="fileUpload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		            </div>
+		            <div class="modal-body">
+		            	<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="alert alert-info">
+									<i class="icon-hand-right"></i>
+
+									文件上传
+									<button class="close" data-dismiss="alert">
+										<i class="icon-remove"></i>
+									</button>
+								</div>
+
+								<div id="dropzone">
+									<form id="fileForm" action="../file/upload" class="dropzone">
+										<div class="fallback">
+											<input name="file" type="file" multiple="" />
+										</div>
+									</form>
+								</div><!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+		            </div>
+		           <!--  <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		                <button type="button" class="btn btn-default" onclick="uploadFile();">保存</button>
+		            </div> -->
+		        </div><!-- /.modal-content -->
+		    </div><!-- /.modal -->
+		</div>
 <!--------------------------------- 引入js start-------------------------------------->
 <!--------------------------------- 引入js start-------------------------------------->
 <script src="../static/assets/js/date-time/bootstrap-datepicker.min.js"></script>
 <script src="../static/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
 <script src="../static/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
+<script src="../static/assets/js/dropzone.min.js"></script>
 <!--------------------------------- 引入js end-------------------------------------->
 <script type="text/javascript">
-	jQuery(function($) {
+	var fileId="1";
+	var fileType="2";
+	$(function($) {
+		//文件上传
+		try {
+			$(".dropzone").dropzone({
+			    paramName: "file", // The name that will be used to transfer the file
+			    maxFilesize: 0.5, // MB
+				addRemoveLinks : true,
+				 init: function () {
+					 this.on("sending", function(file, xhr, data) {
+	                        data.append("fileType", fileType);
+	                        data.append("fileId", fileId);//上传文件时的额外参数
+	                    });
+					 this.on("success", function(file,imageInfo) {
+						 $("#grid-table").trigger("reloadGrid");//成功后刷新数据
+                       });
+				 },
+				dictDefaultMessage :
+				'<span class="bigger-150 bolder"><i class="icon-caret-right red"></i> Drop files</span> to upload '+
+				'<span class="smaller-80 grey">(or click)</span> <br /> '+
+				'<i class="upload-icon icon-cloud-upload blue icon-3x"></i>',
+				dictResponseError: 'Error while uploading file!',
+				//change the previewTemplate to use Bootstrap progress bars
+				previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"progress progress-small progress-striped active\"><div class=\"progress-bar progress-bar-success\" data-dz-uploadprogress></div></div>\n  <div class=\"dz-success-mark\"><span></span></div>\n  <div class=\"dz-error-mark\"><span></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>"
+			  });
+		} catch(e) {
+			 alert('Dropzone.js does not support older browsers!');
+		}
+			
+		
+		
 		var grid_selector = "#grid-table";
 		var pager_selector = "#grid-pager";
 		var wh = $(window).height();
@@ -76,8 +146,8 @@
 				{name:'buyTimes',index:'buyTimes', width:30, editable:true,sorttype:"int"},
 				{name:'bookSizes',index:'bookSizes', width:30, editable:false},
 				{name:'price',index:'price', width:30, editable:true,sorttype:"int"},
-				{name:'picUrl',index:'picUrl',formatter:showPicture, width:40, editable:true, edittype:'file',editoptions:{enctype:"multipart/form-data"}},
-				{name:'bookUrl',index:'bookUrl',width:40, editable:true, edittype:'file',editoptions:{enctype:"multipart/form-data"}},
+				{name:'picUrl',index:'picUrl',formatter:showPicture, width:40, editable:true},
+				{name:'bookUrl',index:'bookUrl',width:40, editable:true,formatter:showFile},
 				{name:'isDone',index:'isDone', width:30, editable:true,edittype:"select",editoptions:{value:"1:已完结;0:待完结"}},
 				{name:'isShare',index:'isShare', width:30, editable:true,edittype:"checkbox",editoptions: {value:"Yes:No"},unformat: aceSwitch,formatter:reverseActive},
 				{name:'createTime',index:'createTime', width:100, editable:false, sorttype:"date"},
@@ -87,8 +157,6 @@
 			rowList:[10,20,30],
 			pager : pager_selector,
 			altRows: true,
-			//toppager: true,
-			
 			multiselect: true,
 			//multikey: "ctrlKey",
 	        multiboxonly: true,
@@ -103,14 +171,21 @@
 					enableTooltips(table);
 				}, 0);
 			},
-	
 			editurl: "../back/bookMaintain/operateBook",//nothing is saved
 			autowidth: true
 			
 		});
 		//显示书籍封面
 		function showPicture(cellvalue, options, rowObject){
-			 return "<img src='" +cellvalue  + "' height='50' width='50' />";
+			 return "<img src='" +cellvalue  + "' height='50' width='50' /><a href='javascript:void(0)' id='"+rowObject.id+"' style='color:#f60' onclick='ImgUpload(this)' >Edit</a>";
+		}
+		//显示书籍信息
+		function showFile(cellvalue, options, rowObject){
+			if(cellvalue != undefined){
+				return cellvalue  + "<a href='javascript:void(0)' id='"+rowObject.id+"' style='color:#f60' onclick='BookUpload(this)' >Edit</a>";
+			}else{
+				return "<a href='javascript:void(0)' id='"+rowObject.id+"' style='color:#f60' onclick='BookUpload(this)' >Edit</a>";
+			}
 		}
 		//switch element when editing inline
 		function aceSwitch( cellvalue, options, cell ) {
@@ -228,27 +303,6 @@
 					var form = $(e[0]);
 					form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
 				}
-			},
-			{
-			    jqModal:true,
-			    closeAfterEdit: true,
-			    recreateForm:true,
-			    onInitializeForm : function(formid){
-			        $(formid).attr('method','POST');
-			        $(formid).attr('action','');
-			        $(formid).attr('enctype','multipart/form-data');
-			    },
-			    afterSubmit : function(response, postdata){
-			         $.ajaxFileUpload({
-				          url: '../file/upload', 
-				          secureuri:false,
-				          fileElementId:'file',
-				          dataType: 'json',
-				          success: function (data, status) {
-				           alert("Upload Complete.");
-				          }
-			         });
-			   	}
 			}
 		)
 	
@@ -369,6 +423,16 @@
 			$(table).find('.ui-pg-div').tooltip({container:'body'});
 		}
 	});
+	function ImgUpload(obj) {
+		$("#fileUpload").modal("show");
+		fileId = $(obj).attr("id");
+		fileType="pic";
+	}
+	function BookUpload(obj){
+		$("#fileUpload").modal("show");
+		fileId = $(obj).attr("id");
+		fileType="book";
+	}
 </script>
 
 <!--------------------------------- content	end ------------------------------------------------------------------------------------>

@@ -19,6 +19,7 @@
 		<link rel="stylesheet" href="../static/assets/css/ui.jqgrid.css" />
 		<link rel="stylesheet" href="../static/assets\css\cyrillic.css" />
 		<link rel="stylesheet" href="../static/assets/css/colorbox.css" />
+		<link rel="stylesheet" href="../static/assets/css/dropzone.css" />
 		<!-- ace styles -->
 
 		<link rel="stylesheet" href="../static/assets/css/ace.min.css" />

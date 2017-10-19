@@ -1,5 +1,18 @@
 package com.sjkj.service.back.impl;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +36,7 @@ import com.sjkj.dao.back.BookMaintainDao;
 import com.sjkj.pojo.common.BookDetail;
 import com.sjkj.service.back.BookMaintainService;
 import com.sjkj.vo.PageBean;
+import com.sun.corba.se.pept.encoding.InputObject;
 @Service
 public class BookMaintainServiceImpl implements BookMaintainService {
 	@Autowired
@@ -203,5 +217,47 @@ public class BookMaintainServiceImpl implements BookMaintainService {
 		result.put("rows", po.getList());
 		return result;
 	}
-
+	public static void main(String[] args) throws IOException {
+		//文件复制
+		/*File file = new File("C:/Users/Think/Desktop/buckup书名.txt");
+		String str="D:\\书名.txt"; 
+		String replace = str.replace("\\\\", "/");
+		InputStream is = new BufferedInputStream(new FileInputStream(new File(replace)));
+		OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		byte[] b = new byte[1024];
+		int len = 0;
+		while((len = is.read(b))!= -1){
+			os.write(b, 0, len);
+		}
+		os.flush();
+		os.close();
+		is.close();*/
+		
+		
+		//将内容存储到磁盘文件中
+/*		String str="D:\\_书名.txt"; 
+		String replace = str.replace("\\\\", "/");
+		File file = new File(replace);
+		OutputStream os = new BufferedOutputStream(new FileOutputStream(replace));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os, "utf-8"));
+		bw.write("这是一个测试");
+		bw.close();
+		os.close();*/
+		
+		//读取磁盘文件里的内容，并显示
+		String str="D:\\_书名.txt"; 
+		String replace = str.replace("\\\\", "/");
+		File file = new File(replace);
+		InputStream is = new BufferedInputStream(new FileInputStream(file));
+		Reader rr = new BufferedReader(new InputStreamReader(is, "utf-8"));
+		char[] cbuf = new char[1024];
+		int read = rr.read(cbuf);
+		System.out.println(read);
+		System.out.println(new String(cbuf).toString());
+		rr.close();
+		is.close();
+	}
 }
