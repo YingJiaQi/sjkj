@@ -19,6 +19,13 @@ public interface BookMaintainService {
 	 * @return
 	 */
 	Map<String, Object> getBookList(PageBean pageBean);
+	/**
+	 * 更新书籍url
+	 * @param id
+	 * @param path
+	 * @param fileType pic/book
+	 */
+	void updateFile(String id, String path, String fileType);
 
 
 }

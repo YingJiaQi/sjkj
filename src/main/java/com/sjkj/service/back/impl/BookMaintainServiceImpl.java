@@ -260,4 +260,17 @@ public class BookMaintainServiceImpl implements BookMaintainService {
 		rr.close();
 		is.close();
 	}
+	@Override
+	public void updateFile(String id, String path,String fileType) {
+		BookDetail bd = bookMaintainDao.selectByPrimaryKey(id);
+		if(StringUtils.equals("pic", fileType)){
+			//上传的是图片
+			bd.setPicUrl(path);
+		}else{
+			//上传的是图书
+			bd.setBookUrl(path);
+		}
+		bd.setUpdateTime(new Date());
+		bookMaintainDao.updateByPrimaryKey(bd);
+	}
 }

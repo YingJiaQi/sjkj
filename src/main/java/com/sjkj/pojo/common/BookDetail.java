@@ -41,6 +41,24 @@ public class BookDetail extends BasePojo{
 	private Integer isDone;//是否完结  0没有1已完结
 	@Column(name="is_share")
 	private Integer isShare;//是否共享
+	
+	@Column(name="pic_url")
+	private String picUrl;//书籍封面图片地址
+	@Column(name="book_url")
+	private String bookUrl;//书籍存储地址
+	
+	public String getPicUrl() {
+		return picUrl;
+	}
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
+	}
+	public String getBookUrl() {
+		return bookUrl;
+	}
+	public void setBookUrl(String bookUrl) {
+		this.bookUrl = bookUrl;
+	}
 	public String getBookName() {
 		return bookName;
 	}

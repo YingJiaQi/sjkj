@@ -116,7 +116,7 @@
 		var grid_selector = "#grid-table";
 		var pager_selector = "#grid-pager";
 		var wh = $(window).height();
-		wh = wh-186;
+		wh = wh-220;
 		jQuery(grid_selector).jqGrid({
 			//direction: "rtl",
 			
@@ -135,8 +135,8 @@
 					}
 				},
 				{name:'id',index:'id', hidden:true},
-				{name:'bookName',index:'bookName', width:120, editable:true},
-				{name:'bookAuthor',index:'bookAuthor',width:80, editable:true,editoptions:{size:"20",maxlength:"50"}},
+				{name:'bookName',index:'bookName', width:90, editable:true},
+				{name:'bookAuthor',index:'bookAuthor',width:60, editable:true,editoptions:{size:"20",maxlength:"50"}},
 				{name:'belongCategory',index:'belongCategory', width:50, editable: true,edittype: 'select', editoptions: { dataUrl: '../data/dic/getMapByDocCode'}},
 				{name:'sore',index:'sore', width:30, editable: true},
 				{name:'readTimes',index:'readTimes', width:30, editable: true, sorttype:"int"},
@@ -146,8 +146,8 @@
 				{name:'buyTimes',index:'buyTimes', width:30, editable:true,sorttype:"int"},
 				{name:'bookSizes',index:'bookSizes', width:30, editable:false},
 				{name:'price',index:'price', width:30, editable:true,sorttype:"int"},
-				{name:'picUrl',index:'picUrl',formatter:showPicture, width:40, editable:true},
-				{name:'bookUrl',index:'bookUrl',width:40, editable:true,formatter:showFile},
+				{name:'picUrl',index:'picUrl',formatter:showPicture, width:80, editable:false},
+				{name:'bookUrl',index:'bookUrl',width:80, editable:false,formatter:showFile},
 				{name:'isDone',index:'isDone', width:30, editable:true,edittype:"select",editoptions:{value:"1:已完结;0:待完结"}},
 				{name:'isShare',index:'isShare', width:30, editable:true,edittype:"checkbox",editoptions: {value:"Yes:No"},unformat: aceSwitch,formatter:reverseActive},
 				{name:'createTime',index:'createTime', width:100, editable:false, sorttype:"date"},
@@ -177,14 +177,14 @@
 		});
 		//显示书籍封面
 		function showPicture(cellvalue, options, rowObject){
-			 return "<img src='" +cellvalue  + "' height='50' width='50' /><a href='javascript:void(0)' id='"+rowObject.id+"' style='color:#f60' onclick='ImgUpload(this)' >Edit</a>";
+			 return "<a href='javascript:void(0)' id='"+rowObject.id+"' style='color:#f60' onclick='ImgUpload(this)' >Edit</a>&nbsp;&nbsp;<img src='" +cellvalue  + "' height='50' width='50' />";
 		}
 		//显示书籍信息
 		function showFile(cellvalue, options, rowObject){
 			if(cellvalue != undefined){
-				return cellvalue  + "<a href='javascript:void(0)' id='"+rowObject.id+"' style='color:#f60' onclick='BookUpload(this)' >Edit</a>";
+				return  "<a href='javascript:void(0)' id='"+rowObject.id+"' style='color:#f60' onclick='BookUpload(this)' >Edit</a>&nbsp;&nbsp;"+cellvalue;
 			}else{
-				return "<a href='javascript:void(0)' id='"+rowObject.id+"' style='color:#f60' onclick='BookUpload(this)' >Edit</a>";
+				return "&nbsp;&nbsp;<a href='javascript:void(0)' id='"+rowObject.id+"' style='color:#f60' onclick='BookUpload(this)' >Edit</a>";
 			}
 		}
 		//switch element when editing inline
