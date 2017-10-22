@@ -36,7 +36,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="wrap-logo" >
-                                <a href="index.jsp" class="logo"><img class="img-responsive" alt="" src="${pageContext.request.contextPath }/static/images/Pre/common/logo.png"> </a>
+                                <a href="index.jsp" class="logo"><img class="img-responsive" alt="" src="${pageContext.request.contextPath }/static/images/Pre/common/logo.jpg"> </a>
                             </div>
                         </div>
                         <div class="col-sm-5">

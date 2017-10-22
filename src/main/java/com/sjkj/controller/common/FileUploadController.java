@@ -31,7 +31,7 @@ public class FileUploadController {
 		String fileType = request.getParameter("fileType");//文件类型，是书籍封面图片(pic)，还是书籍(book)
 		String id = request.getParameter("fileId");//操作记录的id
 		String path = PropsUtil.get("book_save_path");
-		String loc = "/books/"+id+"/"+fileType;//相对 路径 路径拼接   系统路径+记录id+文件类型
+		String loc = "/books/"+fileType;//相对 路径 路径拼接   系统路径+记录id+文件类型
 		path +=loc;//路径拼接   系统路径+记录id+文件类型
 		String[] split = fileName.split("\\.");
 		fileName = id+DateUtil.convertToString(new Date(), DateUtil.YMD3)+"."+split[1];//拼接文件名  记录ID+上传时间+文件格式

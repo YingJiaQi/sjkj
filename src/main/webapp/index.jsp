@@ -36,7 +36,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="wrap-logo" >
-                                <a href="index.jsp" class="logo"><img class="img-responsive" alt="" src="${pageContext.request.contextPath }/static/images/Pre/common/logo.png"> </a>
+                                <a href="index.jsp" class="logo"><img class="img-responsive" alt="" src="${pageContext.request.contextPath }/static/images/Pre/common/logo.jpg"> </a>
                             </div>
                         </div>
                         <div class="col-sm-5">
@@ -188,81 +188,6 @@
             </div>
         </header>
         <!-- END header -->
-        <!-- header slider -->
-        <div class="slate_gray">
-            <div class="container">
-                <div class="row header_news_panel">
-                    <!-- Tab panes -->
-                    <div class="col-sm-8 tab-content tab-content_mob-p0">
-                        <div role="tabpanel" class="tab-pane fade in active" id="home">
-                            <img src="${pageContext.request.contextPath }/static/images/Pre/content/slide1.jpg" alt="main img" class="tab-pane__img">
-                            <div class="header_news_text tab-pane__block">
-                                <p class="tab-pane__category yel_line">People</p>
-                                <a class="tab-pane__title">The Visions's Rainbow</a>
-                                <p class="tab-pane__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="profile">
-                            <img src="${pageContext.request.contextPath }/static/images/Pre/content/slide2.jpg" alt="main img" class="tab-pane__img">
-                            <div class="header_news_text tab-pane__block">
-                                <p class="tab-pane__category yel_line">People</p>
-                                <a class="tab-pane__title">The Visions's Rainbow</a>
-                                <p class="tab-pane__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="messages">
-                            <img src="${pageContext.request.contextPath }/static/images/Pre/content/slide1.jpg" alt="main img" class="tab-pane__img">
-                            <div class="header_news_text tab-pane__block">
-                                <p class="tab-pane__category yel_line">People</p>
-                                <a class="tab-pane__title">The Visions's Rainbow</a>
-                                <p class="tab-pane__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="settings">
-                            <img src="${pageContext.request.contextPath }/static/images/Pre/content/slide2.jpg" alt="main img" class="tab-pane__img">
-                            <div class="header_news_text tab-pane__block">
-                                <p class="tab-pane__category yel_line">People</p>
-                                <a class="tab-pane__title">The Visions's Rainbow</a>
-                                <p class="tab-pane__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END Tab panes -->
-                    <!-- Nav tabs -->
-                    <div class="col-sm-4 news-tabs">
-                        <p class="news-tabs__title h2">Last news</p>
-                        <ul class="news-tabs__nav nav nav-tabs shadow_text" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#home" role="tab" data-toggle="tab">
-                                    <span class="time">today, 10:11</span>
-                                    Volkswagen hit by multiple probes in US Volkswagen hit by multiple probes in US
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#profile" role="tab" data-toggle="tab">
-                                    <span class="time">today, 11:22</span>
-                                    Volkswagen hit by multiple probes in US Volkswagen hit by multiple probes in US
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#messages" role="tab" data-toggle="tab">
-                                    <span class="time">today, 12:33</span>
-                                    Volkswagen hit by multiple probes in US Volkswagen hit by multiple probes in US
-                                </a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#settings" role="tab" data-toggle="tab">
-                                    <span class="time">today, 14:44</span>
-                                    Volkswagen hit by multiple probes in US Volkswagen hit by multiple probes in US
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- END Nav tabs -->
-                </div>
-            </div>
-        </div>
-        <!-- END header slider -->
         <!-- top news-->
         <section>
             <!-- top news -->

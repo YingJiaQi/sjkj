@@ -88,7 +88,7 @@
 		try {
 			$(".dropzone").dropzone({
 			    paramName: "file", // The name that will be used to transfer the file
-			    maxFilesize: 0.5, // MB
+			    maxFilesize: 10, // MB
 				addRemoveLinks : true,
 				 init: function () {
 					 this.on("sending", function(file, xhr, data) {

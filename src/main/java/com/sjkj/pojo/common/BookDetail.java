@@ -36,7 +36,10 @@ public class BookDetail extends BasePojo{
 	private BigDecimal bookSizes;//书籍大小(单位 M)
 	
 	@Column(name="price")
-	private BigDecimal price;//所需积分
+	private BigDecimal price;//所需积分 现价
+	@Column(name="old_price")
+	private BigDecimal oldPrice;//所需积分 原价
+	
 	@Column(name="is_done")
 	private Integer isDone;//是否完结  0没有1已完结
 	@Column(name="is_share")
@@ -47,6 +50,21 @@ public class BookDetail extends BasePojo{
 	@Column(name="book_url")
 	private String bookUrl;//书籍存储地址
 	
+	@Column(name="remarks")
+	private String remarks;//备注
+	
+	public BigDecimal getOldPrice() {
+		return oldPrice;
+	}
+	public void setOldPrice(BigDecimal oldPrice) {
+		this.oldPrice = oldPrice;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	public String getPicUrl() {
 		return picUrl;
 	}

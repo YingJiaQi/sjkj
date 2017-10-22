@@ -12,7 +12,7 @@
         <meta name="HandheldFriendly" content="true">
         <meta content="telephone=no" name="format-detection">
         <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-		<link href="../static/assets/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="${pageContext.request.contextPath }/static/assets/css/font-awesome.min.css">
         <!--[if (gt IE 9)|!(IE)]><!-->
         <!-- custom CSS -->
         <link href="${pageContext.request.contextPath }/static/css/Pre/main.css" rel="stylesheet" type="text/css" />
@@ -34,7 +34,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="wrap-logo" >
-                                <a href="index.jsp" class="logo"><img class="img-responsive" alt="" src="${pageContext.request.contextPath }/static/images/Pre/common/logo.png"> </a>
+                                <a href="index.jsp" class="logo"><img class="img-responsive" alt="" src="${pageContext.request.contextPath }/static/images/Pre/common/logo.jpg"> </a>
                             </div>
                         </div>
                         <div class="col-sm-5">
@@ -79,7 +79,30 @@
                                         </button>
                                     </form>
                                 </li>
-                              <li>
+                                <li>
+                                    <span class="wsmenu-click"></span>
+                                    <a href="">书籍分类
+        								<span class="arrow"></span>
+                                	</a>
+                                    <ul class="wsmenu-submenu">
+                                        <li>
+                                            <a href="404.html">404 page</a>
+                                        </li>
+                                        <li>
+                                            <a href="category.html">Category page</a>
+                                        </li>
+                                        <li>
+                                            <a href="news.html">News page</a>
+                                        </li>
+                                        <li>
+                                            <a href="search-result.html">Search result</a>
+                                        </li>
+                                        <li>
+                                            <a href="full-width.html">Full width</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                              	<li>
                                     <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }">主页</a>
                                 </li>
@@ -186,46 +209,95 @@
 
         <!-- END header -->
         <!-- header slider -->
-        <section style="height: 500px;">
             <!-- top news -->
             <div class="container">
             	<!-- 书籍分类、大图强推、（个人中心、搜索） -->
      			<div class="row">
-     				<div class="col-xs-12 col-sm-6 col-md-4">
+     				<div class="col-xs-12 col-sm-8 col-md-9"  style="margin-top:1em">
      				<!-- 书籍分类 -->
+						<div id="myCarousel" class="carousel slide">
+							<!-- 轮播（Carousel）指标 -->
+							<ol class="carousel-indicators">
+								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+								<li data-target="#myCarousel" data-slide-to="1"></li>
+								<li data-target="#myCarousel" data-slide-to="2"></li>
+							</ol>   
+							<!-- 轮播（Carousel）项目 -->
+							<div class="carousel-inner">
+								<div class="item active" >
+									<img src="${pageContext.request.contextPath }/static/images/Pre/content/slide1.png" alt="First slide">
+								</div>
+								<div class="item" >
+									<img src="${pageContext.request.contextPath }/static/images/Pre/content/slide2.png" alt="Second slide">
+								</div>
+								<div class="item">
+									<img src="${pageContext.request.contextPath }/static/images/Pre/content/slide3.png" alt="Third slide">
+								</div>
+							</div>
+							<!-- 轮播（Carousel）导航 -->
+							<a class="carousel-control left" href="#myCarousel" 
+							   data-slide="prev">&lsaquo;</a>
+							<a class="carousel-control right" href="#myCarousel" 
+							   data-slide="next">&rsaquo;</a>
+						</div> 
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                    <!-- 大图强推-->
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                    	<!-- 个人中心  -->
+                    <div class="col-xs-12 col-sm-4 col-md-3"  style="margin-top:1em">
+                    	<!-- 推广1  -->
                     	<div class="row">
+                    		<img src="${pageContext.request.contextPath }/static/images/Pre/content/adv1.png">
                     	</div>
-                    	<!-- 搜索   -->
+                    	<!-- 推广2   -->
                     	<div class="row">
+                    		<img src="${pageContext.request.contextPath }/static/images/Pre/content/adv2.png">
+                    	</div>
+                    	<!-- 推广3   -->
+                    	<div class="row" style="margin-top:0.2em">
+                    		<img src="${pageContext.request.contextPath }/static/images/Pre/content/adv3.png">
+                    	</div>
+                    	<!-- 推广4   -->
+                    	<div class="row"  style="margin-top:0.1em">
+                    		<img src="${pageContext.request.contextPath }/static/images/Pre/content/adv3.png">
                     	</div>
                     </div>
      			</div>
      			<!-- 新上架  -->
-     			<div class="row">
-     				
+     			<div class="row" id="newBooksList">
+     				<br/>
+     				<h3>&nbsp;&nbsp;<b style="color:#487A6F;font-size:1.2em;">新</b>书上架 &nbsp;&nbsp;<small>New books on shelves</small><a style="margin-right:2em;cursor:pointer;" class="pull-right">&gt;&gt;</a></h3>
+     				<br/>
      			</div>
      			<!-- 畅销榜 -->
-     			<div class="row">
-     				
+     			<div class="row" id="cxBooksList">
+     				<br/>
+     				<h3>&nbsp;&nbsp;<b style="color:#487A6F;font-size:1.2em">畅</b>销榜 &nbsp;&nbsp;<small>Bestseller list</small><a style="margin-right:2em;cursor:pointer;" class="pull-right">&gt;&gt;</a></h3>
+     				<br/>
      			</div>
-     			<!-- 搜索榜 -->
-     			<div class="row">
-     				
+     			<!-- 好评榜 -->
+     			<div class="row" id="hpBooksList">
+     				<br/>
+     				<h3>&nbsp;&nbsp;<b style="color:#487A6F;font-size:1.2em">好</b>评榜 &nbsp;&nbsp; <small>Praise list</small><a style="margin-right:2em;cursor:pointer;" class="pull-right">&gt;&gt;</a></h3>
+     				<br/>
      			</div>
-     			<!-- 推荐榜 -->
-     			<div class="row">
-     				
+     			<!-- 收藏榜 -->
+     			<div class="row" id="scBooksList">
+     				<br/>
+     				<h3>&nbsp;&nbsp;<b style="color:#487A6F;font-size:1.2em">收</b>藏榜&nbsp;&nbsp; <small>Collection list</small><a style="margin-right:2em;cursor:pointer;" class="pull-right">&gt;&gt;</a></h3>
+     				<br/>
      			</div>
      		</div>
-        </section>
 <!--------------------------------------------------------- JS ------------------------------------------------------------->
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/static/js/pages/pre/pre_stackRoom.js"></script>
 <!--------------------------------------------------------- FOOTER  --------------------------------------------------------->
-<jsp:include page="../../common/pre_footer.jsp"/>
+<!--------------------------------------------------------- FOOTER  --------------------------------------------------------->
+<footer class="footer slate_gray navication_footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="text-center" style="color: white;">Copyright &copy; 2017.佳奇网络</p>
+            </div>
+        </div>
+    </div>
+</footer>
 <!-- footer end-->

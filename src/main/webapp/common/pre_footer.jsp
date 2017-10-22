@@ -1,5 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
-		<footer class="footer slate_gray" style="position: absolute;clear:both;width: 100%;bottom: 0;">
+		<footer class="footer slate_gray">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -39,7 +39,7 @@
 				 window.jQuery || document.write("<script src='${pageContext.request.contextPath }/static/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
 			</script>
 		<![endif]-->
-		<script src="${pageContext.request.contextPath }/static/bootstrap/bootstrap.js"></script>
+		<script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
 		<!-- Custom JavaScript -->
         <script src="${pageContext.request.contextPath }/static/js/pages/pre/main.js"></script>
     </body>

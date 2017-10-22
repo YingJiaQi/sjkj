@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="no-js">
     <head>
@@ -6,6 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title></title>
         <meta name="description" content="">
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="${pageContext.request.contextPath }/static/epub/css/normalize.css">
@@ -25,7 +27,7 @@
                 EPUBJS.cssPath = window.location.href.replace(window.location.hash, '').replace('index.html', '') + "css/";
                 // fileStorage.filePath = EPUBJS.filePath;
 
-                window.reader = ePubReader("http://localhost/books/20191c77b8124596ab62b7ae253818c2/book/test.epub");
+                window.reader = ePubReader("${urls}");
               }
             };
 
