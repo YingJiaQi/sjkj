@@ -36,6 +36,7 @@ public class PreStackroomManager {
 		ModelAndView mv = new ModelAndView("pre_book_reading");
 		//mv.addObject("url","http://47.95.208.48:8080"+bookUrl);
 		String url = PropsUtil.get("hostIpAddress")+bookUrl;
+		System.out.println("------------------------------------------------"+url);
 		mv.getModel().put("urls", url);
 		return mv;
 	}

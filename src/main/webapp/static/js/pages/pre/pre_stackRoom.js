@@ -20,7 +20,7 @@ $(function (){
 					var html = " <div class='col-xs-6 col-sm-4 col-md-2'> "+
 					        " <div class='thumbnail'>  "+
 					        	"<a href='javascript:void(0)' onclick='showBookDetail(this)' urls='"+data.newList[i].bookUrl+"'>  "+
-						            "<img src='http://47.95.208.48:8080"+data.newList[i].picUrl+"' alt='"+data.newList[i].bookName+"' class='img-rounded'>  "+
+						            "<img src='http://47.95.208.48"+data.newList[i].picUrl+"' alt='"+data.newList[i].bookName+"' class='img-rounded'>  "+
 					        		"<br><b style='color:#000000'>&nbsp;"+data.newList[i].bookName+"</b>  "+
 					        	"</a>  "+
 					            "<div class='caption'>  "+
@@ -46,7 +46,7 @@ $(function (){
 					var html = " <div class='col-xs-6 col-sm-4 col-md-2'> "+
 					        " <div class='thumbnail'>  "+
 					        	"<a href='javascript:void(0)' onclick='showBookDetail(this)' urls='"+data.cxList[i].bookUrl+"'>  "+
-						            "<img src='http://47.95.208.48:8080"+data.cxList[i].picUrl+"' alt='"+data.cxList[i].bookName+"' class='img-rounded'>  "+
+						            "<img src='http://47.95.208.48"+data.cxList[i].picUrl+"' alt='"+data.cxList[i].bookName+"' class='img-rounded'>  "+
 					        		"<br><b style='color:#000000'>&nbsp;"+data.cxList[i].bookName+"</b>  "+
 					        	"</a>  "+
 					            "<div class='caption'>  "+
@@ -71,7 +71,7 @@ $(function (){
 					var html = " <div class='col-xs-6 col-sm-4 col-md-2'> "+
 					        " <div class='thumbnail'>  "+
 					        	"<a href='javascript:void(0)' onclick='showBookDetail(this)' urls='"+data.hpList[i].bookUrl+"'>  "+
-						            "<img src='http://47.95.208.48:8080"+data.hpList[i].picUrl+"' alt='"+data.hpList[i].bookName+"' class='img-rounded'>  "+
+						            "<img src='http://47.95.208.48"+data.hpList[i].picUrl+"' alt='"+data.hpList[i].bookName+"' class='img-rounded'>  "+
 					        		"<br><b style='color:#000000'>&nbsp;"+data.hpList[i].bookName+"</b>  "+
 					        	"</a>  "+
 					            "<div class='caption'>  "+
@@ -96,7 +96,7 @@ $(function (){
 					var html = " <div class='col-xs-6 col-sm-4 col-md-2'> "+
 					        " <div class='thumbnail'>  "+
 					        	"<a href='javascript:void(0)' onclick='showBookDetail(this)' urls='"+data.scList[i].bookUrl+"'>  "+
-						            "<img src='http://47.95.208.48:8080"+data.scList[i].picUrl+"' alt='"+data.scList[i].bookName+"' class='img-rounded'>  "+
+						            "<img src='http://47.95.208.48"+data.scList[i].picUrl+"' alt='"+data.scList[i].bookName+"' class='img-rounded'>  "+
 					        		"<br><b style='color:#000000'>&nbsp;"+data.scList[i].bookName+"</b>  "+
 					        	"</a>  "+
 					            "<div class='caption'>  "+

@@ -30,6 +30,7 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.github.abel533.entity.Example;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sjkj.dao.back.BookMaintainDao;
@@ -112,6 +113,17 @@ public class BookMaintainServiceImpl implements BookMaintainService {
 	//更新数据
 	public Map<String, Object> updateBook(BookDetail bd) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		//根据作者  书名 查找数据库    如果能找到数据  说明已经存在了这条数据
+		Example example = new Example(BookDetail.class);
+		example.createCriteria().andEqualTo("bookAuthor", bd.getBookAuthor());
+		example.createCriteria().andEqualTo("bookName", bd.getBookName());
+		example.createCriteria().andNotEqualTo("id", bd.getId());
+		List<BookDetail> selectByExample = bookMaintainDao.selectByExample(example);
+		if(selectByExample.isEmpty()){
+			map.put("msg", "更新数据失败，请检查书名和作者，数据库中已经存在此信息");
+			map.put("success", "false");
+			return map;
+		}
 		BookDetail selectByPrimaryKey = bookMaintainDao.selectByPrimaryKey(bd.getId());
 		bd.setCreateTime(selectByPrimaryKey.getCreateTime());
 		bd.setUpdateTime(new Date());
@@ -124,6 +136,16 @@ public class BookMaintainServiceImpl implements BookMaintainService {
 	//添加数据
 	public Map<String, Object> addBook(BookDetail bd) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		//根据作者  书名 查找数据库    如果能找到数据  说明已经存在了这条数据
+		Example example = new Example(BookDetail.class);
+		example.createCriteria().andEqualTo("bookAuthor", bd.getBookAuthor());
+		example.createCriteria().andEqualTo("bookName", bd.getBookName());
+		List<BookDetail> selectByExample = bookMaintainDao.selectByExample(example);
+		if(selectByExample.isEmpty()){
+			map.put("msg", "添加数据失败，请检查书名和作者，数据库中已经存在此信息");
+			map.put("success", "false");
+			return map;
+		}
 		bd.setCreateTime(new Date());
 		bd.setId(UUID.randomUUID().toString().replaceAll("-", ""));
 		bd.setIsDel(0);

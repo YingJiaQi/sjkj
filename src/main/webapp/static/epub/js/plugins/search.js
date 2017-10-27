@@ -5,7 +5,7 @@ EPUBJS.reader.search.SERVER = "https://pacific-cliffs-3579.herokuapp.com";
 
 EPUBJS.reader.search.request = function(q, callback) {
 	var fetch = $.ajax({
-		dataType: "json",
+		dataType: "jsonp",
 		url: EPUBJS.reader.search.SERVER + "/search?q=" + encodeURIComponent(q) 
 	});
 
