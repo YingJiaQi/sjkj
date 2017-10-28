@@ -177,7 +177,7 @@
 		});
 		//显示书籍封面
 		function showPicture(cellvalue, options, rowObject){
-			 return "<a href='javascript:void(0)' id='"+rowObject.id+"' style='color:#f60' onclick='ImgUpload(this)' >Edit</a>&nbsp;&nbsp;<img src='" +cellvalue  + "' height='50' width='50' />";
+			 return "<a href='javascript:void(0)' id='"+rowObject.id+"' style='color:#f60' onclick='ImgUpload(this)' >Edit</a>&nbsp;&nbsp;<img src='http://47.95.208.48:8088" +cellvalue  + "' height='50' width='50' />";
 		}
 		//显示书籍信息
 		function showFile(cellvalue, options, rowObject){
