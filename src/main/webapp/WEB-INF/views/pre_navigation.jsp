@@ -70,117 +70,46 @@
                         <!--Main Menu HTML Code-->
                         <nav class="wsmenu slideLeft clearfix">
                             <ul class="mobile-sub wsmenu-list">
-                                <li class="visible-xs">
-                                    <form class="navbar-form mob_search" role="search">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Search">
-                                        </div>
-                                        <button type="submit" class="btn btn-search">
-                                            <i class="icon-search"></i>
-                                        </button>
-                                    </form>
-                                </li>
-
                                 <li>
-                                    <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }">主页</a>
                                 </li>
                                 <li>
-                                    <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }/pre/user/pre_note">记录</a>
                                 </li>
                                 <li  class="active">
-                                    <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }/pre/user/pre_navigation"><b>导航</b></a>
                                 </li>
                                 <li>
-                                    <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }/pre/user/pre_stackRoom">书库</a>
-                                </li>
-                                <!--<li>
-                                    <span class="wsmenu-click"></span>
-                                    <a href="category.html">家</a>
-                                </li>
-                                <li>
-                                    <span class="wsmenu-click"></span>
-                                    <a href="category.html">People</a>
-                                </li>
-                                <li>
-                                    <span class="wsmenu-click"></span>
-                                    <a href="category.html">Main</a>
-                                </li>-->
-                                <!--<li>
-                                    <span class="wsmenu-click"></span>
-                                    <a href="">Other
-        							<span class="arrow"></span>
-                                </a>
-                                    <ul class="wsmenu-submenu">
-                                        <li>
-                                            <a href="404.html">404 page</a>
-                                        </li>
-                                        <li>
-                                            <a href="category.html">Category page</a>
-                                        </li>
-                                        <li>
-                                            <a href="news.html">News page</a>
-                                        </li>
-                                        <li>
-                                            <a href="search-result.html">Search result</a>
-                                        </li>
-                                        <li>
-                                            <a href="full-width.html">Full width</a>
-                                        </li>
-                                    </ul>
-                                </li>-->
-                                <li class="navbar-right hidden-xs">
-                                    <form action="http://www.baidu.com/baidu" target="_blank" class="navbar-form" role="search">
-                                        <input name=tn type=hidden value=baidu>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name=word placeholder="请输入关键字">
-                                        </div>
-                                        <button type="submit" class="btn btn-search" style="padding-top:12px">
-                                            <img src="http://img.baidu.com/search/img/baidulogo_clarity_80_29.gif" alt="Baidu"  border="0">
-                                        </button>
-                                    </form>
-                                    <!-- 百度搜索框提示 -->  
-			        				<!-- <script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script> -->
                                 </li>
                                 <li>
                                     <div class="visible-xs col-sm-offset-5 col-sm-4">
                                         <div class="col-sm-5">
-                                            <div class="weather">
-                                                <div class="weather__temperature">
-                                                    <span class="icon-sun"></span>
-                                                    <em>+8 C</em>
-                                                </div>
-                                                <div class="weather__city">
-                                                    <em>London</em>
-                                                    <div class="weather__city__list">
-                                                        <ul>
-                                                            <li class="active">
-                                                                <a href="#">London</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Moscow</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Kiev</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <div class="exchange">
-                                                <p class="exchange__name">Central Bank Rate</p>
-                                                <p class="exchange__course">
-                                                    $<span>32.32</span>&#8364;<span>28.23</span>
-                                                </p>
-                                            </div>
+                                            <shiro:guest> 
+                                            	<a href="${pageContext.request.contextPath }/pre/user/pre_login" style="margin:3% 5%;padding:3% 10%;background-color:#eeeeee;border:1px solid #eeeeee;border-radius:0.5em;color:black" class="btn btn-info">登录</a> 
+											</shiro:guest>
+											<shiro:user>
+												<a href="${pageContext.request.contextPath }/pre/user/pre_userCenter" target="_self"><img class="img-thumbnail img-responsive" style="margin-bottom:3%" alt="" src="${pageContext.request.contextPath }/static/images/Pre/common/defaultPic.jpg" width="70px" height="70px"> </a> 
+											    欢迎,<a href="${pageContext.request.contextPath }/pre/user/pre_userCenter" target="_self"><b><shiro:principal property="userName"/></b></a> , <a href="${pageContext.request.contextPath}/pre/loginOut" onclick="loginOut();">退出</a>  
+				                               	<%-- <a href="${pageContext.request.contextPath }/pre/PreCustomPage" class="btn-link"  target="_blank" >自定义页面</a> --%>
+											</shiro:user>
                                         </div>
                                     </div>
                                 </li>
+                                <li class="navbar-right">
+                                    <form action="http://www.baidu.com/baidu" target="_blank" class="navbar-form mob_search" role="search">
+                                        <input name=tn type=hidden value=baidu>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name=word placeholder="请输入关键字">
+                                        </div>
+                                        <button type="submit" class="btn btn-search" style="margin-top:4em;margin-right:3.5em">
+                                            <img src="http://img.baidu.com/search/img/baidulogo_clarity_80_29.gif" alt="Baidu"  border="0">
+                                        </button>
+                                    </form>
+                                    <!-- 百度搜索框提示 -->  
+			        				<script charset="gbk" src="http://www.baidu.com/js/opensug.js"></script>
+                                </li>
+                                
                             </ul>
                         </nav>
                         <!--Menu HTML Code-->

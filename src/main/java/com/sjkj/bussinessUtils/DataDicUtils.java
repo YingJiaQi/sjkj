@@ -19,7 +19,7 @@ public class DataDicUtils {
 	 * @return
 	 */
 	public static String getMapByDocCode(String docCode){
-		StringBuffer sb = new StringBuffer("<select multiple='multiple'>");
+		StringBuffer sb = new StringBuffer("<select class=\"selectpicker show-tick \" multiple >");
 		try {
 			List<Map<String, String>> dlist = JdbcUtil.queryApplyMoreMap("SELECT 	doc.belong_code,	doc.belong_name,	"
 					+ "ch.belong_name parName FROM 	tbl_c_data_dic doc   LEFT JOIN (SELECT belong_code,belong_name from tbl_c_data_dic "
@@ -32,6 +32,7 @@ public class DataDicUtils {
 					//查询父字典码名称 
 					sb.append("<option value='"+map.get("belong_code")+"'>"+parName+"_"+map.get("belong_name")+"</option>");
 				}
+				sb.append("<option value='kong'>无</option>");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

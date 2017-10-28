@@ -125,7 +125,7 @@
 			datatype: "json",
 			height: wh,
 			mtype: 'POST',
-			colNames:['操作', '','书名','作者','所属类目', '得分', '阅读次数','点赞次数','反对次数','收藏次数','购买次数','书籍大小','所需积分','图片封面','书籍地址','是否完结','是否共享','创建日期'],
+			colNames:['操作', '','书名','作者','所属类目','所属类目2','所属类目3', '得分', '阅读次数','点赞次数','反对次数','收藏次数','购买次数','书籍大小','所需积分','图片封面','书籍地址','是否完结','是否共享','创建日期'],
 			colModel:[
 				{name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
 					formatter:'actions', 
@@ -138,6 +138,8 @@
 				{name:'bookName',index:'bookName', width:90, editable:true},
 				{name:'bookAuthor',index:'bookAuthor',width:60, editable:true,editoptions:{size:"20",maxlength:"50"}},
 				{name:'belongCategory',index:'belongCategory', width:50, editable: true,edittype: 'select', editoptions: { dataUrl: '../data/dic/getMapByDocCode'}},
+				{name:'belongCategory1',index:'belongCategory1', width:50, editable: true,edittype: 'select', editoptions: { dataUrl: '../data/dic/getMapByDocCode'}},
+				{name:'belongCategory2',index:'belongCategory2', width:50, editable: true,edittype: 'select', editoptions: { dataUrl: '../data/dic/getMapByDocCode'}},
 				{name:'sore',index:'sore', width:30, editable: true},
 				{name:'readTimes',index:'readTimes', width:30, editable: true, sorttype:"int"},
 				{name:'agreeTimes',index:'agreeTimes',width:30, editable:true, sorttype:"int"},

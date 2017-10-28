@@ -17,7 +17,7 @@
         <!-- custom CSS -->
         <link href="${pageContext.request.contextPath }/static/css/Pre/main.css" rel="stylesheet" type="text/css" />
         <link href="${pageContext.request.contextPath }/static/css/Pre/index.css" rel="stylesheet" type="text/css" />
-        <link href="../static/assets/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/static/assets/css/font-awesome.min.css">
         <!-- END custom CSS -->
         <!--<![endif]-->
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -83,19 +83,15 @@
                                 </li>
 
                                 <li class="active">
-                                    <span class="wsmenu-click"></span>
                                     <a href="#"><b>主页</b></a>
                                 </li>
                                 <li>
-                                    <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }/pre/user/pre_note">记录</a>
                                 </li>
                                 <li>
-                                    <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }/pre/user/pre_navigation">导航</a>
                                 </li>
                                 <li>
-                                    <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }/pre/user/pre_stackRoom">书库</a>
                                 </li>
                                 <li>

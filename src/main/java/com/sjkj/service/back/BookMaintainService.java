@@ -24,8 +24,9 @@ public interface BookMaintainService {
 	 * @param id
 	 * @param path
 	 * @param fileType pic/book
+	 * @param fileSize 
 	 */
-	void updateFile(String id, String path, String fileType);
+	void updateFile(String id, String path, String fileType, long fileSize);
 
 
 }

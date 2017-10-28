@@ -10,4 +10,6 @@ import com.sjkj.pojo.common.BookDetail;
 public interface BookMaintainDao  extends Mapper<BookDetail>{
 
 	List<BookDetail> getBookByCondition(@Param("condition")String condition);
+
+	List<BookDetail> selectByAuthorAndName(@Param("bookAuthor")String bookAuthor, @Param("bookName")String bookName);
 }

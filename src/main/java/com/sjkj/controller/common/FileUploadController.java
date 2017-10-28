@@ -36,17 +36,19 @@ public class FileUploadController {
 		String[] split = fileName.split("\\.");
 		fileName = id+DateUtil.convertToString(new Date(), DateUtil.YMD3)+"."+split[1];//拼接文件名  记录ID+上传时间+文件格式
         File targetFile = new File(path, fileName);  
+        long fileSize = file.getSize();
         if(!targetFile.exists()){  
             targetFile.mkdirs();  
         }  
         //保存  
         try {  
-            file.transferTo(targetFile);  
+            file.transferTo(targetFile);
+            
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
         //更新数据库信息
-        bookMaintainService.updateFile(id,loc+"/"+fileName,fileType);
+        bookMaintainService.updateFile(id,loc+"/"+fileName,fileType,fileSize);
         return new ResponseEntity<Object>(result,HttpStatus.OK);
     }  
 }

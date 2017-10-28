@@ -55,7 +55,17 @@ public class BookMaintainServiceImpl implements BookMaintainService {
 		}
 		bd.setBookName(param.getParameter("bookName"));
 		bd.setBookAuthor(param.getParameter("bookAuthor"));
-		bd.setBelongCategory(param.getParameter("belongCategory"));
+		StringBuffer sb = new StringBuffer();
+		if(!StringUtils.equals("kong", param.getParameter("belongCategory"))){
+			sb.append(param.getParameter("belongCategory"));
+		}
+		if(!StringUtils.equals("kong", param.getParameter("belongCategory1"))){
+			sb.append(","+param.getParameter("belongCategory1"));
+		}
+		if(!StringUtils.equals("kong",param.getParameter("belongCategory2"))){
+			sb.append(","+param.getParameter("belongCategory2"));
+		}
+		bd.setBelongCategory(sb.toString());
 		if(StringUtils.isNoneBlank(param.getParameter("sore"))){
 			bd.setSore(new BigDecimal(param.getParameter("sore")));
 		}
@@ -114,13 +124,9 @@ public class BookMaintainServiceImpl implements BookMaintainService {
 	public Map<String, Object> updateBook(BookDetail bd) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		//根据作者  书名 查找数据库    如果能找到数据  说明已经存在了这条数据
-		Example example = new Example(BookDetail.class);
-		example.createCriteria().andEqualTo("bookAuthor", bd.getBookAuthor());
-		example.createCriteria().andEqualTo("bookName", bd.getBookName());
-		example.createCriteria().andNotEqualTo("id", bd.getId());
-		List<BookDetail> selectByExample = bookMaintainDao.selectByExample(example);
-		if(selectByExample.isEmpty()){
-			map.put("msg", "更新数据失败，请检查书名和作者，数据库中已经存在此信息");
+		List<BookDetail> selectByExample = bookMaintainDao.selectByAuthorAndName(bd.getBookAuthor(),bd.getBookName());
+		if(selectByExample.size() != 1 || !selectByExample.get(0).getId().equals(bd.getId())){
+			map.put("msg", "更新数据失败，请检查书名和作者，数据库中已经存在此信息或信息不匹配");
 			map.put("success", "false");
 			return map;
 		}
@@ -128,7 +134,7 @@ public class BookMaintainServiceImpl implements BookMaintainService {
 		bd.setCreateTime(selectByPrimaryKey.getCreateTime());
 		bd.setUpdateTime(new Date());
 		bd.setIsDel(selectByPrimaryKey.getIsDel());
-		bookMaintainDao.updateByPrimaryKey(selectByPrimaryKey);
+		bookMaintainDao.updateByPrimaryKey(bd);
 		map.put("msg", "更新记录成功");
 		map.put("success", "true");
 		return map;
@@ -137,11 +143,8 @@ public class BookMaintainServiceImpl implements BookMaintainService {
 	public Map<String, Object> addBook(BookDetail bd) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		//根据作者  书名 查找数据库    如果能找到数据  说明已经存在了这条数据
-		Example example = new Example(BookDetail.class);
-		example.createCriteria().andEqualTo("bookAuthor", bd.getBookAuthor());
-		example.createCriteria().andEqualTo("bookName", bd.getBookName());
-		List<BookDetail> selectByExample = bookMaintainDao.selectByExample(example);
-		if(selectByExample.isEmpty()){
+		List<BookDetail> selectByExample = bookMaintainDao.selectByAuthorAndName(bd.getBookAuthor(),bd.getBookName());
+		if(!selectByExample.isEmpty()){
 			map.put("msg", "添加数据失败，请检查书名和作者，数据库中已经存在此信息");
 			map.put("success", "false");
 			return map;
@@ -235,7 +238,7 @@ public class BookMaintainServiceImpl implements BookMaintainService {
 		PageInfo<BookDetail> po = new PageInfo<BookDetail>(dlist);
 		result.put("records", po.getTotal());
 		result.put("page", pageBean.getPage());
-		result.put("total", po.getTotal()/pageBean.getRows());//总页数
+		result.put("total", (po.getTotal()+pageBean.getRows()-1)/pageBean.getRows());//总页数(totalRecord  +  pageSize  - 1) / pageSize
 		result.put("rows", po.getList());
 		return result;
 	}
@@ -283,7 +286,7 @@ public class BookMaintainServiceImpl implements BookMaintainService {
 		is.close();
 	}
 	@Override
-	public void updateFile(String id, String path,String fileType) {
+	public void updateFile(String id, String path,String fileType,long fileSize) {
 		BookDetail bd = bookMaintainDao.selectByPrimaryKey(id);
 		if(StringUtils.equals("pic", fileType)){
 			//上传的是图片
@@ -292,6 +295,7 @@ public class BookMaintainServiceImpl implements BookMaintainService {
 			//上传的是图书
 			bd.setBookUrl(path);
 		}
+		bd.setBookSizes(new BigDecimal(fileSize));
 		bd.setUpdateTime(new Date());
 		bookMaintainDao.updateByPrimaryKey(bd);
 	}

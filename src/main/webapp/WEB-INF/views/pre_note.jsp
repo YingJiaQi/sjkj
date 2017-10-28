@@ -79,52 +79,31 @@
                                     </form>
                                 </li>
                               <li>
-                                    <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }">主页</a>
                                 </li>
                                 <li  class="active">
-                                    <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }/pre/user/pre_note"><b>记录</b></a>
                                 </li>
                                 <li>
-                                    <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }/pre/user/pre_navigation">导航</a>
                                 </li>
                                 <li>
-                                    <span class="wsmenu-click"></span>
                                     <a href="${pageContext.request.contextPath }/pre/user/pre_stackRoom">书库</a>
                                 </li>
-                               <!-- <li>
-                                    <span class="wsmenu-click"></span>
-                                    <a href="category.html">People</a>
+                               <li>
+                                    <div class="visible-xs col-sm-offset-5 col-sm-4">
+                                        <div class="col-sm-5">
+                                            <shiro:guest>  
+			                                	<a href="${pageContext.request.contextPath }/pre/user/pre_login" style="margin:6% 1% 8% 9%;opacity:0.8;" class="btn btn-info">登录</a>
+											</shiro:guest>
+											<shiro:user>
+												<a href="${pageContext.request.contextPath }/pre/user/pre_userCenter" target="_self"><img class="img-thumbnail img-responsive" style="margin-bottom:3%" alt="" src="${pageContext.request.contextPath }/static/images/Pre/common/defaultPic.jpg" width="70px" height="70px"> </a> 
+											    欢迎,<a href="${pageContext.request.contextPath }/pre/user/pre_userCenter" target="_self"><b><shiro:principal property="userName"/></b></a> , <a href="${pageContext.request.contextPath}/pre/loginOut" onclick="loginOut();">退出</a>  
+				                               	<%-- <a href="${pageContext.request.contextPath }/pre/PreCustomPage" class="btn-link"  target="_blank" >自定义页面</a> --%>
+											</shiro:user>
+                                        </div>
+                                    </div>
                                 </li>
-                                <li>
-                                    <span class="wsmenu-click"></span>
-                                    <a href="category.html">Main</a>
-                                </li>
-                                <li>
-                                    <span class="wsmenu-click"></span>
-                                    <a href="">Other
-        							<span class="arrow"></span>
-                                </a>
-                                    <ul class="wsmenu-submenu">
-                                        <li>
-                                            <a href="404.html">404 page</a>
-                                        </li>
-                                        <li>
-                                            <a href="category.html">Category page</a>
-                                        </li>
-                                        <li>
-                                            <a href="news.html">News page</a>
-                                        </li>
-                                        <li>
-                                            <a href="search-result.html">Search result</a>
-                                        </li>
-                                        <li>
-                                            <a href="full-width.html">Full width</a>
-                                        </li>
-                                    </ul>
-                                </li>-->
                                 <li class="navbar-right hidden-xs">
                                     <form class="navbar-form" role="search">
                                         <div class="form-group">
@@ -135,42 +114,6 @@
                                             <br/>站内搜索
                                         </button>
                                     </form>
-                                </li>
-                                <li>
-                                    <div class="visible-xs col-sm-offset-5 col-sm-4">
-                                        <div class="col-sm-5">
-                                            <div class="weather">
-                                                <div class="weather__temperature">
-                                                    <span class="icon-sun"></span>
-                                                    <em>+8 C</em>
-                                                </div>
-                                                <div class="weather__city">
-                                                    <em>London</em>
-                                                    <div class="weather__city__list">
-                                                        <ul>
-                                                            <li class="active">
-                                                                <a href="#">London</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Moscow</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Kiev</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <div class="exchange">
-                                                <p class="exchange__name">Central Bank Rate</p>
-                                                <p class="exchange__course">
-                                                    $<span>32.32</span>&#8364;<span>28.23</span>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </li>
                             </ul>
                         </nav>
@@ -292,18 +235,56 @@
         </section> -->
 
 <!--------------------------------------------------------- JS ------------------------------------------------------------->
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath }/static/js/extendPagination.js"></script><!-- 分页插件 -->
 <script src="${pageContext.request.contextPath }/static/js/pages/pre/pre_note.js"></script><!-- 日记JS -->
 <!--------------------------------------------------------- FOOTER  --------------------------------------------------------->
-<footer class="footer slate_gray note_main" style="position: absolute;clear:both;width: 100%;bottom: 0;">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <p class="text-center" style="color: white;">Copyright &copy; 2017.佳奇网络</p>
+ <!-- Footer -->
+        <footer class="footer slate_gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="text-center" style="color: white;">Copyright &copy; 2017.佳奇信息</p>
+                    </div>
+                    <!--<div class="col-sm-6">
+                        <div class="social navbar-right">
+                            <p class="social__text">We are in social networks</p>
+                            <ul class="social__list">
+                                <li class="social__item">
+                                    <a class="facebook" href="#">
+                                        <i class="icon-facebook"></i>
+                                    </a>
+                                </li>
+                                <li class="social__item">
+                                    <a class="twitter" href="#">
+                                        <i class="icon-twitter"></i>
+                                    </a>
+                                </li>
+                                <li class="social__item">
+                                    <a class="gplus" href="#">
+                                        <i class="icon-gplus"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>-->
+                </div>
             </div>
-        </div>
-    </div>
-</footer>
-<!-- footer end-->
+        </footer>
+        <!-- END Footer -->
+        <!-- All JavaScript libraries -->
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='${pageContext.request.contextPath }/static/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+			<script type="text/javascript">
+				 window.jQuery || document.write("<script src='${pageContext.request.contextPath }/static/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+			</script>
+		<![endif]-->
+		<script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
+		<!-- Custom JavaScript -->
+        <script src="${pageContext.request.contextPath }/static/js/pages/pre/main.js"></script>
+    </body>
+</html>
