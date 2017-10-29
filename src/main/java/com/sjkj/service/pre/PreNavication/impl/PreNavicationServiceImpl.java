@@ -62,7 +62,7 @@ public class PreNavicationServiceImpl implements PreNavicationService {
 		String brandUrl = param.get("brandUrl")+"";
 		String brandName = param.get("brandName")+"";
 		String brandId = param.get("brandId")+"";
-		String filePath = param.get("filePath")+"";
+		String filePath = "/brandPics"+param.get("filePath")+"";
 		String userId = param.get("userId")+"";
 		String userCode = param.get("userCode")+"";
 		String userbrandLinkId = param.get("userbrandLinkId")+"";

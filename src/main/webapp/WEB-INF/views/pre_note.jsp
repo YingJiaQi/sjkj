@@ -235,8 +235,7 @@
         </section> -->
 
 <!--------------------------------------------------------- JS ------------------------------------------------------------->
-<script src="${pageContext.request.contextPath }/static/js/extendPagination.js"></script><!-- 分页插件 -->
-<script src="${pageContext.request.contextPath }/static/js/pages/pre/pre_note.js"></script><!-- 日记JS -->
+
 <!--------------------------------------------------------- FOOTER  --------------------------------------------------------->
  <!-- Footer -->
         <footer class="footer slate_gray">
@@ -286,5 +285,7 @@
 		<script src="${pageContext.request.contextPath }/static/assets/js/bootstrap.min.js"></script>
 		<!-- Custom JavaScript -->
         <script src="${pageContext.request.contextPath }/static/js/pages/pre/main.js"></script>
+        <script src="${pageContext.request.contextPath }/static/js/extendPagination.js"></script><!-- 分页插件 -->
+		<script src="${pageContext.request.contextPath }/static/js/pages/pre/pre_note.js"></script><!-- 日记JS -->
     </body>
 </html>

@@ -418,7 +418,7 @@ public class PreUserServiceImpl extends BaseService<PreUser> implements PreUserS
 						List<PreBrand> new_pbList = new ArrayList<PreBrand>();
 						for(int k=0;k<pbList.size();k++){
 							PreBrand preBrand = pbList.get(k);
-							preBrand.setBrandImgUrl(PropsUtil.get("temp_brandPic_path")+preBrand.getBrandImgUrl());
+							preBrand.setBrandImgUrl(preBrand.getBrandImgUrl());
 							new_pbList.add(preBrand);
 						}
 						pblistDetail.addAll(new_pbList);

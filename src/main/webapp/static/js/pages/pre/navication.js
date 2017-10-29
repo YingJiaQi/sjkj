@@ -42,7 +42,7 @@ $(function (){
 							/*默认显示页有关联*/
 							for(var j=0;j<data.publList[i].length;j++){
 								var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6 brand_detail'  id='"+data.publList[i][j].id+"'>"+
-								"<a href='"+data.publList[i][j].brandUrl+"' class='img-responsive' target='_blank'><img height='122px' width='242px' src='"+data.publList[i][j].brandImgUrl+"'  alt='"+data.publList[i][j].brandName+"'></a><span><a href='"+data.publList[i][j].brandUrl+"' >"+data.publList[i][j].brandName+"</a></span>"+
+								"<a href='"+data.publList[i][j].brandUrl+"' class='img-responsive' target='_blank'><img height='122px' width='242px' src='http://47.95.208.48:8088"+data.publList[i][j].brandImgUrl+"'  alt='"+data.publList[i][j].brandName+"'></a><span><a href='"+data.publList[i][j].brandUrl+"' >"+data.publList[i][j].brandName+"</a></span>"+
 								"</div>";
 								htmlContent += cacheHtml;
 							}
@@ -80,7 +80,7 @@ $(function (){
 							/*显示页有关联*/
 							for(var j=0;j<data.publList[i].length;j++){
 								var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6 brand_detail'   id='"+data.publList[i][j].id+"'>"+
-								"<a href='"+data.publList[i][j].brandUrl+"' class='img-responsive' target='_blank'><img  height='122px' width='242px' src='"+data.publList[i][j].brandImgUrl+"'  alt='"+data.publList[i][j].brandName+"'></a><span><a href='"+data.publList[i][j].brandUrl+"' >"+data.publList[i][j].brandName+"</a></span>"+
+								"<a href='"+data.publList[i][j].brandUrl+"' class='img-responsive' target='_blank'><img  height='122px' width='242px' src='http://47.95.208.48:8088"+data.publList[i][j].brandImgUrl+"'  alt='"+data.publList[i][j].brandName+"'></a><span><a href='"+data.publList[i][j].brandUrl+"' >"+data.publList[i][j].brandName+"</a></span>"+
 								"</div>";
 								htmlContent += cacheHtml;
 							}
@@ -156,7 +156,7 @@ $(function (){
 								continue;
 							}
 							var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6 brand_detail' id='"+arr[3]+"'>"+
-							"<a href='"+arr[0]+"' class='img-responsive' target='_blank'><img  height='122px' width='242px' src='"+arr[1]+"'  alt='"+arr[2]+"'></a><span><a href='"+arr[0]+"' >"+arr[2]+"</a></span>"+
+							"<a href='"+arr[0]+"' class='img-responsive' target='_blank'><img  height='122px' width='242px' src='http://47.95.208.48:8088"+arr[1]+"'  alt='"+arr[2]+"'></a><span><a href='"+arr[0]+"' >"+arr[2]+"</a></span>"+
 							"</div>";
 							htmlContent += cacheHtml;
 						}
@@ -210,7 +210,7 @@ $(function (){
 								continue;
 							}
 							var cacheHtml = "<div class='col-md-3 col-sm-4 col-xs-6 brand_detail' id='"+arr[3]+"'>"+
-							"<a href='"+arr[0]+"' class='img-responsive' target='_blank'><img  height='122px' width='242px' src='"+arr[1]+"'  alt='"+arr[2]+"'></a><span><a href='"+arr[0]+"' >"+arr[2]+"</a></span>"+
+							"<a href='"+arr[0]+"' class='img-responsive' target='_blank'><img  height='122px' width='242px' src='http://47.95.208.48:8088"+arr[1]+"'  alt='"+arr[2]+"'></a><span><a href='"+arr[0]+"' >"+arr[2]+"</a></span>"+
 							"</div>";
 							htmlContent += cacheHtml;
 						}
